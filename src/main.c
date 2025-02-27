@@ -26,23 +26,83 @@ int main() {
     double work[4 * N_SPECIES];  // 作業配列
     int info;
     
-    char jobvl = 'N';  // 左固有ベクトルは計算しない
-    char jobvr = 'N';  // 右固有ベクトルは計算しない
+    char jobvl = 'V';  // 左固有ベクトルは計算しない
+    char jobvr = 'V';  // 右固有ベクトルは計算しない
     int n = N_SPECIES;
     int lda = N_SPECIES;
     int ldvl = N_SPECIES;
     int ldvr = N_SPECIES;
 
+    double a_exp[N_SPECIES];
+    double b_exp[N_SPECIES];
+
+    double EP[N_SPECIES];
+    double EI[N_SPECIES];
+
     // LAPACK の dgeev を呼び出し（ヤコビアンの固有値を計算）
     dgeev_(&jobvl, &jobvr, &n, jac, &lda, wr, wi, vl, &ldvl, vr, &ldvr, work, &lwork, &info);
     
-    if (info == 0) {
-        printf("固有値（実部 虚部）:\n");
-        for (int i = 0; i < N_SPECIES; i++) {
-            printf("%f + %fi\n", wr[i], wi[i]);
+    if (info != 0) {
+        printf("Error: dgeev failed with INFO = %d\n", info);
+        return 1;
+    }
+    
+    // printf("固有値（実部 虚部）:\n");
+    // for (int i = 0; i < N_SPECIES; i++) {
+    //     printf("%e + %ei\n", wr[i], wi[i]);
+    // }
+    
+    // printf("\n左固有ベクトル:\n");
+    // for (int i = 0; i < N_SPECIES; i++) {
+    //     for (int j = 0; j < N_SPECIES; j++) {
+    //     printf("%e ", vl[i + j * N_SPECIES]);
+    //     }
+    //     printf("\n");
+    // }
+
+    // printf("\n右固有ベクトル:\n");
+    // for (int i = 0; i < N_SPECIES; i++) {
+    //     for (int j = 0; j < N_SPECIES; j++) {
+    //     printf("%e ", vr[i + j * N_SPECIES]);
+    //     }
+    //     printf("\n");
+    // }
+
+    // 固有値・固有ベクトルの表示
+    for (int i = 0; i < N_SPECIES; i++) {
+        if (wi[i] == 0.0) {
+            printf("Eigenvalue %d: %f\n", i, wr[i]);
+            printf("Eigenvector:\n");
+            for (int j = 0; j < N_SPECIES; j++) {
+                printf("%e ", vr[j + i*N_SPECIES]);
+            }
+            printf("\n");
+        } else if (wi[i] > 0.0) {
+            printf("Eigenvalue %d: %f + %fi\n", i, wr[i], wi[i]);
+            printf("Eigenvector:\n");
+            for (int j = 0; j < N_SPECIES; j++) {
+                printf("%e + %ei\n", vr[j + i*N_SPECIES], vr[j + (i+1)*N_SPECIES]);
+            }
         }
-    } else {
-        printf("固有値計算に失敗しました (info = %d)\n", info);
+    }
+
+    
+    // 固有値・固有ベクトルの表示
+    for (int i = 0; i < N_SPECIES; i++) {
+        if (wi[i] == 0.0) {
+            printf("Eigenvalue %d: %f\n", i, wr[i]);
+            printf("Eigenvector:\n");
+            for (int j = 0; j < N_SPECIES; j++) {
+                printf("%e ", vl[j + i*N_SPECIES]);
+            }
+            printf("\n");
+        } else if (wi[i] > 0.0) {
+            printf("Eigenvalue %d: %f + %fi\n", i, wr[i], wi[i]);
+            printf("Eigenvector:\n");
+            for (int j = 0; j < N_SPECIES; j++) {
+                printf("%e + %ei\n", vl[j + i*N_SPECIES], vl[j + (i+1)*N_SPECIES]);
+            }
+        }
     }
 
     return 0;
