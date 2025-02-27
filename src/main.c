@@ -26,8 +26,8 @@ int main() {
     double work[4 * N_SPECIES];  // 作業配列
     int info;
     
-    char jobvl = 'V';  // 左固有ベクトルは計算しない
-    char jobvr = 'V';  // 右固有ベクトルは計算しない
+    char jobvl = 'V';  // calculate left eigenvelcor
+    char jobvr = 'V';  // calculate right eigenvelcor
     int n = N_SPECIES;
     int lda = N_SPECIES;
     int ldvl = N_SPECIES;
@@ -39,7 +39,7 @@ int main() {
     double EP[N_SPECIES];
     double EI[N_SPECIES];
 
-    // LAPACK の dgeev を呼び出し（ヤコビアンの固有値を計算）
+    // calclate eigenvalue of Jacobian using LAPACK
     dgeev_(&jobvl, &jobvr, &n, jac, &lda, wr, wi, vl, &ldvl, vr, &ldvr, work, &lwork, &info);
     
     if (info != 0) {
@@ -47,24 +47,34 @@ int main() {
         return 1;
     }
 
-    // 固有値・固有ベクトルの表示
-    int i = 2;
-    printf("Eigenvalue %d: %f\n", i, wr[i]);
+    // find maximum eigenvalue
+    double wr_max = 0.0;
+    int i_wr = 2;
+    for (int i = 0; i < N_SPECIES; i++) {
+        printf("Eigenvalue %d: %f\n", i, wr[i]);
+        if (wr[i] > wr_max) {
+            wr_max = wr[i];
+            i_wr = i;
+        }
+    }
+    printf("Maximum Eigenvalue %d: %f\n", i_wr, wr[i_wr]);
     
-    double EP_sum = 0.0;
 
+    // calculate EP
     printf("EP`:\n");
-    // ignore complex value
+    double EP_sum = 0.0;
+    
     for (int j = 0; j < N_SPECIES; j++) {
-        a_exp[j] = vr[j + i*N_SPECIES]; // right
-        b_exp[j] = vl[j + i*N_SPECIES]; // left
+        // ignore complex value in eigenvector
+        a_exp[j] = vr[j + i_wr*N_SPECIES]; // right
+        b_exp[j] = vl[j + i_wr*N_SPECIES]; // left
         EP[j] = a_exp[j]*b_exp[j];
         EP_sum += fabs(EP[j]);
         printf("%e\n", EP[j]);  
     }
 
+    // calculate EI
     printf("EI:\n");
-    // ignore complex value
     for (int j = 0; j < N_SPECIES; j++) {
         EI[j] = fabs(EP[j])/EP_sum;
         printf("%e\n", EI[j]);  
