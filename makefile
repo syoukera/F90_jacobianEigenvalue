@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -O2 -Wall -Wextra -Iinclude
-LDFLAGS = -lm  # 数学ライブラリをリンク
+LDFLAGS = -llapack -lblas -lm  # 数学ライブラリをリンク
 
 # ソースファイルの場所
 SRC_DIR = src
