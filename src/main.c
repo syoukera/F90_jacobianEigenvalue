@@ -46,63 +46,28 @@ int main() {
         printf("Error: dgeev failed with INFO = %d\n", info);
         return 1;
     }
-    
-    // printf("固有値（実部 虚部）:\n");
-    // for (int i = 0; i < N_SPECIES; i++) {
-    //     printf("%e + %ei\n", wr[i], wi[i]);
-    // }
-    
-    // printf("\n左固有ベクトル:\n");
-    // for (int i = 0; i < N_SPECIES; i++) {
-    //     for (int j = 0; j < N_SPECIES; j++) {
-    //     printf("%e ", vl[i + j * N_SPECIES]);
-    //     }
-    //     printf("\n");
-    // }
-
-    // printf("\n右固有ベクトル:\n");
-    // for (int i = 0; i < N_SPECIES; i++) {
-    //     for (int j = 0; j < N_SPECIES; j++) {
-    //     printf("%e ", vr[i + j * N_SPECIES]);
-    //     }
-    //     printf("\n");
-    // }
 
     // 固有値・固有ベクトルの表示
-    for (int i = 0; i < N_SPECIES; i++) {
-        if (wi[i] == 0.0) {
-            printf("Eigenvalue %d: %f\n", i, wr[i]);
-            printf("Eigenvector:\n");
-            for (int j = 0; j < N_SPECIES; j++) {
-                printf("%e ", vr[j + i*N_SPECIES]);
-            }
-            printf("\n");
-        } else if (wi[i] > 0.0) {
-            printf("Eigenvalue %d: %f + %fi\n", i, wr[i], wi[i]);
-            printf("Eigenvector:\n");
-            for (int j = 0; j < N_SPECIES; j++) {
-                printf("%e + %ei\n", vr[j + i*N_SPECIES], vr[j + (i+1)*N_SPECIES]);
-            }
-        }
+    int i = 2;
+    printf("Eigenvalue %d: %f\n", i, wr[i]);
+    
+    double EP_sum = 0.0;
+
+    printf("EP`:\n");
+    // ignore complex value
+    for (int j = 0; j < N_SPECIES; j++) {
+        a_exp[j] = vr[j + i*N_SPECIES]; // right
+        b_exp[j] = vl[j + i*N_SPECIES]; // left
+        EP[j] = a_exp[j]*b_exp[j];
+        EP_sum += fabs(EP[j]);
+        printf("%e\n", EP[j]);  
     }
 
-    
-    // 固有値・固有ベクトルの表示
-    for (int i = 0; i < N_SPECIES; i++) {
-        if (wi[i] == 0.0) {
-            printf("Eigenvalue %d: %f\n", i, wr[i]);
-            printf("Eigenvector:\n");
-            for (int j = 0; j < N_SPECIES; j++) {
-                printf("%e ", vl[j + i*N_SPECIES]);
-            }
-            printf("\n");
-        } else if (wi[i] > 0.0) {
-            printf("Eigenvalue %d: %f + %fi\n", i, wr[i], wi[i]);
-            printf("Eigenvector:\n");
-            for (int j = 0; j < N_SPECIES; j++) {
-                printf("%e + %ei\n", vl[j + i*N_SPECIES], vl[j + (i+1)*N_SPECIES]);
-            }
-        }
+    printf("EI:\n");
+    // ignore complex value
+    for (int j = 0; j < N_SPECIES; j++) {
+        EI[j] = fabs(EP[j])/EP_sum;
+        printf("%e\n", EI[j]);  
     }
 
     return 0;
