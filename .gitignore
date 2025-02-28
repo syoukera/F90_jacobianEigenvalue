@@ -1,2 +1,5 @@
 obj
 bin
+*.mod
+xy_plane
+dat/Zst_*

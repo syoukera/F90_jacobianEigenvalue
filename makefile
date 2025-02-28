@@ -43,7 +43,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEPS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.f90
 	$(FC) $(FFLAGS) -c -o $@ $<
 
+$(OBJ_DIR)/main.o: $(OBJ_DIR)/pv_parallel.o
+
 # クリーンアップ
 .PHONY: clean
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	rm -rf $(OBJ_DIR) $(BIN_DIR) *.mod src/*.mod

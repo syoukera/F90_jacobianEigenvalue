@@ -1,0 +1,11 @@
+0d0 ! mole number of C in 1mol of fuel
+3d0 ! mole number of H in 1mol of fuel
+1d0 ! mole number of N in 1mol of fuel
+0d0 ! mole number of O in 1mol of fuel
+0d0, 0d0 ! Elemental mass fraction of C in fuel and oxidizer streams
+0.177557351145966d0, 0d0 ! Elemental mass fraction of H in fuel and oxidizer streams
+0.822442648854034d0, 0.898495584709563  ! Elemental mass fraction of N in fuel and oxidizer streams
+0d0,0.101504415290437  ! Elemental mass fraction of O in fuel and oxidizer streams
+0.09d0 ! X_O2 in Air
+.true. ! cal Zn2 and Zo2 from X_O2 in Air
+0.067191261d0    !Z_st

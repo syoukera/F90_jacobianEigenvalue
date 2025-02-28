@@ -1,0 +1,32 @@
+!--- step infomation ---
+900100    ! initial step
+900100    ! last step
+5000    ! step interval
+!--- domain information -----!
+1       ! x_sta (visualizing domain)   -3    1
+100    ! x_end (visualizing domain)  225    1
+450       ! y_sta (visualizing domain)    1    1
+650    ! y_end (visualizing domain)  300  300 
+1       ! z_sta (visualizing domain)   75    1
+1       ! z_end (visualizing domain)   75  150
+2000    ! nx (computational domain)
+1100    ! ny (computational domain)
+1       ! nz (computational domain)
+4       ! ibd (bounday in x-direction)
+4       ! jbd (bounday in y-direction)
+4       ! kbd (bounday in z-direction)
+50      ! iprocs (number of processes in x-direcrtion)
+20      ! jprocs (number of processes in y-direcrtion)
+1       ! kprocs (number of processes in z-direcrtion)
+!--- output information ---!
+24      ! nf (number of species)
+27      ! ns (number of properties in array sf)
+!--- flags ---!
+.false. ! flag_particle
+.true. ! flag_Z
+.true. ! flag_pv
+!--- 3D ---!
+2      ! number of output scalar
+y5     ! O2  ! Input u,v,w,r,p,t,h, or y1, y2, ...
+y12     ! NH3
+w     ! NH3
