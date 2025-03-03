@@ -183,7 +183,7 @@ program pv
               
               call calc_z(y_local(i,j,k,:),sf(i,j,k,20),sf(i,j,k,22),sf(i,j,k,23),sf(i,j,k,24))
               call calc_Dh(y_local(i,j,k,:),r_local(i,j,k),t_local(i,j,k),sf(i,j,k,25))
-              call calc_cema(y_local(i,j,k,:),t_local(i,j,k),sf(i,j,k,28))
+              call calc_cema(y_local(i,j,k,:),t_local(i,j,k),sf(i,j,k,28),sf(i,j,k,29))
               
            end do
            end do
@@ -286,7 +286,7 @@ program pv
 
      write(*,*)"now writing vts file"
      if(.true.)then
-        call pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end,25,.True.)
+        call pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end,26,.True.)
         ! pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end, number of outputed scalars, output vector or not)
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,4),'Density')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,5),'Pressure')
@@ -314,6 +314,7 @@ program pv
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,26),'SumY')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,27),'FI')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,28),'CEMA')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,29),'index_maxEI')
 
         
         call pv_input_vector(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,1), &

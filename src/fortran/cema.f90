@@ -2,18 +2,17 @@ module cema
     use, intrinsic :: iso_c_binding
     implicit none
 
-    ! 定数定義
-    integer, parameter :: NSP = 33  ! NSP の値は適切に設定すること
+    integer, parameter :: NSP = 33  ! number of species
     real(8), parameter :: t = 0.0d0
-    real(8), parameter :: pres = 101325.0d0
+    real(8), parameter :: pres = 101325.0d0 ! ambient pressure
 
     ! pyJac
     real(8), allocatable, target :: y(:)
     real(8), allocatable, target :: jac(:, :)
-    real(8), allocatable :: wr(:), wi(:)   ! 固有値の実部と虚部
-    real(8), allocatable :: vl(:, :)       ! 左固有ベクトル
-    real(8), allocatable :: vr(:, :)       ! 右固有ベクトル
-    real(8), allocatable :: work(:)      ! 作業配列
+    real(8), allocatable :: wr(:), wi(:)   ! real and imaginary component of eigenvalue
+    real(8), allocatable :: vl(:, :)       ! left eigenvecto
+    real(8), allocatable :: vr(:, :)       ! right eigenvector
+    real(8), allocatable :: work(:)        ! work array
     
     real(8), allocatable :: a_exp(:), b_exp(:)
     real(8), allocatable :: EP(:), EI(:)
@@ -96,11 +95,12 @@ contains
 
     end subroutine initialize_cema
 
-    subroutine calc_cema(y_local,temp,cema)
+    subroutine calc_cema(y_local,temp,cema,index_EI)
         use globals, only : nf
         implicit none
         double precision, intent(in)::y_local(1:nf),temp
         double precision, intent(out)::cema
+        double precision, intent(out)::index_EI
         integer :: i, j, i_wr
 
         ! call allocation_cema()
@@ -152,10 +152,10 @@ contains
         y(33) = y_local(31)	! N2H3
         ! y(34) = y_local(1)  ! N2
         
-        ! eval_jacob を呼び出し
+        ! calclate Jacobian using pyJac
         call eval_jacob(t, pres, c_loc(y), c_loc(jac))
 
-        ! LAPACK の dgeev を使って固有値と固有ベクトルを計算
+        ! calclate eigenvalues and eigenvectors using dgeev in LAPACK
         call dgeev(jobvl, jobvr, n, jac, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info)
 
         if (info /= 0) then
@@ -163,41 +163,40 @@ contains
             stop 1
         end if
 
-        ! 最大固有値を探す
-        wr_max = 0.0d0
-        i_wr = 2
-        do i = 1, NSP
-            ! print "(E13.6)", wr(i)
-            if (wr(i) > wr_max) then
-                wr_max = wr(i)
-                i_wr = i
-            end if
-        end do
+        ! get maximum eigenvalue
+        i_wr = maxloc(wr, 1)
+        ! wr_max = 0.0d0
+        ! do i = 1, NSP
+        !     ! print "(E13.6)", wr(i)
+        !     if (wr(i) > wr_max) then
+        !         wr_max = wr(i)
+        !         i_wr = i
+        !     end if
+        ! end do
 
         ! print *, "Maximum Eigenvalue ", i_wr, ":", wr(i_wr)
-
         cema = wr(i_wr)
-        ! cema = 1.0
 
-        ! ! EP 計算
+        ! calculate EP
         ! print *, "EP:"
-        ! EP_sum = 0.0d0
-        ! do j = 1, NSP
-        !     a_exp(j) = vr(j, i_wr)  ! 右固有ベクトル
-        !     b_exp(j) = vl(j, i_wr)  ! 左固有ベクトル
-        !     EP(j) = a_exp(j) * b_exp(j)
-        !     EP_sum = EP_sum + abs(EP(j))
-        !     ! print "(E13.6)", EP(j)
-        ! end do
+        EP_sum = 0.0d0
+        do j = 1, NSP
+            a_exp(j) = vr(j, i_wr)  ! 右固有ベクトル
+            b_exp(j) = vl(j, i_wr)  ! 左固有ベクトル
+            EP(j) = a_exp(j) * b_exp(j)
+            EP_sum = EP_sum + abs(EP(j))
+            ! print "(E13.6)", EP(j)
+        end do
 
-        ! ! EI 計算
+        ! calculate EI
         ! print *, "EI:"
-        ! do j = 1, NSP
-        !     EI(j) = abs(EP(j)) / EP_sum
-        !     print "(E13.6)", EI(j)
-        ! end do
+        do j = 1, NSP
+            EI(j) = abs(EP(j)) / EP_sum
+            ! print "(E13.6)", EI(j)
+        end do
 
-        ! call deallocation_cema()
+        ! get index of maximum EI
+        index_EI = maxloc(EI, 1)
 
     end subroutine calc_cema
 
