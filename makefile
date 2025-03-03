@@ -56,6 +56,7 @@ $(OBJ_DIR)/%.o: $(F_SRC_DIR)/%.f90
 	$(FC) $(FFLAGS) -c -o $@ $<
 
 $(OBJ_DIR)/main.o: $(OBJ_DIR)/pv_parallel.o $(OBJ_DIR)/cema.o
+$(OBJ_DIR)/cema.o: $(OBJ_DIR)/pv_parallel.o
 
 # クリーンアップ
 .PHONY: clean

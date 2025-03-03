@@ -1,12 +1,9 @@
 program pv
   use globals
   use pv3D
-  use cema, only: calc_cema, init_cema
+  use cema, only: calc_cema, allocation_cema, deallocation_cema
   implicit none
   double precision::dYfdx,dYfdy,dYodx,dYody
-
-  call init_cema()
-  call calc_cema()
 
   open(200,file='./dat/setting_pv.dat',form='formatted')
     read(200,'()') !--- step infomation ---!
@@ -62,8 +59,9 @@ program pv
 
     
   call allocation
+  call allocation_cema()
 
-!  allocate(wg(1:nf))
+  !  allocate(wg(1:nf))
  
 
   open(20,file='../../xg.dat')                      
@@ -163,16 +161,16 @@ program pv
               sf(i,j,k,7)=h_local(i,j,k)
               
               sf(i,j,k,8)=y_local(i,j,k,1)      !N2
-              sf(i,j,k,9)=y_local(i,j,k,3)      !O2
-              sf(i,j,k,10)=y_local(i,j,k,6)     !OH
-              sf(i,j,k,11)=y_local(i,j,k,2)     !H2
-              sf(i,j,k,12)=y_local(i,j,k,8)     !H2O
-              sf(i,j,k,13)=y_local(i,j,k,11)     !NH3
-              sf(i,j,k,14)=y_local(i,j,k,12)     !NH2
+              sf(i,j,k,9)=y_local(i,j,k,5)      !O2
+              sf(i,j,k,10)=y_local(i,j,k,7)     !OH
+              sf(i,j,k,11)=y_local(i,j,k,8)     !H2
+              sf(i,j,k,12)=y_local(i,j,k,9)     !H2O
+              sf(i,j,k,13)=y_local(i,j,k,12)     !NH3
+              sf(i,j,k,14)=y_local(i,j,k,13)     !NH2
               sf(i,j,k,15)=y_local(i,j,k,13)     !NH
-              sf(i,j,k,16)=y_local(i,j,k,15)     !NO
-              sf(i,j,k,17)=y_local(i,j,k,19)     !NO2
-              sf(i,j,k,18)=y_local(i,j,k,16)     !N2O
+              sf(i,j,k,16)=y_local(i,j,k,14)     !NO
+              sf(i,j,k,17)=y_local(i,j,k,22)     !NO2
+              sf(i,j,k,18)=y_local(i,j,k,23)     !N2O
               ! sf(i,j,k,19)=y_local(i,j,k,33)     !OH*
 
               sf(i,j,k,26)=sum(y_local(i,j,k,:))     !sumY
@@ -185,12 +183,14 @@ program pv
               
               call calc_z(y_local(i,j,k,:),sf(i,j,k,20),sf(i,j,k,22),sf(i,j,k,23),sf(i,j,k,24))
               call calc_Dh(y_local(i,j,k,:),r_local(i,j,k),t_local(i,j,k),sf(i,j,k,25))
+              call calc_cema(y_local(i,j,k,:),t_local(i,j,k),sf(i,j,k,28))
               
            end do
            end do
            end do
            
            call deallocation
+         !   call deallocation_cema
         end if
         
      end do
@@ -286,7 +286,7 @@ program pv
 
      write(*,*)"now writing vts file"
      if(.true.)then
-        call pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end,24,.True.)
+        call pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end,25,.True.)
         ! pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end, number of outputed scalars, output vector or not)
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,4),'Density')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,5),'Pressure')
@@ -313,6 +313,7 @@ program pv
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,25),'Dh')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,26),'SumY')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,27),'FI')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,28),'CEMA')
 
         
         call pv_input_vector(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,1), &
@@ -337,6 +338,7 @@ program pv
 
      if(flag_particle)call pv_particle_output
      if(flag_particle)deallocate(pval_all)     
+     call deallocation_cema()
      
   end do mainloop
 
