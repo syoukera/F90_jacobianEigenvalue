@@ -1,18 +1,22 @@
 # コンパイラ設定
 CC = gcc
 FC = gfortran  # Fortranコンパイラ
-CFLAGS = -O2 -Wall -Wextra
+CFLAGS = -O2 -Wall -Wextra -Isrc/c -Isrc/c/jacobs
 FFLAGS = -O2 -Wall -Wextra  # Fortran用のオプション
 LDFLAGS = -llapack -lblas -lm  # 数学ライブラリをリンク
 
 # ソースファイルの場所
 C_SRC_DIR = src/c
+JACOBS_SRC_DIR = src/c/jacobs
 F_SRC_DIR = src/fortran
 OBJ_DIR = obj
 BIN_DIR = bin
 
 # Cソースファイル一覧
 SRCS_C = $(wildcard $(C_SRC_DIR)/*.c)
+
+# Cソースファイル一覧
+SRCS_JACOBS = $(wildcard $(JACOBS_SRC_DIR)/*.c)
 
 # Fortranソースファイル一覧
 SRCS_F90 = $(wildcard $(F_SRC_DIR)/*.f90)
@@ -22,6 +26,9 @@ DEPS = $(wildcard include/*.h)
 
 # Cのオブジェクトファイル
 OBJS_C = $(patsubst $(C_SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS_C))
+
+# Cのオブジェクトファイル
+OBJS_JACOBS = $(patsubst $(JACOBS_SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS_JACOBS))
 
 # Fortranのオブジェクトファイル
 OBJS_F90 = $(patsubst $(F_SRC_DIR)/%.f90, $(OBJ_DIR)/%.o, $(SRCS_F90))
@@ -33,11 +40,15 @@ TARGET = $(BIN_DIR)/main
 $(shell mkdir -p $(OBJ_DIR) $(BIN_DIR))
 
 # すべてのオブジェクトファイルをリンクして実行ファイルを作成
-$(TARGET): $(OBJS_C) $(OBJS_F90)
+$(TARGET): $(OBJS_C) $(OBJS_JACOBS) $(OBJS_F90)
 	$(FC) $(FFLAGS) -o $@ $^ $(LDFLAGS)
 
 # 各Cファイルをコンパイル
 $(OBJ_DIR)/%.o: $(C_SRC_DIR)/%.c $(DEPS)
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+# 各Cファイルをコンパイル
+$(OBJ_DIR)/%.o: $(JACOBS_SRC_DIR)/%.c $(DEPS)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 # 各Fortranファイルをコンパイル
