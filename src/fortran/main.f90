@@ -1,7 +1,7 @@
 program pv
   use globals
   use pv3D
-  use cema, only: calc_cema, allocation_cema, deallocation_cema
+  use cema, only: calc_cema, allocation_cema, deallocation_cema, EI
   implicit none
   double precision::dYfdx,dYfdy,dYodx,dYody
 
@@ -184,7 +184,12 @@ program pv
               call calc_z(y_local(i,j,k,:),sf(i,j,k,20),sf(i,j,k,22),sf(i,j,k,23),sf(i,j,k,24))
               call calc_Dh(y_local(i,j,k,:),r_local(i,j,k),t_local(i,j,k),sf(i,j,k,25))
               call calc_cema(y_local(i,j,k,:),t_local(i,j,k),sf(i,j,k,28),sf(i,j,k,29))
-              
+
+              ! asign EI
+              do kk = 1, nf
+                 sf(i,j,k,29+kk) = EI(kk)
+              end do
+
            end do
            end do
            end do
@@ -286,7 +291,7 @@ program pv
 
      write(*,*)"now writing vts file"
      if(.true.)then
-        call pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end,26,.True.)
+        call pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end,59,.True.)
         ! pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end, number of outputed scalars, output vector or not)
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,4),'Density')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,5),'Pressure')
@@ -315,7 +320,40 @@ program pv
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,27),'FI')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,28),'lambda_e')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,29),'index_maxEI')
-
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,30),'EI_T')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,31),'EI_HE')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,32),'EI_AR')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,33),'EI_H2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,34),'EI_O2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,35),'EI_H')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,36),'EI_O')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,37),'EI_OH')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,38),'EI_HO2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,39),'EI_H2O')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,40),'EI_H2O2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,41),'EI_OH*')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,42),'EI_N')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,43),'EI_NH3')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,44),'EI_NH2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,45),'EI_NH')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,46),'EI_NNH')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,47),'EI_NO')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,48),'EI_N2O')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,49),'EI_HNO')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,50),'EI_HON')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,51),'EI_H2NO')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,52),'EI_HNOH')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,53),'EI_NH2OH')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,54),'EI_NO2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,55),'EI_HONO')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,56),'EI_HNO2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,57),'EI_NO3')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,58),'EI_HONO2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,59),'EI_N2H2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,60),'EI_H2NN')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,61),'EI_N2H4')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,62),'EI_N2H3')
+      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,30),'N2')
         
         call pv_input_vector(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,1), &
                              sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,2), &
