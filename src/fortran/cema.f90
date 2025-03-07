@@ -95,11 +95,11 @@ contains
 
     end subroutine initialize_cema
 
-    subroutine calc_cema(y_local,temp,cema,index_EI)
+    subroutine calc_cema(y_local,temp,lambda_e,index_EI)
         use globals, only : nf
         implicit none
         double precision, intent(in)::y_local(1:nf),temp
-        double precision, intent(out)::cema
+        double precision, intent(out)::lambda_e
         double precision, intent(out)::index_EI
         integer :: i, j, i_wr
 
@@ -175,7 +175,7 @@ contains
         ! end do
 
         ! print *, "Maximum Eigenvalue ", i_wr, ":", wr(i_wr)
-        cema = wr(i_wr)
+        lambda_e = wr(i_wr)
 
         ! calculate EP
         ! print *, "EP:"

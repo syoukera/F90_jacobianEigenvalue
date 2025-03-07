@@ -313,7 +313,7 @@ program pv
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,25),'Dh')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,26),'SumY')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,27),'FI')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,28),'CEMA')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,28),'lambda_e')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,29),'index_maxEI')
 
         
