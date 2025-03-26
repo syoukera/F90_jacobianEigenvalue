@@ -74,6 +74,7 @@ module globals
   real(4), allocatable :: array3d(:,:,:,:)
   
   character(99) , save :: chem_dir
+  character species_names(1000)*24
 
 end module globals
 
@@ -1205,6 +1206,7 @@ subroutine chem_ini
   read(ifn,*) cmu
   read(ifn,*) clam
   read(ifn,*) cdif
+  read(ifn,*) species_names(1:njj)
   close(ifn)
 
   open(ifn,file=trim(adjustl(chem_dir))//'therm.out',form='formatted')
