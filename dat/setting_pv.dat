@@ -18,9 +18,11 @@
 50      ! iprocs (number of processes in x-direcrtion)
 20      ! jprocs (number of processes in y-direcrtion)
 1       ! kprocs (number of processes in z-direcrtion)
+!--- chemistry information ---!
+'../../DotOutGenerator_TD/Tamaoki/1atm/'
 !--- output information ---!
 33      ! nf (number of species)
-29      ! ns (number of properties in array sf)
+49      ! ns (number of properties in array sf)
 !--- flags ---!
 .false. ! flag_particle
 .true. ! flag_Z

@@ -72,7 +72,8 @@ module globals
   double precision :: h_reac_in,e_reac_in,r_reac_in,p_reac_in,temp0,dum_dble,dum_dble2
   double precision :: dt=1.d-7
   real(4), allocatable :: array3d(:,:,:,:)
-
+  
+  character(99) , save :: chem_dir
 
 end module globals
 
@@ -1198,7 +1199,7 @@ subroutine chem_ini
   allocate (tmpr(1:nf,1:3))
   
   
-  open(ifn,file='../../DotOutGenerator_TD/Tamaoki/1atm/ck.out',form='formatted')
+  open(ifn,file=trim(adjustl(chem_dir))//'ck.out',form='formatted')
   read(ifn,*) njj
   read(ifn,*) wg
   read(ifn,*) cmu
@@ -1206,7 +1207,7 @@ subroutine chem_ini
   read(ifn,*) cdif
   close(ifn)
 
-  open(ifn,file='../../DotOutGenerator_TD/Tamaoki/1atm/therm.out',form='formatted')
+  open(ifn,file=trim(adjustl(chem_dir))//'therm.out',form='formatted')
   read(ifn,*) njj
   read(ifn,*) tmpr
   read(ifn,*) ccpl,ccph
