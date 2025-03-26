@@ -1,9 +1,11 @@
 program pv
   use globals
   use pv3D
-  use cema, only: calc_cema, allocation_cema, deallocation_cema, EI
+  use cema, only: calc_cema, allocation_cema, deallocation_cema, EI, read_species_names_cema
   implicit none
   double precision::dYfdx,dYfdy,dYodx,dYody
+
+  call read_species_names_cema()
 
   open(200,file='./dat/setting_pv.dat',form='formatted')
     read(200,'()') !--- step infomation ---!

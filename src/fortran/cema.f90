@@ -5,6 +5,8 @@ module cema
     integer, parameter :: NSP = 33  ! number of species
     real(8), parameter :: t = 0.0d0
     real(8), parameter :: pres = 101325.0d0 ! ambient pressure
+    
+    character(len=10) :: species_names_cema(NSP)  ! species_names in c
 
     ! pyJac
     real(8), allocatable, target :: y(:)
@@ -94,6 +96,47 @@ contains
         info = 1
 
     end subroutine initialize_cema
+
+    subroutine read_species_names_cema()
+        implicit none
+        character(len=10) :: dummy_name  ! temporary character for name
+        character(len=100) :: line  ! temporary character for line
+        integer :: i, ios, idx
+    
+        open(unit=10, file="src/c/mechanism.h", status="old", action="read")
+    
+        ! skip header
+        do
+            read(10, '(A)', iostat=ios) line
+            if (ios /= 0) exit  ! exit at end of file
+    
+            ! skip until "/* Species Indexes"]
+            if (index(line, "/* Species Indexes") > 0) then
+                exit
+            end if
+        end do
+    
+        ! read species names
+        do
+            read(10, '(A)', iostat=ios) line
+            if (ios /= 0) exit  ! exit at end of file
+            if (index(line, "*/") > 0) exit  ! exit at end of species
+    
+            ! print *, line
+    
+            read(line, '(I3, A)', iostat=ios) idx, dummy_name
+            dummy_name = trim(adjustl(dummy_name))
+            species_names_cema(idx + 1) = dummy_name
+        end do
+    
+        close(10)
+    
+        ! print *, "Read", idx+1, "species:"
+        ! do i = 1, idx+1
+        !     print *, i, trim(species_names_cema(i))
+        ! end do
+
+    end subroutine read_species_names_cema
 
     subroutine calc_cema(y_local,temp,lambda_e,index_EI)
         use globals, only : nf
