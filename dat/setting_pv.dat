@@ -22,7 +22,7 @@
 '../../DotOutGenerator_TD/Tamaoki/1atm/'
 !--- output information ---!
 33      ! nf (number of species)
-49      ! ns (number of properties in array sf)
+62      ! ns (number of properties in array sf)
 !--- flags ---!
 .false. ! flag_particle
 .true. ! flag_Z
