@@ -161,39 +161,48 @@ program pv
               sf(i,j,k,1)=u_local(i,j,k)
               sf(i,j,k,2)=v_local(i,j,k)
               sf(i,j,k,3)=w_local(i,j,k)
-              sf(i,j,k,4)=r_local(i,j,k)
-              sf(i,j,k,5)=p_local(i,j,k)
-              sf(i,j,k,6)=t_local(i,j,k)
-              sf(i,j,k,7)=h_local(i,j,k)
-              
-              sf(i,j,k,8)=y_local(i,j,k,1)      !N2
-              sf(i,j,k,9)=y_local(i,j,k,5)      !O2
-              sf(i,j,k,10)=y_local(i,j,k,7)     !OH
-              sf(i,j,k,11)=y_local(i,j,k,8)     !H2
-              sf(i,j,k,12)=y_local(i,j,k,9)     !H2O
-              sf(i,j,k,13)=y_local(i,j,k,12)     !NH3
-              sf(i,j,k,14)=y_local(i,j,k,13)     !NH2
-              sf(i,j,k,15)=y_local(i,j,k,13)     !NH
-              sf(i,j,k,16)=y_local(i,j,k,14)     !NO
-              sf(i,j,k,17)=y_local(i,j,k,22)     !NO2
-              sf(i,j,k,18)=y_local(i,j,k,23)     !N2O
-              ! sf(i,j,k,19)=y_local(i,j,k,33)     !OH*
 
-              sf(i,j,k,26)=sum(y_local(i,j,k,:))     !sumY
+              i_tmp = 3              
+
+              sf(i,j,k,i_tmp+1)=r_local(i,j,k)
+              sf(i,j,k,i_tmp+2)=p_local(i,j,k)
+              sf(i,j,k,i_tmp+3)=t_local(i,j,k)
+              sf(i,j,k,i_tmp+4)=h_local(i,j,k)
+
+              i_tmp = i_tmp + 4
+
+              sf(i,j,k,i_tmp+1)=y_local(i,j,k,1)      !N2
+              sf(i,j,k,i_tmp+2)=y_local(i,j,k,5)      !O2
+              sf(i,j,k,i_tmp+3)=y_local(i,j,k,7)     !OH
+              sf(i,j,k,i_tmp+4)=y_local(i,j,k,8)     !H2
+              sf(i,j,k,i_tmp+5)=y_local(i,j,k,9)     !H2O
+              sf(i,j,k,i_tmp+6)=y_local(i,j,k,12)     !NH3
+              sf(i,j,k,i_tmp+7)=y_local(i,j,k,13)     !NH2
+              sf(i,j,k,i_tmp+8)=y_local(i,j,k,13)     !NH
+              sf(i,j,k,i_tmp+9)=y_local(i,j,k,14)     !NO
+              sf(i,j,k,i_tmp+10)=y_local(i,j,k,22)     !NO2
+              sf(i,j,k,i_tmp+11)=y_local(i,j,k,23)     !N2O
+              sf(i,j,k,i_tmp+12)=y_local(i,j,k,33)     !OH*
+
+              i_tmp = i_tmp + 12
+
+              sf(i,j,k,i_tmp+7)=sum(y_local(i,j,k,:))     !sumY
 
               dyodx=(y_local(i+1,j,k, 5)-y_local(i-1,j,k, 5))/(dxg(i)*dxg(i+1))
               dyody=(y_local(i,j+1,k, 5)-y_local(i,j-1,k, 5))/(dyg(j)*dyg(j+1))
               dyfdx=(y_local(i+1,j,k,12)-y_local(i-1,j,k,12))/(dxg(i)*dxg(i+1))
               dyfdy=(y_local(i,j+1,k,12)-y_local(i,j-1,k,12))/(dyg(j)*dyg(j+1))
-              sf(i,j,k,27)=(dyodx*dyfdx+dyody*dyfdy+1d-12)/(sqrt(dyodx*dyodx+dyody*dyody)*sqrt(dyfdx*dyfdx+dyfdy*dyfdy)+1d-12)
+              sf(i,j,k,i_tmp+8)=(dyodx*dyfdx+dyody*dyfdy+1d-12)/(sqrt(dyodx*dyodx+dyody*dyody)*sqrt(dyfdx*dyfdx+dyfdy*dyfdy)+1d-12)
               
-              call calc_z(y_local(i,j,k,:),sf(i,j,k,20),sf(i,j,k,22),sf(i,j,k,23),sf(i,j,k,24))
-              call calc_Dh(y_local(i,j,k,:),r_local(i,j,k),t_local(i,j,k),sf(i,j,k,25))
-              call calc_cema(y_local(i,j,k,:),t_local(i,j,k),sf(i,j,k,28),sf(i,j,k,29))
+              call calc_z(y_local(i,j,k,:),sf(i,j,k,i_tmp+1),sf(i,j,k,i_tmp+3),sf(i,j,k,i_tmp+4),sf(i,j,k,24))
+              call calc_Dh(y_local(i,j,k,:),r_local(i,j,k),t_local(i,j,k),sf(i,j,k,i_tmp+6))
+              call calc_cema(y_local(i,j,k,:),t_local(i,j,k),sf(i,j,k,i_tmp+9),sf(i,j,k,i_tmp+10))
+
+            !   i_tmp = i_tmp + 11
 
               ! asign EI
               do kk = 1, nf
-                 sf(i,j,k,29+kk) = EI(kk)
+                 sf(i,j,k,i_tmp + 11 + kk) = EI(kk)
               end do
 
            end do
@@ -211,27 +220,29 @@ program pv
         k=z_sta
         do j=y_sta+1,y_end-1
            do i=x_sta+1,x_end-1
-              dumdx=(dxg(i)*dxg(i)*sf(i+1,j,k,20)+(dxg(i+1)*dxg(i+1)-dxg(i)*dxg(i))*sf(i,j,k,20)-dxg(i+1)*dxg(i+1)*sf(i-1,j,k,20)) &
+              dumdx=(dxg(i)*dxg(i)*sf(i+1,j,k,20)+(dxg(i+1)*dxg(i+1)-dxg(i)*dxg(i))*sf(i,j,k,i_tmp+1) &
+                   - dxg(i+1)*dxg(i+1)*sf(i-1,j,k,20)) &
                    / (dxg(i)*dxg(i+1)*(dxg(i)+dxg(i+1))) 
-              dumdy=(dyg(j)*dyg(j)*sf(i,j+1,k,20)+(dyg(j+1)*dyg(j+1)-dyg(j)*dyg(j))*sf(i,j,k,20)-dyg(j+1)*dyg(j+1)*sf(i,j-1,k,20)) &
+              dumdy=(dyg(j)*dyg(j)*sf(i,j+1,k,20)+(dyg(j+1)*dyg(j+1)-dyg(j)*dyg(j))*sf(i,j,k,i_tmp+1) &
+                   - dyg(j+1)*dyg(j+1)*sf(i,j-1,k,20)) &
                    / (dyg(j)*dyg(j+1)*(dyg(j)+dyg(j+1))) 
-              sf(i,j,k,21)=2d0 * sf(i,j,k,25) * (dumdx*dumdx+dumdy*dumdy)
+              sf(i,j,k,i_tmp+2)=2d0 * sf(i,j,k,i_tmp+6) * (dumdx*dumdx+dumdy*dumdy)
            enddo
         enddo
      else
         do k=z_sta+1,z_end-1
            do j=y_sta+1,y_end-1
               do i=x_sta+1,x_end-1
-                 dumdx=(dxg(i)*dxg(i)*sf(i+1,j,k,20)+(dxg(i+1)*dxg(i+1)-dxg(i)*dxg(i))*sf(i,j,k,20) &
+                 dumdx=(dxg(i)*dxg(i)*sf(i+1,j,k,20)+(dxg(i+1)*dxg(i+1)-dxg(i)*dxg(i))*sf(i,j,k,i_tmp+1) &
                       - dxg(i+1)*dxg(i+1)*sf(i-1,j,k,20)) &
                       / (dxg(i)*dxg(i+1)*(dxg(i)+dxg(i+1))) 
-                 dumdy=(dyg(j)*dyg(j)*sf(i,j+1,k,20)+(dyg(j+1)*dyg(j+1)-dyg(j)*dyg(j))*sf(i,j,k,20) &
+                 dumdy=(dyg(j)*dyg(j)*sf(i,j+1,k,20)+(dyg(j+1)*dyg(j+1)-dyg(j)*dyg(j))*sf(i,j,k,i_tmp+1) &
                       - dyg(j+1)*dyg(j+1)*sf(i,j-1,k,20)) &
                       / (dyg(j)*dyg(j+1)*(dyg(j)+dyg(j+1))) 
-                 dumdz=(dzg(k)*dzg(k)*sf(i,j,k+1,20)+(dzg(k+1)*dzg(k+1)-dzg(k)*dzg(k))*sf(i,j,k,20) &
+                 dumdz=(dzg(k)*dzg(k)*sf(i,j,k+1,20)+(dzg(k+1)*dzg(k+1)-dzg(k)*dzg(k))*sf(i,j,k,i_tmp+1) &
                       - dzg(k+1)*dzg(k+1)*sf(i,j,k-1,20)) &
                       / (dzg(k)*dzg(k+1)*(dzg(k)+dzg(k+1))) 
-                 sf(i,j,k,21)=2d0 * sf(i,j,k,25) * (dumdx*dumdx+dumdy*dumdy+dumdz*dumdz)
+                 sf(i,j,k,i_tmp+2)=2d0 * sf(i,j,k,i_tmp+6) * (dumdx*dumdx+dumdy*dumdy+dumdz*dumdz)
               enddo
            enddo
         enddo
@@ -250,10 +261,10 @@ program pv
            icountp=0
            icountn=0
            do j=y_sta,y_end-1
-              if( (sf(i,j,k,20)-zst)*(sf(i,j+1,k,20)-zst)<=0d0  )then
-                 yst = yg(j) + (yg(j+1)-yg(j))/(sf(i,j+1,k,20)-sf(i,j,k,20))*(sf(i,j+1,k,20)-zst)
+              if( (sf(i,j,k,i_tmp+1)-zst)*(sf(i,j+1,k,20)-zst)<=0d0  )then
+                 yst = yg(j) + (yg(j+1)-yg(j))/(sf(i,j+1,k,20)-sf(i,j,k,i_tmp+1))*(sf(i,j+1,k,20)-zst)
                  dumd= (yst-yg(j))/(yg(j+1)-yg(j))
-                 chist=sf(i,j,k,21)+dumd*(sf(i,j+1,k,21)-sf(i,j,k,21))
+                 chist=sf(i,j,k,i_tmp+2)+dumd*(sf(i,j+1,k,21)-sf(i,j,k,i_tmp+2))
                  ust=sf(i,j,k, 1)+dumd*(sf(i,j+1,k, 1)-sf(i,j,k, 1))
                  vst=sf(i,j,k, 2)+dumd*(sf(i,j+1,k, 2)-sf(i,j,k, 2))
                  tst=sf(i,j,k, 6)+dumd*(sf(i,j+1,k, 6)-sf(i,j,k, 6))
@@ -306,31 +317,37 @@ program pv
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+2),'Pressure')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+3),'Temperature')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+4),'Enthaply')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+5),'Y_N2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+6),'Y_O2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+7),'Y_OH')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+8),'Y_H2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+9),'Y_H2O')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+10),'Y_NH3')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+11),'Y_NH2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+12),'Y_NH')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+13),'Y_NO')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+14),'Y_NO2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+15),'Y_N2O')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+16),'Y_OHr')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+17),'Z')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+18),'chi')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+19),'Z_H')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+20),'Z_N')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+21),'H_N_ratio')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+22),'Dh')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+23),'SumY')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+24),'FI')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+25),'lambda_e')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+26),'index_maxEI')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+27),'EI_T')
+
+        i_tmp = i_tmp + 4
+
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+1),'Y_N2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+2),'Y_O2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+3),'Y_OH')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+4),'Y_H2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+5),'Y_H2O')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+6),'Y_NH3')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+7),'Y_NH2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+8),'Y_NH')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+9),'Y_NO')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+10),'Y_NO2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+11),'Y_N2O')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+12),'Y_OHr')
+
+        i_tmp = i_tmp + 12
+
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+1),'Z')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+2),'chi')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+3),'Z_H')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+4),'Z_N')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+5),'H_N_ratio')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+6),'Dh')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+7),'SumY')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+8),'FI')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+9),'lambda_e')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+10),'index_maxEI')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+11),'EI_T')
          
-        i_tmp = i_tmp + 27
+        i_tmp = i_tmp + 11
 
         do i = 1, nf-1
            call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+i),'EI_'//species_names_cema(i))
