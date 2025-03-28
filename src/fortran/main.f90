@@ -35,7 +35,6 @@ program pv
    read(200,*) chem_dir
    read(200,'()') !--- output information ---!
    read(200,*) nf
-   read(200,*) ns
    read(200,'()') !--- flags ---!
    read(200,*) flag_particle
    read(200,*) flag_Z
@@ -60,15 +59,16 @@ program pv
    write(*,*) "domain  ",nx, ny, nz
    write(*,*) "bd      ",ibd,jbd,kbd  
    write(*,*) "process ",iprocs,jprocs,kprocs
-   write(*,*) "nf, ns  ", nf, ns
+   write(*,*) "nf      ", nf
    write(*,*) "particle",flag_particle
    write(*,*) "plane   ",flag_plane
 
-   ! ! calculate pointer for sf
-   ! ptr_states = 3
-   ! ptr_Y = ptr_states + 4
-   ! ptr_analyze = ptr_Y + 12
-   ! ptr_EI = ptr_analyze + 10
+   ! calculate pointer for sf
+   ptr_states = 3
+   ptr_Y = ptr_states + 4
+   ptr_analyze = ptr_Y + 12
+   ptr_EI = ptr_analyze + 10
+   ns = ptr_EI + nf
 
   call allocation
   call allocation_cema()
@@ -168,14 +168,14 @@ program pv
               sf(i,j,k,2)=v_local(i,j,k)
               sf(i,j,k,3)=w_local(i,j,k)
 
-              ptr_states = 3  
+            !   ptr_states = 3  
 
               sf(i,j,k,ptr_states+1)=r_local(i,j,k)
               sf(i,j,k,ptr_states+2)=p_local(i,j,k)
               sf(i,j,k,ptr_states+3)=t_local(i,j,k)
               sf(i,j,k,ptr_states+4)=h_local(i,j,k)
 
-              ptr_Y = ptr_states + 4
+            !   ptr_Y = ptr_states + 4
 
               sf(i,j,k,ptr_Y+1)=y_local(i,j,k,1)      !N2
               sf(i,j,k,ptr_Y+2)=y_local(i,j,k,5)      !O2
@@ -190,7 +190,7 @@ program pv
               sf(i,j,k,ptr_Y+11)=y_local(i,j,k,23)     !N2O
               sf(i,j,k,ptr_Y+12)=y_local(i,j,k,33)     !OH*
 
-              ptr_analyze = ptr_Y + 12
+            !   ptr_analyze = ptr_Y + 12
 
               sf(i,j,k,ptr_analyze+7)=sum(y_local(i,j,k,:))     !sumY
 
@@ -205,7 +205,7 @@ program pv
               call calc_Dh(y_local(i,j,k,:),r_local(i,j,k),t_local(i,j,k),sf(i,j,k,ptr_analyze+6))
               call calc_cema(y_local(i,j,k,:),t_local(i,j,k),sf(i,j,k,ptr_analyze+9),sf(i,j,k,ptr_analyze+10))
 
-              ptr_EI = ptr_analyze + 10
+            !   ptr_EI = ptr_analyze + 10
 
               ! asign EI to sf
               do kk = 1, nf
@@ -315,17 +315,17 @@ program pv
 
      write(*,*)"now writing vts file"
      if(.true.)then
-        call pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end,59,.True.)
+        call pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end,ns-3,.True.)
         ! pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end, number of outputed scalars, output vector or not)
 
-        ptr_states = 3
+      !   ptr_states = 3
 
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_states+1),'Density')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_states+2),'Pressure')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_states+3),'Temperature')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_states+4),'Enthaply')
 
-        ptr_Y = ptr_states + 4
+      !   ptr_Y = ptr_states + 4
 
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+1),'Y_N2')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+2),'Y_O2')
@@ -340,7 +340,7 @@ program pv
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+11),'Y_N2O')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+12),'Y_OHr')
 
-        ptr_analyze = ptr_Y + 12
+      !   ptr_analyze = ptr_Y + 12
 
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+1),'Z')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+2),'chi')
@@ -353,7 +353,7 @@ program pv
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+9),'lambda_e')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+10),'index_maxEI')
          
-        ptr_EI = ptr_analyze + 10
+      !   ptr_EI = ptr_analyze + 10
 
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+1),'EI_T')
         do i = 2, nf
