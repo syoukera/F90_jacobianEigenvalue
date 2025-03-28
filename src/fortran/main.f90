@@ -5,66 +5,71 @@ program pv
                   read_species_names_cema, species_names_cema
   implicit none
   double precision::dYfdx,dYfdy,dYodx,dYody
-  integer i_tmp
+!   integer i_tmp
   integer :: ptr_states, ptr_Y, ptr_analyze, ptr_EI
 
   call read_species_names_cema()
 
   open(200,file='./dat/setting_pv.dat',form='formatted')
-    read(200,'()') !--- step infomation ---!
-    read(200,*) step0
-    read(200,*) step1
-    read(200,*) step2
-    read(200,'()') !--- domain information ---!
-    read(200,*) x_sta
-    read(200,*) x_end
-    read(200,*) y_sta
-    read(200,*) y_end
-    read(200,*) z_sta
-    read(200,*) z_end
-    read(200,*) nx 
-    read(200,*) ny
-    read(200,*) nz
-    read(200,*) ibd
-    read(200,*) jbd
-    read(200,*) kbd
-    read(200,*) iprocs
-    read(200,*) jprocs
-    read(200,*) kprocs
-    read(200,'()') !--- chemistry information ---!
-    read(200,*) chem_dir
-    read(200,'()') !--- output information ---!
-    read(200,*) nf
-    read(200,*) ns
-    read(200,'()') !--- flags ---!
-    read(200,*) flag_particle
-    read(200,*) flag_Z
-    read(200,*) flag_pv    
-    close(200)
+   read(200,'()') !--- step infomation ---!
+   read(200,*) step0
+   read(200,*) step1
+   read(200,*) step2
+   read(200,'()') !--- domain information ---!
+   read(200,*) x_sta
+   read(200,*) x_end
+   read(200,*) y_sta
+   read(200,*) y_end
+   read(200,*) z_sta
+   read(200,*) z_end
+   read(200,*) nx 
+   read(200,*) ny
+   read(200,*) nz
+   read(200,*) ibd
+   read(200,*) jbd
+   read(200,*) kbd
+   read(200,*) iprocs
+   read(200,*) jprocs
+   read(200,*) kprocs
+   read(200,'()') !--- chemistry information ---!
+   read(200,*) chem_dir
+   read(200,'()') !--- output information ---!
+   read(200,*) nf
+   read(200,*) ns
+   read(200,'()') !--- flags ---!
+   read(200,*) flag_particle
+   read(200,*) flag_Z
+   read(200,*) flag_pv    
+   close(200)
 
-    if(z_sta==z_end)then
-       flag_plane=1
-    else if(x_sta==x_end)then
-       flag_plane=2
-    else if(y_sta==y_end)then
-       flag_plane=3
-    else 
-       flag_plane=4
-    endif
+   if(z_sta==z_end)then
+      flag_plane=1
+   else if(x_sta==x_end)then
+      flag_plane=2
+   else if(y_sta==y_end)then
+      flag_plane=3
+   else 
+      flag_plane=4
+   endif
 
-    write(*,*) "step    ",step0, step1, step2
-    write(*,*) "x(vis)  ",x_sta,x_end 
-    write(*,*) "y(vis)  ",y_sta,y_end 
-    write(*,*) "z(vis)  ",z_sta,z_end
-    
-    write(*,*) "domain  ",nx, ny, nz
-    write(*,*) "bd      ",ibd,jbd,kbd  
-    write(*,*) "process ",iprocs,jprocs,kprocs
-    write(*,*) "nf, ns  ", nf, ns
-    write(*,*) "particle",flag_particle
-    write(*,*) "plane   ",flag_plane
+   write(*,*) "step    ",step0, step1, step2
+   write(*,*) "x(vis)  ",x_sta,x_end 
+   write(*,*) "y(vis)  ",y_sta,y_end 
+   write(*,*) "z(vis)  ",z_sta,z_end
+   
+   write(*,*) "domain  ",nx, ny, nz
+   write(*,*) "bd      ",ibd,jbd,kbd  
+   write(*,*) "process ",iprocs,jprocs,kprocs
+   write(*,*) "nf, ns  ", nf, ns
+   write(*,*) "particle",flag_particle
+   write(*,*) "plane   ",flag_plane
 
-    
+   ! ! calculate pointer for sf
+   ! ptr_states = 3
+   ! ptr_Y = ptr_states + 4
+   ! ptr_analyze = ptr_Y + 12
+   ! ptr_EI = ptr_analyze + 10
+
   call allocation
   call allocation_cema()
 
@@ -163,47 +168,48 @@ program pv
               sf(i,j,k,2)=v_local(i,j,k)
               sf(i,j,k,3)=w_local(i,j,k)
 
-              i_tmp = 3              
+              ptr_states = 3  
 
-              sf(i,j,k,i_tmp+1)=r_local(i,j,k)
-              sf(i,j,k,i_tmp+2)=p_local(i,j,k)
-              sf(i,j,k,i_tmp+3)=t_local(i,j,k)
-              sf(i,j,k,i_tmp+4)=h_local(i,j,k)
+              sf(i,j,k,ptr_states+1)=r_local(i,j,k)
+              sf(i,j,k,ptr_states+2)=p_local(i,j,k)
+              sf(i,j,k,ptr_states+3)=t_local(i,j,k)
+              sf(i,j,k,ptr_states+4)=h_local(i,j,k)
 
-              i_tmp = i_tmp + 4
+              ptr_Y = ptr_states + 4
 
-              sf(i,j,k,i_tmp+1)=y_local(i,j,k,1)      !N2
-              sf(i,j,k,i_tmp+2)=y_local(i,j,k,5)      !O2
-              sf(i,j,k,i_tmp+3)=y_local(i,j,k,7)     !OH
-              sf(i,j,k,i_tmp+4)=y_local(i,j,k,8)     !H2
-              sf(i,j,k,i_tmp+5)=y_local(i,j,k,9)     !H2O
-              sf(i,j,k,i_tmp+6)=y_local(i,j,k,12)     !NH3
-              sf(i,j,k,i_tmp+7)=y_local(i,j,k,13)     !NH2
-              sf(i,j,k,i_tmp+8)=y_local(i,j,k,13)     !NH
-              sf(i,j,k,i_tmp+9)=y_local(i,j,k,14)     !NO
-              sf(i,j,k,i_tmp+10)=y_local(i,j,k,22)     !NO2
-              sf(i,j,k,i_tmp+11)=y_local(i,j,k,23)     !N2O
-              sf(i,j,k,i_tmp+12)=y_local(i,j,k,33)     !OH*
+              sf(i,j,k,ptr_Y+1)=y_local(i,j,k,1)      !N2
+              sf(i,j,k,ptr_Y+2)=y_local(i,j,k,5)      !O2
+              sf(i,j,k,ptr_Y+3)=y_local(i,j,k,7)     !OH
+              sf(i,j,k,ptr_Y+4)=y_local(i,j,k,8)     !H2
+              sf(i,j,k,ptr_Y+5)=y_local(i,j,k,9)     !H2O
+              sf(i,j,k,ptr_Y+6)=y_local(i,j,k,12)     !NH3
+              sf(i,j,k,ptr_Y+7)=y_local(i,j,k,13)     !NH2
+              sf(i,j,k,ptr_Y+8)=y_local(i,j,k,13)     !NH
+              sf(i,j,k,ptr_Y+9)=y_local(i,j,k,14)     !NO
+              sf(i,j,k,ptr_Y+10)=y_local(i,j,k,22)     !NO2
+              sf(i,j,k,ptr_Y+11)=y_local(i,j,k,23)     !N2O
+              sf(i,j,k,ptr_Y+12)=y_local(i,j,k,33)     !OH*
 
-              i_tmp = i_tmp + 12
+              ptr_analyze = ptr_Y + 12
 
-              sf(i,j,k,i_tmp+7)=sum(y_local(i,j,k,:))     !sumY
+              sf(i,j,k,ptr_analyze+7)=sum(y_local(i,j,k,:))     !sumY
 
               dyodx=(y_local(i+1,j,k, 5)-y_local(i-1,j,k, 5))/(dxg(i)*dxg(i+1))
               dyody=(y_local(i,j+1,k, 5)-y_local(i,j-1,k, 5))/(dyg(j)*dyg(j+1))
               dyfdx=(y_local(i+1,j,k,12)-y_local(i-1,j,k,12))/(dxg(i)*dxg(i+1))
               dyfdy=(y_local(i,j+1,k,12)-y_local(i,j-1,k,12))/(dyg(j)*dyg(j+1))
-              sf(i,j,k,i_tmp+8)=(dyodx*dyfdx+dyody*dyfdy+1d-12)/(sqrt(dyodx*dyodx+dyody*dyody)*sqrt(dyfdx*dyfdx+dyfdy*dyfdy)+1d-12)
+              sf(i,j,k,ptr_analyze+8)=(dyodx*dyfdx+dyody*dyfdy+1d-12) &
+                                     /(sqrt(dyodx*dyodx+dyody*dyody)*sqrt(dyfdx*dyfdx+dyfdy*dyfdy)+1d-12)
               
-              call calc_z(y_local(i,j,k,:),sf(i,j,k,i_tmp+1),sf(i,j,k,i_tmp+3),sf(i,j,k,i_tmp+4),sf(i,j,k,24))
-              call calc_Dh(y_local(i,j,k,:),r_local(i,j,k),t_local(i,j,k),sf(i,j,k,i_tmp+6))
-              call calc_cema(y_local(i,j,k,:),t_local(i,j,k),sf(i,j,k,i_tmp+9),sf(i,j,k,i_tmp+10))
+              call calc_z(y_local(i,j,k,:),sf(i,j,k,ptr_analyze+1),sf(i,j,k,ptr_analyze+3),sf(i,j,k,ptr_analyze+4),sf(i,j,k,24))
+              call calc_Dh(y_local(i,j,k,:),r_local(i,j,k),t_local(i,j,k),sf(i,j,k,ptr_analyze+6))
+              call calc_cema(y_local(i,j,k,:),t_local(i,j,k),sf(i,j,k,ptr_analyze+9),sf(i,j,k,ptr_analyze+10))
 
-            !   i_tmp = i_tmp + 11
+              ptr_EI = ptr_analyze + 10
 
-              ! asign EI
+              ! asign EI to sf
               do kk = 1, nf
-                 sf(i,j,k,i_tmp + 10 + kk) = EI(kk)
+                 sf(i,j,k,ptr_EI + kk) = EI(kk)
               end do
 
            end do
@@ -221,29 +227,29 @@ program pv
         k=z_sta
         do j=y_sta+1,y_end-1
            do i=x_sta+1,x_end-1
-              dumdx=(dxg(i)*dxg(i)*sf(i+1,j,k,20)+(dxg(i+1)*dxg(i+1)-dxg(i)*dxg(i))*sf(i,j,k,i_tmp+1) &
+              dumdx=(dxg(i)*dxg(i)*sf(i+1,j,k,20)+(dxg(i+1)*dxg(i+1)-dxg(i)*dxg(i))*sf(i,j,k,ptr_analyze+1) &
                    - dxg(i+1)*dxg(i+1)*sf(i-1,j,k,20)) &
                    / (dxg(i)*dxg(i+1)*(dxg(i)+dxg(i+1))) 
-              dumdy=(dyg(j)*dyg(j)*sf(i,j+1,k,20)+(dyg(j+1)*dyg(j+1)-dyg(j)*dyg(j))*sf(i,j,k,i_tmp+1) &
+              dumdy=(dyg(j)*dyg(j)*sf(i,j+1,k,20)+(dyg(j+1)*dyg(j+1)-dyg(j)*dyg(j))*sf(i,j,k,ptr_analyze+1) &
                    - dyg(j+1)*dyg(j+1)*sf(i,j-1,k,20)) &
                    / (dyg(j)*dyg(j+1)*(dyg(j)+dyg(j+1))) 
-              sf(i,j,k,i_tmp+2)=2d0 * sf(i,j,k,i_tmp+6) * (dumdx*dumdx+dumdy*dumdy)
+              sf(i,j,k,ptr_analyze+2)=2d0 * sf(i,j,k,ptr_analyze+6) * (dumdx*dumdx+dumdy*dumdy)
            enddo
         enddo
      else
         do k=z_sta+1,z_end-1
            do j=y_sta+1,y_end-1
               do i=x_sta+1,x_end-1
-                 dumdx=(dxg(i)*dxg(i)*sf(i+1,j,k,20)+(dxg(i+1)*dxg(i+1)-dxg(i)*dxg(i))*sf(i,j,k,i_tmp+1) &
+                 dumdx=(dxg(i)*dxg(i)*sf(i+1,j,k,20)+(dxg(i+1)*dxg(i+1)-dxg(i)*dxg(i))*sf(i,j,k,ptr_analyze+1) &
                       - dxg(i+1)*dxg(i+1)*sf(i-1,j,k,20)) &
                       / (dxg(i)*dxg(i+1)*(dxg(i)+dxg(i+1))) 
-                 dumdy=(dyg(j)*dyg(j)*sf(i,j+1,k,20)+(dyg(j+1)*dyg(j+1)-dyg(j)*dyg(j))*sf(i,j,k,i_tmp+1) &
+                 dumdy=(dyg(j)*dyg(j)*sf(i,j+1,k,20)+(dyg(j+1)*dyg(j+1)-dyg(j)*dyg(j))*sf(i,j,k,ptr_analyze+1) &
                       - dyg(j+1)*dyg(j+1)*sf(i,j-1,k,20)) &
                       / (dyg(j)*dyg(j+1)*(dyg(j)+dyg(j+1))) 
-                 dumdz=(dzg(k)*dzg(k)*sf(i,j,k+1,20)+(dzg(k+1)*dzg(k+1)-dzg(k)*dzg(k))*sf(i,j,k,i_tmp+1) &
+                 dumdz=(dzg(k)*dzg(k)*sf(i,j,k+1,20)+(dzg(k+1)*dzg(k+1)-dzg(k)*dzg(k))*sf(i,j,k,ptr_analyze+1) &
                       - dzg(k+1)*dzg(k+1)*sf(i,j,k-1,20)) &
                       / (dzg(k)*dzg(k+1)*(dzg(k)+dzg(k+1))) 
-                 sf(i,j,k,i_tmp+2)=2d0 * sf(i,j,k,i_tmp+6) * (dumdx*dumdx+dumdy*dumdy+dumdz*dumdz)
+                 sf(i,j,k,ptr_analyze+2)=2d0 * sf(i,j,k,ptr_analyze+6) * (dumdx*dumdx+dumdy*dumdy+dumdz*dumdz)
               enddo
            enddo
         enddo
@@ -262,10 +268,10 @@ program pv
            icountp=0
            icountn=0
            do j=y_sta,y_end-1
-              if( (sf(i,j,k,i_tmp+1)-zst)*(sf(i,j+1,k,20)-zst)<=0d0  )then
-                 yst = yg(j) + (yg(j+1)-yg(j))/(sf(i,j+1,k,20)-sf(i,j,k,i_tmp+1))*(sf(i,j+1,k,20)-zst)
+              if( (sf(i,j,k,ptr_analyze+1)-zst)*(sf(i,j+1,k,20)-zst)<=0d0  )then
+                 yst = yg(j) + (yg(j+1)-yg(j))/(sf(i,j+1,k,20)-sf(i,j,k,ptr_analyze+1))*(sf(i,j+1,k,20)-zst)
                  dumd= (yst-yg(j))/(yg(j+1)-yg(j))
-                 chist=sf(i,j,k,i_tmp+2)+dumd*(sf(i,j+1,k,21)-sf(i,j,k,i_tmp+2))
+                 chist=sf(i,j,k,ptr_analyze+2)+dumd*(sf(i,j+1,k,21)-sf(i,j,k,ptr_analyze+2))
                  ust=sf(i,j,k, 1)+dumd*(sf(i,j+1,k, 1)-sf(i,j,k, 1))
                  vst=sf(i,j,k, 2)+dumd*(sf(i,j+1,k, 2)-sf(i,j,k, 2))
                  tst=sf(i,j,k, 6)+dumd*(sf(i,j+1,k, 6)-sf(i,j,k, 6))
@@ -351,7 +357,7 @@ program pv
 
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+1),'EI_T')
         do i = 2, nf
-           call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+i),'EI_'//species_names_cema(i))
+           call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+i),'EI_'//species_names_cema(i-1))
         end do
         
         call pv_input_vector(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,1), &
