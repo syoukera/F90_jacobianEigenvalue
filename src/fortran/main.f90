@@ -6,6 +6,7 @@ program pv
   implicit none
   double precision::dYfdx,dYfdy,dYodx,dYody
   integer i_tmp
+  integer :: ptr_states, ptr_Y, ptr_analyze, ptr_EI
 
   call read_species_names_cema()
 
@@ -202,7 +203,7 @@ program pv
 
               ! asign EI
               do kk = 1, nf
-                 sf(i,j,k,i_tmp + 11 + kk) = EI(kk)
+                 sf(i,j,k,i_tmp + 10 + kk) = EI(kk)
               end do
 
            end do
@@ -311,83 +312,47 @@ program pv
         call pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end,59,.True.)
         ! pv_output_initial( x_sta,x_end,y_sta,y_end,z_sta,z_end, number of outputed scalars, output vector or not)
 
-        i_tmp = 3
+        ptr_states = 3
 
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+1),'Density')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+2),'Pressure')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+3),'Temperature')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+4),'Enthaply')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_states+1),'Density')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_states+2),'Pressure')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_states+3),'Temperature')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_states+4),'Enthaply')
 
-        i_tmp = i_tmp + 4
+        ptr_Y = ptr_states + 4
 
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+1),'Y_N2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+2),'Y_O2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+3),'Y_OH')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+4),'Y_H2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+5),'Y_H2O')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+6),'Y_NH3')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+7),'Y_NH2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+8),'Y_NH')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+9),'Y_NO')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+10),'Y_NO2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+11),'Y_N2O')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+12),'Y_OHr')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+1),'Y_N2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+2),'Y_O2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+3),'Y_OH')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+4),'Y_H2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+5),'Y_H2O')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+6),'Y_NH3')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+7),'Y_NH2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+8),'Y_NH')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+9),'Y_NO')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+10),'Y_NO2')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+11),'Y_N2O')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+12),'Y_OHr')
 
-        i_tmp = i_tmp + 12
+        ptr_analyze = ptr_Y + 12
 
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+1),'Z')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+2),'chi')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+3),'Z_H')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+4),'Z_N')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+5),'H_N_ratio')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+6),'Dh')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+7),'SumY')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+8),'FI')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+9),'lambda_e')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+10),'index_maxEI')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+11),'EI_T')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+1),'Z')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+2),'chi')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+3),'Z_H')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+4),'Z_N')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+5),'H_N_ratio')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+6),'Dh')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+7),'SumY')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+8),'FI')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+9),'lambda_e')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+10),'index_maxEI')
          
-        i_tmp = i_tmp + 11
+        ptr_EI = ptr_analyze + 10
 
-        do i = 1, nf-1
-           call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,i_tmp+i),'EI_'//species_names_cema(i))
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+1),'EI_T')
+        do i = 2, nf
+           call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+i),'EI_'//species_names_cema(i))
         end do
-
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,30),'EI_T')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,31),'EI_HE')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,32),'EI_AR')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,31),'EI_H2')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,32),'EI_O2')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,35),'EI_H')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,33),'EI_O')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,34),'EI_OH')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,38),'EI_HO2')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,35),'EI_H2O')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,36),'EI_H2O2')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,41),'EI_OH*')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,42),'EI_N')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,37),'EI_NH3')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,38),'EI_NH2')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,45),'EI_NH')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,46),'EI_NNH')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,39),'EI_NO')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,40),'EI_N2O')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,41),'EI_HNO')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,50),'EI_HON')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,51),'EI_H2NO')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,52),'EI_HNOH')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,42),'EI_NH2OH')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,54),'EI_NO2')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,43),'EI_HONO')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,44),'EI_HNO2')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,57),'EI_NO3')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,45),'EI_HONO2')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,46),'EI_N2H2')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,47),'EI_H2NN')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,48),'EI_N2H4')
-      !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,49),'EI_N2H3')
-      ! !   call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,30),'N2')
-
         
         call pv_input_vector(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,1), &
                              sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,2), &
