@@ -17,7 +17,7 @@ void mole2mass (const double * X, double * Y) {
   // average molecular weight
   double mw_avg = 0.0;
   mw_avg += X[0] * 4.0026000000000002e+00;
-  mw_avg += X[1] * 3.9948000000000000e+01;
+  mw_avg += X[1] * 2.8013480000000001e+01;
   mw_avg += X[2] * 2.0158800000000001e+00;
   mw_avg += X[3] * 3.1998799999999999e+01;
   mw_avg += X[4] * 1.0079400000000001e+00;
@@ -48,11 +48,11 @@ void mole2mass (const double * X, double * Y) {
   mw_avg += X[29] * 3.0029360000000000e+01;
   mw_avg += X[30] * 3.2045240000000000e+01;
   mw_avg += X[31] * 3.1037300000000002e+01;
-  mw_avg += X_N * 2.8013480000000001e+01;
+  mw_avg += X_N * 3.9948000000000000e+01;
 
   // calculate mass fractions
   Y[0] = X[0] * 4.0026000000000002e+00 / mw_avg;
-  Y[1] = X[1] * 3.9948000000000000e+01 / mw_avg;
+  Y[1] = X[1] * 2.8013480000000001e+01 / mw_avg;
   Y[2] = X[2] * 2.0158800000000001e+00 / mw_avg;
   Y[3] = X[3] * 3.1998799999999999e+01 / mw_avg;
   Y[4] = X[4] * 1.0079400000000001e+00 / mw_avg;
@@ -103,7 +103,7 @@ void mass2mole (const double * Y, double * X) {
   // average molecular weight
   double mw_avg = 0.0;
   mw_avg += Y[0] / 4.0026000000000002e+00;
-  mw_avg += Y[1] / 3.9948000000000000e+01;
+  mw_avg += Y[1] / 2.8013480000000001e+01;
   mw_avg += Y[2] / 2.0158800000000001e+00;
   mw_avg += Y[3] / 3.1998799999999999e+01;
   mw_avg += Y[4] / 1.0079400000000001e+00;
@@ -134,12 +134,12 @@ void mass2mole (const double * Y, double * X) {
   mw_avg += Y[29] / 3.0029360000000000e+01;
   mw_avg += Y[30] / 3.2045240000000000e+01;
   mw_avg += Y[31] / 3.1037300000000002e+01;
-  mw_avg += Y_N / 2.8013480000000001e+01;
+  mw_avg += Y_N / 3.9948000000000000e+01;
   mw_avg = 1.0 / mw_avg;
 
   // calculate mole fractions
   X[0] = Y[0] * mw_avg / 4.0026000000000002e+00;
-  X[1] = Y[1] * mw_avg / 3.9948000000000000e+01;
+  X[1] = Y[1] * mw_avg / 2.8013480000000001e+01;
   X[2] = Y[2] * mw_avg / 2.0158800000000001e+00;
   X[3] = Y[3] * mw_avg / 3.1998799999999999e+01;
   X[4] = Y[4] * mw_avg / 1.0079400000000001e+00;
@@ -192,7 +192,7 @@ double getDensity (const double temp, const double pres, const double * X) {
   // average molecular weight
   double mw_avg = 0.0;
   mw_avg += X[0] * 4.0026000000000002e+00;
-  mw_avg += X[1] * 3.9948000000000000e+01;
+  mw_avg += X[1] * 2.8013480000000001e+01;
   mw_avg += X[2] * 2.0158800000000001e+00;
   mw_avg += X[3] * 3.1998799999999999e+01;
   mw_avg += X[4] * 1.0079400000000001e+00;
@@ -223,7 +223,7 @@ double getDensity (const double temp, const double pres, const double * X) {
   mw_avg += X[29] * 3.0029360000000000e+01;
   mw_avg += X[30] * 3.2045240000000000e+01;
   mw_avg += X[31] * 3.1037300000000002e+01;
-  mw_avg += X_N * 2.8013480000000001e+01;
+  mw_avg += X_N * 3.9948000000000000e+01;
 
   return pres * mw_avg / (8.31446210e+03 * temp);
 } // end getDensity

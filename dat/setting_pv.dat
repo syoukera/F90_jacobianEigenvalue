@@ -4,9 +4,9 @@
 5000    ! step interval
 !--- domain information -----!
 1       ! x_sta (visualizing domain)   -3    1
-200    ! x_end (visualizing domain)  225    1
+1000    ! x_end (visualizing domain)  225    1
 550       ! y_sta (visualizing domain)    1    1
-700    ! y_end (visualizing domain)  300  300 
+1100    ! y_end (visualizing domain)  300  300 
 1       ! z_sta (visualizing domain)   75    1
 1       ! z_end (visualizing domain)   75  150
 2000    ! nx (computational domain)

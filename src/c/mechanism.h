@@ -2,10 +2,10 @@
 #define MECHANISM_h
 
 #include <string.h>
-//last_spec 2
+//last_spec 1
 /* Species Indexes
 0  HE
-1  AR
+1  N2
 2  H2
 3  O2
 4  H
@@ -36,7 +36,7 @@
 29  H2NN
 30  N2H4
 31  N2H3
-32  N2
+32  AR
 */
 
 //Number of species

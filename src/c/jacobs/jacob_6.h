@@ -3,6 +3,6 @@
 
 #include "header.h"
 
-void eval_jacob_6 (const double, const double, const double, const double*, const double*, const double*, double*, double*);
+void eval_jacob_6 (const double, const double, const double, const double*, const double*, const double*, double*);
 
 #endif
