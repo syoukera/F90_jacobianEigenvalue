@@ -4,7 +4,7 @@
 5000    ! step interval
 !--- domain information -----!
 1       ! x_sta (visualizing domain)   -3    1
-1000    ! x_end (visualizing domain)  225    1
+200    ! x_end (visualizing domain)  225    1
 550       ! y_sta (visualizing domain)    1    1
 700    ! y_end (visualizing domain)  300  300 
 1       ! z_sta (visualizing domain)   75    1
@@ -26,6 +26,8 @@
 .false. ! flag_particle
 .true. ! flag_Z
 .true. ! flag_pv
+.false. ! flag_Y
+.false. ! flag_EI
 !--- 3D ---!
 2      ! number of output scalar
 y5     ! O2  ! Input u,v,w,r,p,t,h, or y1, y2, ...

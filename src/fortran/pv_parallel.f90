@@ -61,7 +61,7 @@ module globals
   double precision , allocatable , save       :: ri(:,:,:),rayleighindex(:,:,:)
 
   logical, save :: flag_particle
-  logical, save :: flag_Z,flag_pv
+  logical, save :: flag_Z,flag_pv,flag_Y,flag_EI
   double precision , allocatable , save       :: coeffZ(:,:)
   double precision :: zh1,zh2,zc1,zc2,zn1,zn2,zo1,zo2,owc,owh,own,owo,cfuel,hfuel,nfuel,ofuel,nu_o2,zc,zh,zn,zo, wc,wh,wo,wn
   double precision :: dumd,dumdx,dumdy,dumdz,xo2,zst,chist,Tst,ust,vst,yst,tau_mix,tau_up,tau_un
