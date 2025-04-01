@@ -352,9 +352,9 @@ program pv
          
         ! ptr_EI
         if (flag_EI) then
-            call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+1),'EI_T')
+            call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_EI+1),'EI_T')
             do kk = 2, nf
-               call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+kk),'EI_'//species_names_cema(kk-1))
+               call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_EI+kk),'EI_'//species_names_cema(kk-1))
             end do
          end if
         

@@ -27,7 +27,7 @@
 .true. ! flag_Z
 .true. ! flag_pv
 .false. ! flag_Y
-.false. ! flag_EI
+.true. ! flag_EI
 !--- 3D ---!
 2      ! number of output scalar
 y5     ! O2  ! Input u,v,w,r,p,t,h, or y1, y2, ...
