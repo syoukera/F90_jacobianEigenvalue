@@ -66,7 +66,7 @@ program pv
    ! calculate pointer for sf
    ptr_states = 3
    ptr_Y = ptr_states + 4
-   ptr_analyze = ptr_Y + 12
+   ptr_analyze = ptr_Y + nf
    ptr_EI = ptr_analyze + 10
    ns = ptr_EI + nf
 
@@ -177,18 +177,9 @@ program pv
 
             !   ptr_Y = ptr_states + 4
 
-              sf(i,j,k,ptr_Y+1)=y_local(i,j,k,1)      !N2
-              sf(i,j,k,ptr_Y+2)=y_local(i,j,k,5)      !O2
-              sf(i,j,k,ptr_Y+3)=y_local(i,j,k,7)     !OH
-              sf(i,j,k,ptr_Y+4)=y_local(i,j,k,8)     !H2
-              sf(i,j,k,ptr_Y+5)=y_local(i,j,k,9)     !H2O
-              sf(i,j,k,ptr_Y+6)=y_local(i,j,k,12)     !NH3
-              sf(i,j,k,ptr_Y+7)=y_local(i,j,k,13)     !NH2
-              sf(i,j,k,ptr_Y+8)=y_local(i,j,k,13)     !NH
-              sf(i,j,k,ptr_Y+9)=y_local(i,j,k,14)     !NO
-              sf(i,j,k,ptr_Y+10)=y_local(i,j,k,22)     !NO2
-              sf(i,j,k,ptr_Y+11)=y_local(i,j,k,23)     !N2O
-              sf(i,j,k,ptr_Y+12)=y_local(i,j,k,33)     !OH*
+              do kk = 1, nf
+               sf(i,j,k,ptr_Y+kk)=y_local(i,j,k,kk)
+              end do
 
             !   ptr_analyze = ptr_Y + 12
 
@@ -327,18 +318,9 @@ program pv
 
       !   ptr_Y = ptr_states + 4
 
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+1),'Y_N2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+2),'Y_O2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+3),'Y_OH')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+4),'Y_H2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+5),'Y_H2O')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+6),'Y_NH3')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+7),'Y_NH2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+8),'Y_NH')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+9),'Y_NO')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+10),'Y_NO2')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+11),'Y_N2O')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+12),'Y_OHr')
+         do kk = 1, nf
+            call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_Y+kk),'Y_'//species_names_fk3(kk))
+         end do
 
       !   ptr_analyze = ptr_Y + 12
 
@@ -356,8 +338,8 @@ program pv
       !   ptr_EI = ptr_analyze + 10
 
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+1),'EI_T')
-        do i = 2, nf
-           call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+i),'EI_'//species_names_cema(i-1))
+        do kk = 2, nf
+           call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+kk),'EI_'//species_names_cema(kk-1))
         end do
         
         call pv_input_vector(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,1), &
