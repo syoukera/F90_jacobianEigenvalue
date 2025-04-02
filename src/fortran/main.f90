@@ -76,7 +76,7 @@ program pv
       ptr_analyze = ptr_Y
    end if
 
-   ptr_EI = ptr_analyze + 10
+   ptr_EI = ptr_analyze + 11
    
    ! whether output EI
    if (flag_EI) then
@@ -211,7 +211,8 @@ program pv
               
               call calc_z(y_local(i,j,k,:),sf(i,j,k,ptr_analyze+1),sf(i,j,k,ptr_analyze+3),sf(i,j,k,ptr_analyze+4),sf(i,j,k,24))
               call calc_Dh(y_local(i,j,k,:),r_local(i,j,k),t_local(i,j,k),sf(i,j,k,ptr_analyze+6))
-              call calc_cema(y_local(i,j,k,:),t_local(i,j,k),sf(i,j,k,ptr_analyze+9),sf(i,j,k,ptr_analyze+10))
+              call calc_cema(y_local(i,j,k,:),t_local(i,j,k),sf(i,j,k,ptr_analyze+9),sf(i,j,k,ptr_analyze+10), &
+                             sf(i,j,k,ptr_analyze+11))
 
               ! ptr_EI
               if (flag_EI) then
@@ -351,6 +352,7 @@ program pv
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+8),'FI')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+9),'lambda_e')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+10),'index_maxEI')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+11),'index_maxPI')
          
         ! ptr_EI
         if (flag_EI) then

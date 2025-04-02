@@ -235,12 +235,12 @@ contains
     
     end subroutine read_indices_cema
 
-    subroutine calc_cema(y_local,temp,lambda_e,index_EI)
+    subroutine calc_cema(y_local,temp,lambda_e,index_EI,index_PI)
         implicit none
         double precision, intent(in)::y_local(1:nf),temp
         double precision, intent(out)::lambda_e
         double precision, intent(out)::index_EI
-        double precision ::index_PI
+        double precision, intent(out)::index_PI
         integer :: i, j, i_wr
 
         ! call allocation_cema()
