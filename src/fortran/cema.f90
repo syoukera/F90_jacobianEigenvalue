@@ -159,10 +159,10 @@ contains
         PP = 0.0d0
         PI = 0.0d0
         
-        ! indices for reaction picked from spec_rates.c
-        stoich_coeffs = 0
-        list_i_rev_rates = 0
-        list_k_pres_mod = 0
+        ! ! indices for reaction picked from spec_rates.c
+        ! stoich_coeffs = 0
+        ! list_i_rev_rates = 0
+        ! list_k_pres_mod = 0
 
         ! LAPACK
         jobvl = 'V'
@@ -180,7 +180,7 @@ contains
         implicit none
         character(len=10) :: dummy_name  ! temporary character for name
         character(len=100) :: line  ! temporary character for line
-        integer :: i, ios, idx
+        integer :: ios, idx
     
         open(unit=10, file="src/c/mechanism.h", status="old", action="read")
     
@@ -265,32 +265,32 @@ contains
         y(6)  = y_local(4)  ! H
         y(7)  = y_local(6)  ! O
         y(8)  = y_local(7)  ! OH
-        y(9)  = y_local(10)	! HO2
+        y(9)  = y_local(10) ! HO2
         y(10) = y_local(9)  ! H2O
-        y(11) = y_local(11)	! H2O2
-        y(12) = y_local(33)	! OHD-OH
-        y(13) = y_local(18)	! N
-        y(14) = y_local(12)	! NH3
-        y(15) = y_local(13)	! NH2
-        y(16) = y_local(14)	! NH
-        y(17) = y_local(20)	! NNH
-        y(18) = y_local(19)	! NO
-        y(19) = y_local(23)	! N2O
-        y(20) = y_local(15)	! HNO
-        y(21) = y_local(17)	! HON
-        y(22) = y_local(16)	! H2NO
-        y(23) = y_local(25)	! HNOH
-        y(24) = y_local(24)	! NH2OH
-        y(25) = y_local(22)	! NO2
-        y(26) = y_local(21)	! HONO
-        y(27) = y_local(27)	! HNO2
-        y(28) = y_local(28)	! NO3
-        y(29) = y_local(26)	! HONO2
-        y(30) = y_local(29)	! N2H2
-        y(31) = y_local(30)	! H2NN
-        y(32) = y_local(32)	! N2H4
-        y(33) = y_local(31)	! N2H3
-        ! y(34) = y_local(1)  ! N2
+        y(11) = y_local(11) ! H2O2
+        y(12) = y_local(33) ! OHD-OH
+        y(13) = y_local(18) ! N
+        y(14) = y_local(12) ! NH3
+        y(15) = y_local(13) ! NH2
+        y(16) = y_local(14) ! NH
+        y(17) = y_local(20) ! NNH
+        y(18) = y_local(19) ! NO
+        y(19) = y_local(23) ! N2O
+        y(20) = y_local(15) ! HNO
+        y(21) = y_local(17) ! HON
+        y(22) = y_local(16) ! H2NO
+        y(23) = y_local(25) ! HNOH
+        y(24) = y_local(24) ! NH2OH
+        y(25) = y_local(22) ! NO2
+        y(26) = y_local(21) ! HONO
+        y(27) = y_local(27) ! HNO2
+        y(28) = y_local(28) ! NO3
+        y(29) = y_local(26) ! HONO2
+        y(30) = y_local(29) ! N2H2
+        y(31) = y_local(30) ! H2NN
+        y(32) = y_local(32) ! N2H4
+        y(33) = y_local(31) ! N2H3
+        ! y(34) = y_local(1) ! N2
         
         ! calclate Jacobian using pyJac
         call eval_jacob(t, pres, c_loc(y), c_loc(jac))
@@ -360,25 +360,35 @@ contains
 
         end do
 
+        ! print *, stoich_coeffs
+
+        ! print *, rop
+
         ! calulate Participation Pointer (PP)
         PP = 0.0d0
         do i = 1, nrf
             ! sum product along species
-            do j = i, nf-1
-                PP(i) = PP(i) + b_exp(i+1)*stoich_coeffs(i, j)
+            do j = 1, nf-1
+                ! PP(i) = PP(i) + b_exp(j+1)*stoich_coeffs(j, i)
+                PP(i) = PP(i) + b_exp(j+1)*dble(stoich_coeffs(j, i))
+                ! print *, b_exp(j+1), stoich_coeffs(j, i), b_exp(j+1)*dble(stoich_coeffs(j, i))
             end do 
 
             ! multiply rop
             PP(i) = PP(i) * rop(i)
 
             ! sum of PP
-            PP_sum = PP_sum + PP(i)
+            PP_sum = PP_sum + abs(PP(i))
         end do
+
+        ! print *, PP
 
         ! calculate PI
         do i = 1, nrf
-            PP(i) = abs(PP(i)) / PP_sum
+            PI(i) = abs(PP(i)) / PP_sum
         end do
+
+        ! print *, PI
 
         ! get index of maximum PI
         index_PI = maxloc(PI, 1)
