@@ -1,12 +1,11 @@
 module cema
     use, intrinsic :: iso_c_binding
+    use globals, only : nf
     implicit none
 
-    integer, parameter :: NSP = 33  ! number of species
     real(8), parameter :: t = 0.0d0
     real(8), parameter :: pres = 101325.0d0 ! ambient pressure
-    
-    character(len=10) :: species_names_cema(NSP)  ! species_names in c
+    character(len=10), allocatable :: species_names_cema(:)  ! species_names in c
 
     ! pyJac
     real(8), allocatable, target :: y(:)
@@ -22,14 +21,8 @@ module cema
         
     ! LAPACK
     external dgeev
-    character(1) :: jobvl = 'V'
-    character(1) :: jobvr = 'V'
-    integer, parameter :: n = NSP
-    integer, parameter :: lda = NSP
-    integer, parameter :: ldvl = NSP
-    integer, parameter :: ldvr = NSP
-    integer, parameter :: lwork = 4 * NSP
-    integer :: info
+    character(1) :: jobvl, jobvr
+    integer :: n, lda, ldvl, ldvr, lwork, info
 
     interface
         subroutine eval_jacob(t, pres, y, jac) bind(C)
@@ -45,17 +38,18 @@ contains
     subroutine allocation_cema()
         implicit none
         
-        allocate(y(NSP))
-        allocate(jac(NSP, NSP))
-        allocate(wr(NSP))
-        allocate(wi(NSP))
-        allocate(vl(NSP, NSP))
-        allocate(vr(NSP, NSP))
-        allocate(work(4 * NSP))
-        allocate(a_exp(NSP))
-        allocate(b_exp(NSP))
-        allocate(EP(NSP))
-        allocate(EI(NSP))
+        allocate(y(nf))
+        allocate(jac(nf, nf))
+        allocate(wr(nf))
+        allocate(wi(nf))
+        allocate(vl(nf, nf))
+        allocate(vr(nf, nf))
+        allocate(work(4 * nf))
+        allocate(a_exp(nf))
+        allocate(b_exp(nf))
+        allocate(EP(nf))
+        allocate(EI(nf))
+        allocate(species_names_cema(nf))
 
     end subroutine allocation_cema
 
@@ -90,9 +84,15 @@ contains
         b_exp = 0.0d0
         EP    = 0.0d0
         EI    = 0.0d0
-        
+
+        ! LAPACK
         jobvl = 'V'
         jobvr = 'V'
+        n = nf
+        lda = nf
+        ldvl = nf
+        ldvr = nf
+        lwork = 4 * nf
         info = 1
 
     end subroutine initialize_cema
@@ -139,7 +139,6 @@ contains
     end subroutine read_species_names_cema
 
     subroutine calc_cema(y_local,temp,lambda_e,index_EI)
-        use globals, only : nf
         implicit none
         double precision, intent(in)::y_local(1:nf),temp
         double precision, intent(out)::lambda_e
@@ -209,7 +208,7 @@ contains
         ! get maximum eigenvalue
         i_wr = maxloc(wr, 1)
         ! wr_max = 0.0d0
-        ! do i = 1, NSP
+        ! do i = 1, nf
         !     ! print "(E13.6)", wr(i)
         !     if (wr(i) > wr_max) then
         !         wr_max = wr(i)
@@ -223,7 +222,7 @@ contains
         ! calculate EP
         ! print *, "EP:"
         EP_sum = 0.0d0
-        do j = 1, NSP
+        do j = 1, nf
             a_exp(j) = vr(j, i_wr)  ! 右固有ベクトル
             b_exp(j) = vl(j, i_wr)  ! 左固有ベクトル
             EP(j) = a_exp(j) * b_exp(j)
@@ -233,7 +232,7 @@ contains
 
         ! calculate EI
         ! print *, "EI:"
-        do j = 1, NSP
+        do j = 1, nf
             EI(j) = abs(EP(j)) / EP_sum
             ! print "(E13.6)", EI(j)
         end do

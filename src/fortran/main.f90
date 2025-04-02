@@ -8,8 +8,6 @@ program pv
 !   integer i_tmp
   integer :: ptr_states, ptr_Y, ptr_analyze, ptr_EI
 
-  call read_species_names_cema()
-
   open(200,file='./dat/setting_pv.dat',form='formatted')
    read(200,'()') !--- step infomation ---!
    read(200,*) step0
@@ -87,6 +85,7 @@ program pv
 
   call allocation
   call allocation_cema()
+  call read_species_names_cema()
 
   !  allocate(wg(1:nf))
  
