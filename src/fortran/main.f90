@@ -2,7 +2,7 @@ program pv
   use globals
   use pv3D
   use cema, only: calc_cema, allocation_cema, deallocation_cema, EI, &
-                  read_species_names_cema, species_names_cema
+                  read_species_names_cema, read_indices_cema, species_names_cema
   implicit none
   double precision::dYfdx,dYfdy,dYodx,dYody
 !   integer i_tmp
@@ -29,10 +29,10 @@ program pv
    read(200,*) iprocs
    read(200,*) jprocs
    read(200,*) kprocs
-   read(200,'()') !--- chemistry information ---!
+   read(200,'()') !--- reaction information ---!
    read(200,*) chem_dir
-   read(200,'()') !--- output information ---!
    read(200,*) nf
+   read(200,*) nr
    read(200,'()') !--- flags ---!
    read(200,*) flag_particle
    read(200,*) flag_Z
@@ -86,6 +86,7 @@ program pv
   call allocation
   call allocation_cema()
   call read_species_names_cema()
+  call read_indices_cema()
 
   !  allocate(wg(1:nf))
  

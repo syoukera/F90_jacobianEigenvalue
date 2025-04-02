@@ -1,6 +1,6 @@
 module cema
     use, intrinsic :: iso_c_binding
-    use globals, only : nf
+    use globals, only : nf, nr
     implicit none
 
     real(8), parameter :: t = 0.0d0
@@ -18,6 +18,11 @@ module cema
     real(8), allocatable :: a_exp(:), b_exp(:)
     real(8), allocatable :: EP(:), EI(:)
     real(8) :: wr_max, EP_sum
+
+    ! indices for reaction picked from spec_rates.c
+    integer(4), allocatable :: stoich_coeffs(:, :)
+    integer(4), allocatable :: list_i_rev_rates(:)
+    integer(4), allocatable :: list_k_pres_mod(:)
         
     ! LAPACK
     external dgeev
@@ -38,6 +43,7 @@ contains
     subroutine allocation_cema()
         implicit none
         
+        ! pyJac
         allocate(y(nf))
         allocate(jac(nf, nf))
         allocate(wr(nf))
@@ -50,6 +56,11 @@ contains
         allocate(EP(nf))
         allocate(EI(nf))
         allocate(species_names_cema(nf))
+
+        ! indices for reaction picked from spec_rates.c
+        allocate(stoich_coeffs(nf, nr))
+        allocate(list_i_rev_rates(nr))
+        allocate(list_k_pres_mod(nr))
 
     end subroutine allocation_cema
 
@@ -67,6 +78,11 @@ contains
         deallocate(b_exp)
         deallocate(EP)
         deallocate(EI)
+
+        ! indices for reaction picked from spec_rates.c
+        deallocate(stoich_coeffs)
+        deallocate(list_i_rev_rates)
+        deallocate(list_k_pres_mod)
 
     end subroutine deallocation_cema
 
@@ -137,6 +153,24 @@ contains
         ! end do
 
     end subroutine read_species_names_cema
+
+    subroutine read_indices_cema()
+        implicit none
+        integer :: idf
+
+        open(newunit=idf, file="ipynb/stoich_coeffs.bin", form="unformatted", access="stream", action="read")
+        read(idf) stoich_coeffs
+        close(idf)
+        
+        open(newunit=idf, file="ipynb/list_i_rev_rates.bin", form="unformatted", access="stream", action="read")
+        read(idf) list_i_rev_rates
+        close(idf)
+        
+        open(newunit=idf, file="ipynb/list_k_pres_mod.bin", form="unformatted", access="stream", action="read")
+        read(idf) list_k_pres_mod
+        close(idf)
+    
+    end subroutine read_indices_cema
 
     subroutine calc_cema(y_local,temp,lambda_e,index_EI)
         implicit none
