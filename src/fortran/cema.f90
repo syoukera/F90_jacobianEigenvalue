@@ -14,6 +14,7 @@ module cema
     real(8), allocatable, target :: fwd_rxn_rates(:)
     real(8), allocatable, target :: rev_rxn_rates(:)
     real(8), allocatable, target :: pres_mod(:)
+    real(8), allocatable :: rop(:) ! rate ob progress
     real(8), target :: y_N
     real(8), target :: mw_avg ! mass-averaged density
     real(8), target :: rho ! average molecular weight
@@ -24,8 +25,8 @@ module cema
     real(8), allocatable :: work(:)        ! work array
     
     real(8), allocatable :: a_exp(:), b_exp(:)
-    real(8), allocatable :: EP(:), EI(:)
-    real(8) :: wr_max, EP_sum
+    real(8), allocatable :: EP(:), EI(:), PP(:), PI(:)
+    real(8) :: wr_max, EP_sum, PP_sum
 
     ! indices for reaction picked from spec_rates.c
     integer(4), allocatable :: stoich_coeffs(:, :)
@@ -85,6 +86,7 @@ contains
         allocate(fwd_rxn_rates(nrf))
         allocate(rev_rxn_rates(nrb))
         allocate(pres_mod(nrp))
+        allocate(rop(nrf))
 
         allocate(wr(nf))
         allocate(wi(nf))
@@ -95,6 +97,8 @@ contains
         allocate(b_exp(nf))
         allocate(EP(nf))
         allocate(EI(nf))
+        allocate(PP(nrf))
+        allocate(PI(nrf))
         allocate(species_names_cema(nf))
 
         ! indices for reaction picked from spec_rates.c
@@ -109,6 +113,12 @@ contains
         
         deallocate(y)
         deallocate(jac)
+        deallocate(conc)
+        deallocate(fwd_rxn_rates)
+        deallocate(rev_rxn_rates)
+        deallocate(pres_mod)
+        deallocate(rop)
+
         deallocate(wr)
         deallocate(wi)
         deallocate(vl)
@@ -131,6 +141,11 @@ contains
         
         y     = 0.0d0
         jac   = 0.0d0
+        fwd_rxn_rates = 0.0d0
+        rev_rxn_rates = 0.0d0
+        pres_mod = 0.0d0
+        rop = 0.0d0
+
         wr    = 0.0d0
         wi    = 0.0d0
         vl    = 0.0d0
@@ -138,8 +153,16 @@ contains
         work  = 0.0d0
         a_exp = 0.0d0
         b_exp = 0.0d0
-        EP    = 0.0d0
-        EI    = 0.0d0
+
+        EP = 0.0d0
+        EI = 0.0d0
+        PP = 0.0d0
+        PI = 0.0d0
+        
+        ! indices for reaction picked from spec_rates.c
+        stoich_coeffs = 0
+        list_i_rev_rates = 0
+        list_k_pres_mod = 0
 
         ! LAPACK
         jobvl = 'V'
@@ -217,6 +240,7 @@ contains
         double precision, intent(in)::y_local(1:nf),temp
         double precision, intent(out)::lambda_e
         double precision, intent(out)::index_EI
+        double precision ::index_PI
         integer :: i, j, i_wr
 
         ! call allocation_cema()
@@ -316,11 +340,49 @@ contains
 
         ! test to call pyJac function
         call eval_conc(temp, pres, c_loc(y), c_loc(y_N), c_loc(mw_avg), c_loc(rho), c_loc(conc))
-
         call eval_rxn_rates(temp, pres, c_loc(conc), c_loc(fwd_rxn_rates), c_loc(rev_rxn_rates))
-
         call get_rxn_pres_mod(temp, pres, c_loc(conc), c_loc(pres_mod))
-        
+
+        ! calculate rop
+        do i = 1, nrf
+
+            ! rop from forward/backword reaction
+            if (list_i_rev_rates(i) /= -1) then        
+                rop(i) = fwd_rxn_rates(i) + rev_rxn_rates(list_i_rev_rates(i)+1) ! adjust 0 strat index
+            else 
+                rop(i) = fwd_rxn_rates(i)
+            end if
+
+            ! add pressure module to rop
+            if (list_k_pres_mod(i) /= -1) then
+                rop(i) = rop(i)*pres_mod(list_k_pres_mod(i)+1) ! adjust 0 strat index
+            end if
+
+        end do
+
+        ! calulate Participation Pointer (PP)
+        PP = 0.0d0
+        do i = 1, nrf
+            ! sum product along species
+            do j = i, nf-1
+                PP(i) = PP(i) + b_exp(i+1)*stoich_coeffs(i, j)
+            end do 
+
+            ! multiply rop
+            PP(i) = PP(i) * rop(i)
+
+            ! sum of PP
+            PP_sum = PP_sum + PP(i)
+        end do
+
+        ! calculate PI
+        do i = 1, nrf
+            PP(i) = abs(PP(i)) / PP_sum
+        end do
+
+        ! get index of maximum PI
+        index_PI = maxloc(PI, 1)
+
     end subroutine calc_cema
 
 end module cema
