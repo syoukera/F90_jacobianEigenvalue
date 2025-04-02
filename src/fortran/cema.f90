@@ -10,6 +10,14 @@ module cema
     ! pyJac
     real(8), allocatable, target :: y(:)
     real(8), allocatable, target :: jac(:, :)
+    real(8), allocatable, target :: conc(:)
+    real(8), allocatable, target :: fwd_rxn_rates(:)
+    real(8), allocatable, target :: rev_rxn_rates(:)
+    real(8), allocatable, target :: pres_mod(:)
+    real(8), target :: y_N
+    real(8), target :: mw_avg ! mass-averaged density
+    real(8), target :: rho ! average molecular weight
+
     real(8), allocatable :: wr(:), wi(:)   ! real and imaginary component of eigenvalue
     real(8), allocatable :: vl(:, :)       ! left eigenvecto
     real(8), allocatable :: vr(:, :)       ! right eigenvector
@@ -48,20 +56,20 @@ module cema
             type(c_ptr), value :: conc
         end subroutine eval_conc
 
-        subroutine eval_rxn_rates(T, pres, C, fwd_rxn_rates, rev_rxn_rates) bind(C)
-            use, intrinsic :: iso_c_binding
-            real(c_double), value :: T, pres
-            type(c_ptr), value :: C
-            type(c_ptr), value :: fwd_rxn_rates
-            type(c_ptr), value :: rev_rxn_rates
-        end subroutine eval_rxn_rates
+        ! subroutine eval_rxn_rates(T, pres, C, fwd_rxn_rates, rev_rxn_rates) bind(C)
+        !     use, intrinsic :: iso_c_binding
+        !     real(c_double), value :: T, pres
+        !     type(c_ptr), value :: C
+        !     type(c_ptr), value :: fwd_rxn_rates
+        !     type(c_ptr), value :: rev_rxn_rates
+        ! end subroutine eval_rxn_rates
         
-        subroutine get_rxn_pres_mod(T, pres, C, pres_mod) bind(C)
-            use, intrinsic :: iso_c_binding
-            real(c_double), value :: T, pres
-            type(c_ptr), value :: C
-            type(c_ptr), value :: pres_mod
-        end subroutine get_rxn_pres_mod
+        ! subroutine get_rxn_pres_mod(T, pres, C, pres_mod) bind(C)
+        !     use, intrinsic :: iso_c_binding
+        !     real(c_double), value :: T, pres
+        !     type(c_ptr), value :: C
+        !     type(c_ptr), value :: pres_mod
+        ! end subroutine get_rxn_pres_mod
 
     end interface
 
@@ -73,6 +81,11 @@ contains
         ! pyJac
         allocate(y(nf))
         allocate(jac(nf, nf))
+        allocate(conc(nf))
+        allocate(fwd_rxn_rates(nr))
+        allocate(rev_rxn_rates(nr))
+        allocate(pres_mod(nr))
+
         allocate(wr(nf))
         allocate(wi(nf))
         allocate(vl(nf, nf))
@@ -300,6 +313,14 @@ contains
 
         ! get index of maximum EI
         index_EI = maxloc(EI, 1)
+
+        ! test to call pyJac function
+        call eval_conc(temp, pres, c_loc(y), c_loc(y_N), c_loc(mw_avg), c_loc(rho), c_loc(conc))
+
+        ! call eval_rxn_rates(T, pres, c_loc(C), c_loc(fwd_rxn_rates), c_loc(rev_rxn_rates))
+
+        ! call get_rxn_pres_mod(T, pres, c_loc(C), c_loc(pres_mod))
+        
 
     end subroutine calc_cema
 
