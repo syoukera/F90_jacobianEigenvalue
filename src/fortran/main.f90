@@ -32,7 +32,9 @@ program pv
    read(200,'()') !--- reaction information ---!
    read(200,*) chem_dir
    read(200,*) nf
-   read(200,*) nr
+   read(200,*) nrf
+   read(200,*) nrb
+   read(200,*) nrp
    read(200,'()') !--- flags ---!
    read(200,*) flag_particle
    read(200,*) flag_Z

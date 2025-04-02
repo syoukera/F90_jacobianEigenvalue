@@ -1,5 +1,5 @@
 module globals
-  integer :: nx,ny,nz,nf,ns,nq,nr,ista,jsta,ksta,iend,jend,kend,ibd,jbd,kbd,x_sta,x_end,y_sta,y_end,z_sta,z_end
+  integer :: nx,ny,nz,nf,ns,nq,nrf,nrb,nrp,ista,jsta,ksta,iend,jend,kend,ibd,jbd,kbd,x_sta,x_end,y_sta,y_end,z_sta,z_end
   integer :: iprocs,jprocs,kprocs,myrank,myrank_i,myrank_j,myrank_k
   integer :: i,j,k,ii,jj,kk,step,ifn,is,m,n,step0,step1,step2,l,step0_avg,step1_avg,step2_avg
   real(8) :: time,time0,time1,time2,ref, ugconst

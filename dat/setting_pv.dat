@@ -21,7 +21,9 @@
 !--- reaction information ---!
 '../../DotOutGenerator_TD/Tamaoki/1atm/'
 33      ! nf (number of species)
-228     ! nr (number of reactions)
+228     ! nrf (number of forward reactions)
+225     ! nrb (number of backward reactions)
+25      ! nrp (number of presssure module)
 !--- flags ---!
 .false. ! flag_particle
 .true. ! flag_Z

@@ -1,6 +1,6 @@
 module cema
     use, intrinsic :: iso_c_binding
-    use globals, only : nf, nr
+    use globals, only : nf, nrf, nrb, nrp
     implicit none
 
     real(8), parameter :: t = 0.0d0
@@ -82,9 +82,9 @@ contains
         allocate(y(nf))
         allocate(jac(nf, nf))
         allocate(conc(nf))
-        allocate(fwd_rxn_rates(nr))
-        allocate(rev_rxn_rates(nr))
-        allocate(pres_mod(nr))
+        allocate(fwd_rxn_rates(nrf))
+        allocate(rev_rxn_rates(nrb))
+        allocate(pres_mod(nrp))
 
         allocate(wr(nf))
         allocate(wi(nf))
@@ -98,9 +98,9 @@ contains
         allocate(species_names_cema(nf))
 
         ! indices for reaction picked from spec_rates.c
-        allocate(stoich_coeffs(nf, nr))
-        allocate(list_i_rev_rates(nr))
-        allocate(list_k_pres_mod(nr))
+        allocate(stoich_coeffs(nf, nrf))
+        allocate(list_i_rev_rates(nrf))
+        allocate(list_k_pres_mod(nrf))
 
     end subroutine allocation_cema
 
