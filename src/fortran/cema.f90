@@ -30,12 +30,39 @@ module cema
     integer :: n, lda, ldvl, ldvr, lwork, info
 
     interface
+
         subroutine eval_jacob(t, pres, y, jac) bind(C)
             use, intrinsic :: iso_c_binding
             real(c_double), value :: t, pres
             type(c_ptr), value :: y
             type(c_ptr), value :: jac
         end subroutine eval_jacob
+
+        subroutine eval_conc(T, pres, y, y_N, mw_avg, rho, conc) bind(C)
+            use, intrinsic :: iso_c_binding
+            real(c_double), value :: T, pres
+            type(c_ptr), value :: y
+            type(c_ptr), value :: y_N
+            type(c_ptr), value :: mw_avg
+            type(c_ptr), value :: rho
+            type(c_ptr), value :: conc
+        end subroutine eval_conc
+
+        subroutine eval_rxn_rates(T, pres, C, fwd_rxn_rates, rev_rxn_rates) bind(C)
+            use, intrinsic :: iso_c_binding
+            real(c_double), value :: T, pres
+            type(c_ptr), value :: C
+            type(c_ptr), value :: fwd_rxn_rates
+            type(c_ptr), value :: rev_rxn_rates
+        end subroutine eval_rxn_rates
+        
+        subroutine get_rxn_pres_mod(T, pres, C, pres_mod) bind(C)
+            use, intrinsic :: iso_c_binding
+            real(c_double), value :: T, pres
+            type(c_ptr), value :: C
+            type(c_ptr), value :: pres_mod
+        end subroutine get_rxn_pres_mod
+
     end interface
 
 contains
