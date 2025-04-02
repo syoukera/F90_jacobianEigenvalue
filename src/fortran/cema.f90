@@ -56,20 +56,20 @@ module cema
             type(c_ptr), value :: conc
         end subroutine eval_conc
 
-        ! subroutine eval_rxn_rates(T, pres, C, fwd_rxn_rates, rev_rxn_rates) bind(C)
-        !     use, intrinsic :: iso_c_binding
-        !     real(c_double), value :: T, pres
-        !     type(c_ptr), value :: C
-        !     type(c_ptr), value :: fwd_rxn_rates
-        !     type(c_ptr), value :: rev_rxn_rates
-        ! end subroutine eval_rxn_rates
+        subroutine eval_rxn_rates(T, pres, conc, fwd_rxn_rates, rev_rxn_rates) bind(C)
+            use, intrinsic :: iso_c_binding
+            real(c_double), value :: T, pres
+            type(c_ptr), value :: conc
+            type(c_ptr), value :: fwd_rxn_rates
+            type(c_ptr), value :: rev_rxn_rates
+        end subroutine eval_rxn_rates
         
-        ! subroutine get_rxn_pres_mod(T, pres, C, pres_mod) bind(C)
-        !     use, intrinsic :: iso_c_binding
-        !     real(c_double), value :: T, pres
-        !     type(c_ptr), value :: C
-        !     type(c_ptr), value :: pres_mod
-        ! end subroutine get_rxn_pres_mod
+        subroutine get_rxn_pres_mod(T, pres, conc, pres_mod) bind(C)
+            use, intrinsic :: iso_c_binding
+            real(c_double), value :: T, pres
+            type(c_ptr), value :: conc
+            type(c_ptr), value :: pres_mod
+        end subroutine get_rxn_pres_mod
 
     end interface
 
@@ -317,11 +317,10 @@ contains
         ! test to call pyJac function
         call eval_conc(temp, pres, c_loc(y), c_loc(y_N), c_loc(mw_avg), c_loc(rho), c_loc(conc))
 
-        ! call eval_rxn_rates(T, pres, c_loc(C), c_loc(fwd_rxn_rates), c_loc(rev_rxn_rates))
+        call eval_rxn_rates(temp, pres, c_loc(conc), c_loc(fwd_rxn_rates), c_loc(rev_rxn_rates))
 
-        ! call get_rxn_pres_mod(T, pres, c_loc(C), c_loc(pres_mod))
+        call get_rxn_pres_mod(temp, pres, c_loc(conc), c_loc(pres_mod))
         
-
     end subroutine calc_cema
 
 end module cema
