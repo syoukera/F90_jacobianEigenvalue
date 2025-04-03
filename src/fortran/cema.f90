@@ -235,12 +235,13 @@ contains
     
     end subroutine read_indices_cema
 
-    subroutine calc_cema(y_local,temp,lambda_e,index_EI,index_PI)
+    subroutine calc_cema(y_local,temp,lambda_e,index_EI,index_PI,rop_ith)
         implicit none
         double precision, intent(in)::y_local(1:nf),temp
         double precision, intent(out)::lambda_e
         double precision, intent(out)::index_EI
         double precision, intent(out)::index_PI
+        double precision, intent(out)::rop_ith
         integer :: i, j, i_wr
 
         ! call allocation_cema()
@@ -360,6 +361,8 @@ contains
 
         end do
 
+        rop_ith = rop(i)
+
         ! print *, stoich_coeffs
 
         ! print *, rop
@@ -392,6 +395,8 @@ contains
 
         ! get index of maximum PI
         index_PI = maxloc(PI, 1)
+
+        ! print *, index_PI
 
     end subroutine calc_cema
 
