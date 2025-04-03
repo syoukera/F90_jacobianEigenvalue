@@ -260,7 +260,7 @@ contains
         ! Tamaoki mechanism
         y(1)  = temp        ! T
         y(2)  = y_local(3)  ! HE
-        y(3)  = y_local(2)  ! AR
+        y(3)  = y_local(1)  ! N2
         y(4)  = y_local(8)  ! H2
         y(5)  = y_local(5)  ! O2
         y(6)  = y_local(4)  ! H
@@ -291,7 +291,7 @@ contains
         y(31) = y_local(30) ! H2NN
         y(32) = y_local(32) ! N2H4
         y(33) = y_local(31) ! N2H3
-        ! y(34) = y_local(1) ! N2
+        ! y(34) = y_local(2)  ! AR
         
         ! calclate Jacobian using pyJac
         call eval_jacob(t, pres, c_loc(y), c_loc(jac))
