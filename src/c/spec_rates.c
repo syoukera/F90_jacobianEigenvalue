@@ -464,7 +464,7 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
 
   //rxn 52
   //sp 2
-  sp_rates[1] = (fwd_rates[52] - rev_rates[52]);
+  (*dy_N) = (fwd_rates[52] - rev_rates[52]);
   //sp 12
   sp_rates[11] -= (fwd_rates[52] - rev_rates[52]);
   //sp 5
@@ -495,12 +495,12 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
   //rxn 55
   //sp 17
   sp_rates[16] -= (fwd_rates[55] - rev_rates[55]);
-  //sp 2
-  sp_rates[1] += (fwd_rates[55] - rev_rates[55]);
-  //sp 14
-  sp_rates[13] -= (fwd_rates[55] - rev_rates[55]);
   //sp 9
   sp_rates[8] += (fwd_rates[55] - rev_rates[55]);
+  //sp 2
+  (*dy_N) += (fwd_rates[55] - rev_rates[55]);
+  //sp 14
+  sp_rates[13] -= (fwd_rates[55] - rev_rates[55]);
 
   //rxn 56
   //sp 25
@@ -610,7 +610,7 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
 
   //rxn 67
   //sp 2
-  sp_rates[1] += (fwd_rates[67] - rev_rates[67]);
+  (*dy_N) += (fwd_rates[67] - rev_rates[67]);
   //sp 12
   sp_rates[11] -= (fwd_rates[67] - rev_rates[67]);
   //sp 5
@@ -632,7 +632,7 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
   //sp 17
   sp_rates[16] -= (fwd_rates[69] - rev_rates[69]);
   //sp 2
-  sp_rates[1] += (fwd_rates[69] - rev_rates[69]);
+  (*dy_N) += (fwd_rates[69] - rev_rates[69]);
   //sp 15
   sp_rates[14] -= (fwd_rates[69] - rev_rates[69]);
   //sp 7
@@ -692,7 +692,7 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
   //sp 17
   sp_rates[16] -= (fwd_rates[75] - rev_rates[75]);
   //sp 2
-  sp_rates[1] += (fwd_rates[75] - rev_rates[75]);
+  (*dy_N) += (fwd_rates[75] - rev_rates[75]);
   //sp 12
   sp_rates[11] -= (fwd_rates[75] - rev_rates[75]);
   //sp 6
@@ -700,7 +700,7 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
 
   //rxn 76
   //sp 2
-  sp_rates[1] += (fwd_rates[76] - rev_rates[76]);
+  (*dy_N) += (fwd_rates[76] - rev_rates[76]);
   //sp 5
   sp_rates[4] += (fwd_rates[76] - rev_rates[76]);
   //sp 16
@@ -708,7 +708,7 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
 
   //rxn 77
   //sp 2
-  sp_rates[1] += (fwd_rates[77] - rev_rates[77]);
+  (*dy_N) += (fwd_rates[77] - rev_rates[77]);
   //sp 3
   sp_rates[2] += (fwd_rates[77] - rev_rates[77]);
   //sp 5
@@ -728,7 +728,7 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
 
   //rxn 79
   //sp 2
-  sp_rates[1] += (fwd_rates[79] - rev_rates[79]);
+  (*dy_N) += (fwd_rates[79] - rev_rates[79]);
   //sp 6
   sp_rates[5] -= (fwd_rates[79] - rev_rates[79]);
   //sp 7
@@ -747,10 +747,10 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
   sp_rates[15] -= (fwd_rates[80] - rev_rates[80]);
 
   //rxn 81
+  //sp 2
+  (*dy_N) += (fwd_rates[81] - rev_rates[81]);
   //sp 9
   sp_rates[8] += (fwd_rates[81] - rev_rates[81]);
-  //sp 2
-  sp_rates[1] += (fwd_rates[81] - rev_rates[81]);
   //sp 7
   sp_rates[6] -= (fwd_rates[81] - rev_rates[81]);
   //sp 16
@@ -758,7 +758,7 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
 
   //rxn 82
   //sp 2
-  sp_rates[1] += (fwd_rates[82] - rev_rates[82]);
+  (*dy_N) += (fwd_rates[82] - rev_rates[82]);
   //sp 4
   sp_rates[3] -= (fwd_rates[82] - rev_rates[82]);
   //sp 8
@@ -768,7 +768,7 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
 
   //rxn 83
   //sp 2
-  sp_rates[1] += (fwd_rates[83] - rev_rates[83]);
+  (*dy_N) += (fwd_rates[83] - rev_rates[83]);
   //sp 14
   sp_rates[13] += (fwd_rates[83] - rev_rates[83]);
   //sp 15
@@ -778,7 +778,7 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
 
   //rxn 84
   //sp 2
-  sp_rates[1] += (fwd_rates[84] - rev_rates[84]);
+  (*dy_N) += (fwd_rates[84] - rev_rates[84]);
   //sp 13
   sp_rates[12] += (fwd_rates[84] - rev_rates[84]);
   //sp 14
@@ -790,7 +790,7 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
   //sp 17
   sp_rates[16] -= (fwd_rates[85] - rev_rates[85]);
   //sp 2
-  sp_rates[1] += (fwd_rates[85] - rev_rates[85]);
+  (*dy_N) += (fwd_rates[85] - rev_rates[85]);
   //sp 19
   sp_rates[18] += (fwd_rates[85] - rev_rates[85]);
   //sp 16
@@ -1531,30 +1531,30 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
   sp_rates[6] -= (fwd_rates[162] - rev_rates[162]);
 
   //rxn 163
+  //sp 2
+  (*dy_N) += (fwd_rates[163] - rev_rates[163]) * pres_mod[20];
   //sp 18
   sp_rates[17] -= (fwd_rates[163] - rev_rates[163]) * pres_mod[20];
   //sp 6
   sp_rates[5] += (fwd_rates[163] - rev_rates[163]) * pres_mod[20];
-  //sp 2
-  sp_rates[1] += (fwd_rates[163] - rev_rates[163]) * pres_mod[20];
 
   //rxn 164
+  //sp 2
+  (*dy_N) += (fwd_rates[164] - rev_rates[164]);
   //sp 18
   sp_rates[17] -= (fwd_rates[164] - rev_rates[164]);
   //sp 5
   sp_rates[4] -= (fwd_rates[164] - rev_rates[164]);
-  //sp 2
-  sp_rates[1] += (fwd_rates[164] - rev_rates[164]);
   //sp 7
   sp_rates[6] += (fwd_rates[164] - rev_rates[164]);
 
   //rxn 165
+  //sp 2
+  (*dy_N) += (fwd_rates[165] - rev_rates[165]);
   //sp 18
   sp_rates[17] -= (fwd_rates[165] - rev_rates[165]);
   //sp 5
   sp_rates[4] -= (fwd_rates[165] - rev_rates[165]);
-  //sp 2
-  sp_rates[1] += (fwd_rates[165] - rev_rates[165]);
   //sp 7
   sp_rates[6] += (fwd_rates[165] - rev_rates[165]);
 
@@ -1567,24 +1567,24 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
   sp_rates[5] -= (fwd_rates[166] - rev_rates[166]);
 
   //rxn 167
+  //sp 2
+  (*dy_N) += (fwd_rates[167] - rev_rates[167]);
   //sp 18
   sp_rates[17] -= (fwd_rates[167] - rev_rates[167]);
   //sp 4
   sp_rates[3] += (fwd_rates[167] - rev_rates[167]);
   //sp 6
   sp_rates[5] -= (fwd_rates[167] - rev_rates[167]);
-  //sp 2
-  sp_rates[1] += (fwd_rates[167] - rev_rates[167]);
 
   //rxn 168
+  //sp 2
+  (*dy_N) += (fwd_rates[168] - rev_rates[168]);
   //sp 18
   sp_rates[17] -= (fwd_rates[168] - rev_rates[168]);
-  //sp 8
-  sp_rates[7] += (fwd_rates[168] - rev_rates[168]);
   //sp 7
   sp_rates[6] -= (fwd_rates[168] - rev_rates[168]);
-  //sp 2
-  sp_rates[1] += (fwd_rates[168] - rev_rates[168]);
+  //sp 8
+  sp_rates[7] += (fwd_rates[168] - rev_rates[168]);
 
   //rxn 169
   //sp 17
@@ -1612,19 +1612,19 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
   //sp 18
   sp_rates[17] -= (fwd_rates[171] - rev_rates[171]);
   //sp 2
-  sp_rates[1] += (fwd_rates[171] - rev_rates[171]);
+  (*dy_N) += (fwd_rates[171] - rev_rates[171]);
   //sp 24
   sp_rates[23] += (fwd_rates[171] - rev_rates[171]);
 
   //rxn 172
-  //sp 17
-  sp_rates[16] += (fwd_rates[172] - rev_rates[172]);
+  //sp 2
+  (*dy_N) += (fwd_rates[172] - rev_rates[172]);
   //sp 18
   sp_rates[17] -= (fwd_rates[172] - rev_rates[172]);
   //sp 12
   sp_rates[11] -= (fwd_rates[172] - rev_rates[172]);
-  //sp 2
-  sp_rates[1] += (fwd_rates[172] - rev_rates[172]);
+  //sp 17
+  sp_rates[16] += (fwd_rates[172] - rev_rates[172]);
 
   //rxn 173
   //sp 3
@@ -2054,7 +2054,7 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
 
   //rxn 217
   //sp 2
-  sp_rates[1] -= (fwd_rates[217] - rev_rates[214]) * pres_mod[22];
+  (*dy_N) -= (fwd_rates[217] - rev_rates[214]) * pres_mod[22];
   //sp 12
   sp_rates[11] += 2.0 * (fwd_rates[217] - rev_rates[214]) * pres_mod[22];
 
@@ -2111,14 +2111,14 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
   sp_rates[6] += (fwd_rates[225] - rev_rates[222]);
 
   //rxn 226
+  //sp 2
+  (*dy_N) += (fwd_rates[226] - rev_rates[223]);
   //sp 18
   sp_rates[17] -= (fwd_rates[226] - rev_rates[223]);
   //sp 11
   sp_rates[10] += (fwd_rates[226] - rev_rates[223]);
   //sp 5
   sp_rates[4] -= (fwd_rates[226] - rev_rates[223]);
-  //sp 2
-  sp_rates[1] += (fwd_rates[226] - rev_rates[223]);
 
   //rxn 227
   //sp 11
@@ -2129,6 +2129,6 @@ void eval_spec_rates (const double * __restrict__ fwd_rates, const double * __re
   //sp 0
   sp_rates[0] = 0.0;
   //sp 1
-  (*dy_N) = 0.0;
+  sp_rates[1] = 0.0;
 } // end eval_spec_rates
 

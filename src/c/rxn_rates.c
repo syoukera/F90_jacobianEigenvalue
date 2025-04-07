@@ -92,7 +92,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
 
   //rxn 7
   kf = exp(3.6296634312463055e+01 - 1.1 * logT - (5.2526058179999411e+04 / T));
-  fwd_rxn_rates[7] = C[2] * C[32] * kf;
+  fwd_rxn_rates[7] = C[2] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (-4.2320448180000003e+00 + 1.6556688799999999e+00 * logT + T * (-3.9902603749999996e-03 + T * (3.2463584999999998e-06 + T * (-1.6797674500000001e-09 + 3.6880588050000004e-13 * T))) - 5.1865255172999998e+04 / T);
   } else {
@@ -100,7 +100,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[7] = C[4] * C[4] * C[32] * kf / Kc;
+  rev_rxn_rates[7] = C[4] * C[4] * C[1] * kf / Kc;
 
   //rxn 8
   kf = exp(3.6296634312463055e+01 - 1.1 * logT - (5.2526058179999411e+04 / T));
@@ -128,7 +128,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
 
   //rxn 10
   kf = exp(1.6752553835169586e+01 - (-8.9975658196818301e+02 / T));
-  fwd_rxn_rates[10] = C[5] * C[5] * C[32] * kf;
+  fwd_rxn_rates[10] = C[5] * C[5] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (2.1078866500000002e+00 + -1.5540778400000002e+00 * logT + T * (1.7809517600000000e-03 + T * (-5.7313765166666677e-07 + T * (2.1456978249999992e-10 + -4.9079552499999993e-14 * T))) - -5.9308461960000001e+04 / T);
   } else {
@@ -136,7 +136,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[10] = C[3] * C[32] * kf / Kc;
+  rev_rxn_rates[10] = C[3] * C[1] * kf / Kc;
 
   //rxn 11
   kf = exp(1.6752553835169586e+01 - (-8.9975658196818301e+02 / T));
@@ -640,7 +640,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[52] = C[1] * C[4] * C[4] * kf / Kc;
+  rev_rxn_rates[52] = C[32] * C[4] * C[4] * kf / Kc;
 
   //rxn 53
   kf = exp(8.1886891244442008e+00 + 1.63 * logT - (-6.2902445607395339e+02 / T));
@@ -676,7 +676,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[55] = C[1] * C[8] * kf / Kc;
+  rev_rxn_rates[55] = C[32] * C[8] * kf / Kc;
 
   //rxn 56
   kf = exp(-2.6450754019408218e+00 + 3.02 * logT - (-2.4859046504042640e+03 / T));
@@ -820,7 +820,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[67] = C[1] * C[4] * kf / Kc;
+  rev_rxn_rates[67] = C[32] * C[4] * kf / Kc;
 
   //rxn 68
   kf = exp(2.6937873935368604e+01 - 0.4 * logT);
@@ -844,7 +844,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[69] = C[1] * C[6] * kf / Kc;
+  rev_rxn_rates[69] = C[32] * C[6] * kf / Kc;
 
   //rxn 70
   kf = 10000000000.0;
@@ -916,7 +916,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[75] = C[1] * C[5] * kf / Kc;
+  rev_rxn_rates[75] = C[32] * C[5] * kf / Kc;
 
   //rxn 76
   kf = 1000000000.0;
@@ -928,7 +928,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[76] = C[1] * C[4] * kf / Kc;
+  rev_rxn_rates[76] = C[32] * C[4] * kf / Kc;
 
   //rxn 77
   kf = 100000000000.0;
@@ -940,7 +940,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[77] = C[1] * C[2] * kf / Kc;
+  rev_rxn_rates[77] = C[32] * C[2] * kf / Kc;
 
   //rxn 78
   kf = exp(2.5970289909106896e+01 - 0.274 * logT - (-1.1070830426901580e+01 / T));
@@ -964,7 +964,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[79] = C[1] * C[6] * kf / Kc;
+  rev_rxn_rates[79] = C[32] * C[6] * kf / Kc;
 
   //rxn 80
   kf = exp(2.0069339369539748e+01 + 0.381 * logT - (-2.0581680202739756e+02 / T));
@@ -988,7 +988,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[81] = C[1] * C[8] * kf / Kc;
+  rev_rxn_rates[81] = C[32] * C[8] * kf / Kc;
 
   //rxn 82
   kf = exp(2.7051202620675607e+01 - 0.385 * logT - (-6.5418543431691161e+00 / T));
@@ -1000,7 +1000,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[82] = C[1] * C[7] * kf / Kc;
+  rev_rxn_rates[82] = C[32] * C[7] * kf / Kc;
 
   //rxn 83
   kf = 50000000000.0;
@@ -1012,7 +1012,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[83] = C[1] * C[13] * kf / Kc;
+  rev_rxn_rates[83] = C[32] * C[13] * kf / Kc;
 
   //rxn 84
   kf = 50000000000.0;
@@ -1024,7 +1024,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[84] = C[1] * C[12] * kf / Kc;
+  rev_rxn_rates[84] = C[32] * C[12] * kf / Kc;
 
   //rxn 85
   kf = 50000000000.0;
@@ -1036,7 +1036,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[85] = C[1] * C[18] * kf / Kc;
+  rev_rxn_rates[85] = C[32] * C[18] * kf / Kc;
 
   //rxn 86
   kf = exp(4.6388174096502127e+01 - 1.31 * logT - (3.2246309716175150e+04 / T));
@@ -2002,7 +2002,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[163] = C[1] * C[5] * kf / Kc;
+  rev_rxn_rates[163] = C[32] * C[5] * kf / Kc;
 
   //rxn 164
   kf = exp(1.7315043840347290e+01 - (2.5613875851331386e+03 / T));
@@ -2014,7 +2014,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[164] = C[1] * C[6] * kf / Kc;
+  rev_rxn_rates[164] = C[32] * C[6] * kf / Kc;
 
   //rxn 165
   kf = exp(2.7386398532937214e+01 - (9.7574273626191662e+03 / T));
@@ -2026,7 +2026,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[165] = C[1] * C[6] * kf / Kc;
+  rev_rxn_rates[165] = C[32] * C[6] * kf / Kc;
 
   //rxn 166
   kf = exp(2.5245054413995451e+01 - (1.3928614335736765e+04 / T));
@@ -2050,7 +2050,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[167] = C[1] * C[3] * kf / Kc;
+  rev_rxn_rates[167] = C[32] * C[3] * kf / Kc;
 
   //rxn 168
   kf = exp(2.1416413017506358e+01 - (2.0128782594366508e+04 / T));
@@ -2062,7 +2062,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[168] = C[1] * C[7] * kf / Kc;
+  rev_rxn_rates[168] = C[32] * C[7] * kf / Kc;
 
   //rxn 169
   kf = exp(2.1416413017506358e+01 - (1.3083708686338232e+04 / T));
@@ -2098,7 +2098,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[171] = C[23] * C[1] * kf / Kc;
+  rev_rxn_rates[171] = C[23] * C[32] * kf / Kc;
 
   //rxn 172
   kf = exp(2.3025850929940457e+01 - (9.9989727537515646e+03 / T));
@@ -2110,7 +2110,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[172] = C[1] * C[16] * kf / Kc;
+  rev_rxn_rates[172] = C[32] * C[16] * kf / Kc;
 
   //rxn 173
   kf = exp(1.2043553716032399e+01 + 1.02 * logT - (5.9294361327355145e+03 / T));
@@ -2744,7 +2744,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
 
   //rxn 217
   kf = exp(3.5175353223982235e+01 - 0.85 * logT - (1.1319924111506867e+05 / T));
-  fwd_rxn_rates[217] = C[1] * kf;
+  fwd_rxn_rates[217] = C[32] * kf;
   if (T <= 1000.0) {
     Kc = (3.9513525000000000e+00 + 4.6899471999999998e-01 * logT + T * (6.1830494000000001e-05 + T * (8.3833238833333338e-08 + T * (-2.0294217666666667e-10 + 7.0440617500000006e-14 * T))) - 1.1325625228000000e+05 / T);
   } else {
@@ -2780,7 +2780,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
 
   //rxn 220
   kf = exp(1.6892822818510687e+01 + 0.5 * logT - (1.0366323036098752e+03 / T));
-  fwd_rxn_rates[220] = C[10] * C[32] * kf;
+  fwd_rxn_rates[220] = C[10] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (-2.3749025870000002e+00 + 5.3113995999999997e-01 * logT + T * (-1.4514693609999998e-03 + T * (1.1031975116666667e-06 + T * (-5.8901524166666667e-10 + 1.3588567000000000e-13 * T))) - -4.7366048240000004e+04 / T);
   } else {
@@ -2788,7 +2788,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[217] = C[6] * C[32] * kf / Kc;
+  rev_rxn_rates[217] = C[6] * C[1] * kf / Kc;
 
   //rxn 221
   kf = exp(2.1805071007298139e+01 + 0.5 * logT - (-2.2342948679746826e+02 / T));
@@ -2860,7 +2860,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[223] = C[1] * C[10] * kf / Kc;
+  rev_rxn_rates[223] = C[32] * C[10] * kf / Kc;
 
   //rxn 227
   kf = 1400000.0;

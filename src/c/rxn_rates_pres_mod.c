@@ -20,19 +20,19 @@ void get_rxn_pres_mod (const double T, const double pres, const double * __restr
   double m = pres / (8.31446210e+03 * T);
 
   // reaction 6;
-  pres_mod[0] = m + 1.5 * C[2] + 11.0 * C[8] - 1.0 * C[32] - 1.0 * C[0] - 1.0 * C[3];
+  pres_mod[0] = m + 1.5 * C[2] + 11.0 * C[8] - 1.0 * C[1] - 1.0 * C[0] - 1.0 * C[3];
 
   // reaction 9;
-  pres_mod[1] = m + 1.5 * C[2] + 11.0 * C[8] - 1.0 * C[32] - 1.0 * C[0];
+  pres_mod[1] = m + 1.5 * C[2] + 11.0 * C[8] - 1.0 * C[1] - 1.0 * C[0];
 
   // reaction 12;
-  pres_mod[2] = m + 1.5 * C[2] + 11.0 * C[8] - 0.25 * C[32] - 0.25 * C[0] - 1.0 * C[3];
+  pres_mod[2] = m + 1.5 * C[2] + 11.0 * C[8] - 0.25 * C[1] - 0.25 * C[0] - 1.0 * C[3];
 
   // reaction 13;
-  pres_mod[3] = m + 2.0 * C[2] - 1.0 * C[8] + 0.10000000000000009 * C[0] + 1.0 * C[1] - 1.0 * C[3];
+  pres_mod[3] = m + 2.0 * C[2] - 1.0 * C[8] + 0.10000000000000009 * C[0] + 1.0 * C[32] - 1.0 * C[3];
 
   // reaction 15;
-  thd = m + 1.0 * C[2] + 13.0 * C[8] - 0.21999999999999997 * C[3] - 0.32999999999999996 * C[32] - 0.19999999999999996 * C[0];
+  thd = m + 1.0 * C[2] + 13.0 * C[8] - 0.21999999999999997 * C[3] - 0.32999999999999996 * C[1] - 0.19999999999999996 * C[0];
   k0 = exp(3.4087162630776540e+01 - 1.72 * logT - (2.6408962763808859e+02 / T));
   kinf = exp(2.2270828345662423e+01 + 0.44 * logT);
   Pr = k0 * thd / kinf;
@@ -42,7 +42,7 @@ void get_rxn_pres_mod (const double T, const double pres, const double * __restr
   pres_mod[4] = pow(10.0, logFcent / (1.0 + A * A / (B * B))) * Pr / (1.0 + Pr);
 
   // reaction 28;
-  thd = m + 6.5 * C[8] + 0.5 * C[1] + 0.19999999999999996 * C[3] - 0.35 * C[0] + 6.7 * C[9] + 2.7 * C[2];
+  thd = m + 6.5 * C[8] + 0.5 * C[32] + 0.19999999999999996 * C[3] - 0.35 * C[0] + 6.7 * C[9] + 2.7 * C[2];
   k0 = exp(4.9270577684749114e+01 - 2.3 * logT - (2.4531450567319323e+04 / T));
   kinf = exp(2.8324168296488494e+01 + 0.9 * logT - (2.4531450567319323e+04 / T));
   Pr = k0 * thd / kinf;
@@ -80,7 +80,7 @@ void get_rxn_pres_mod (const double T, const double pres, const double * __restr
   pres_mod[12] = m + 9.0 * C[8];
 
   // reaction 122;
-  thd = m + 0.6000000000000001 * C[1];
+  thd = m + 0.6000000000000001 * C[32];
   k0 = exp(1.9296149481306266e+01 + 0.206 * logT - (-7.7999032553170230e+02 / T));
   kinf = exp(2.8036486224036711e+01 - 0.41 * logT);
   Pr = k0 * thd / kinf;
@@ -143,7 +143,7 @@ void get_rxn_pres_mod (const double T, const double pres, const double * __restr
   pres_mod[19] = pow(10.0, logFcent / (1.0 + A * A / (B * B))) * Pr / (1.0 + Pr);
 
   // reaction 163;
-  thd = m + 0.7 * C[1] + 0.3999999999999999 * C[3] + 11.0 * C[8];
+  thd = m + 0.7 * C[32] + 0.3999999999999999 * C[3] + 11.0 * C[8];
   k0 = exp(2.7218531392883420e+01 - (2.8935124979401859e+04 / T));
   kinf = exp(2.5318385687081001e+01 - (2.9166605979237072e+04 / T));
   Pr = k0 * thd / kinf;
