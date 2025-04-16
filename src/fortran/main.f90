@@ -211,8 +211,8 @@ program pv
               
               call calc_z(y_local(i,j,k,:),sf(i,j,k,ptr_analyze+1),sf(i,j,k,ptr_analyze+3),sf(i,j,k,ptr_analyze+4),sf(i,j,k,24))
               call calc_Dh(y_local(i,j,k,:),r_local(i,j,k),t_local(i,j,k),sf(i,j,k,ptr_analyze+6))
-              call calc_cema(y_local(i,j,k,:),t_local(i,j,k),sf(i,j,k,ptr_analyze+9),sf(i,j,k,ptr_analyze+10), &
-                             sf(i,j,k,ptr_analyze+11), sf(i,j,k,ptr_analyze+12))
+              call calc_cema(y_local(i,j,k,:),p_local(i,j,k),t_local(i,j,k),sf(i,j,k,ptr_analyze+9), &
+                             sf(i,j,k,ptr_analyze+10), sf(i,j,k,ptr_analyze+11), sf(i,j,k,ptr_analyze+12))
 
               ! ptr_EI
               if (flag_EI) then

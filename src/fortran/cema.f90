@@ -3,8 +3,6 @@ module cema
     use globals, only : nf, nrf, nrb, nrp
     implicit none
 
-    real(8), parameter :: t = 0.0d0
-    real(8), parameter :: pres = 101325.0d0 ! ambient pressure
     character(len=10), allocatable :: species_names_cema(:)  ! species_names in c
 
     ! pyJac
@@ -235,13 +233,18 @@ contains
     
     end subroutine read_indices_cema
 
-    subroutine calc_cema(y_local,temp,lambda_e,index_EI,index_PI,rop_ith)
+    subroutine calc_cema(y_local,p_local,t_local,lambda_e,index_EI,index_PI,rop_ith)
         implicit none
-        double precision, intent(in)::y_local(1:nf),temp
+        double precision, intent(in)::y_local(1:nf)
+        double precision, intent(in)::p_local
+        double precision, intent(in)::t_local
         double precision, intent(out)::lambda_e
         double precision, intent(out)::index_EI
         double precision, intent(out)::index_PI
         double precision, intent(out)::rop_ith
+
+        real(8), parameter :: t = 0.0d0 ! dummy parameter for time
+
         integer :: i, j, i_wr
 
         ! call allocation_cema()
@@ -258,7 +261,7 @@ contains
             !   0.00000000d+00 /)
 
         ! Tamaoki mechanism
-        y(1)  = temp        ! T
+        y(1)  = t_local        ! T
         y(2)  = y_local(3)  ! HE
         y(3)  = y_local(2)  ! AR
         y(4)  = y_local(8)  ! H2
@@ -292,9 +295,13 @@ contains
         y(32) = y_local(32) ! N2H4
         y(33) = y_local(31) ! N2H3
         ! y(34) = y_local(1)  ! N2
+
+        ! print *, 'T, temperature: ', t_local
+        ! print *, 'P, pressure: ', p_local
+        ! print *, 'y, mass fraction: ', y
         
         ! calclate Jacobian using pyJac
-        call eval_jacob(t, pres, c_loc(y), c_loc(jac))
+        call eval_jacob(t, p_local, c_loc(y), c_loc(jac))
 
         ! calclate eigenvalues and eigenvectors using dgeev in LAPACK
         call dgeev(jobvl, jobvr, n, jac, lda, wr, wi, vl, ldvl, vr, ldvr, work, lwork, info)
@@ -340,9 +347,9 @@ contains
         index_EI = maxloc(EI, 1)
 
         ! test to call pyJac function
-        call eval_conc(temp, pres, c_loc(y), c_loc(y_N), c_loc(mw_avg), c_loc(rho), c_loc(conc))
-        call eval_rxn_rates(temp, pres, c_loc(conc), c_loc(fwd_rxn_rates), c_loc(rev_rxn_rates))
-        call get_rxn_pres_mod(temp, pres, c_loc(conc), c_loc(pres_mod))
+        call eval_conc(t_local, p_local, c_loc(y), c_loc(y_N), c_loc(mw_avg), c_loc(rho), c_loc(conc))
+        call eval_rxn_rates(t_local, p_local, c_loc(conc), c_loc(fwd_rxn_rates), c_loc(rev_rxn_rates))
+        call get_rxn_pres_mod(t_local, p_local, c_loc(conc), c_loc(pres_mod))
 
         ! calculate rop
         do i = 1, nrf
