@@ -2,26 +2,26 @@ module globals
   integer :: nx,ny,nz,nf,ns,nq,nrf,nrb,nrp,ista,jsta,ksta,iend,jend,kend,ibd,jbd,kbd,x_sta,x_end,y_sta,y_end,z_sta,z_end
   integer :: iprocs,jprocs,kprocs,myrank,myrank_i,myrank_j,myrank_k
   integer :: i,j,k,ii,jj,kk,step,ifn,is,m,n,step0,step1,step2,l,step0_avg,step1_avg,step2_avg
-  real(8) :: time,time0,time1,time2,ref, ugconst
-  real(8) , allocatable :: xu(:),xg(:),dxu(:),dxg(:)
-  real(8) , allocatable :: yv(:),yg(:),dyv(:),dyg(:)
-  real(8) , allocatable :: zw(:),zg(:),dzw(:),dzg(:)
-  real(8) , allocatable :: u_local(:,:,:),v_local(:,:,:),w_local(:,:,:)
-  real(8) , allocatable :: r_local(:,:,:),p_local(:,:,:),h_local(:,:,:),h_chem_local(:,:,:),equiv_ratio_local(:,:,:)
-  real(8) , allocatable :: heat_rel_local(:,:,:),mass_evap_local(:,:,:)
-  real(8) , allocatable :: t_local(:,:,:),c_local(:,:,:),z_local(:,:,:),rate_local(:,:,:,:)
-  real(8) , allocatable :: g_local(:,:,:),fmsoot_local(:,:,:),fnsoot_local(:,:,:)
-  real(8) , allocatable :: dp_local(:,:,:),su_local(:,:,:)
-  real(8) , allocatable :: rate1st2D(:,:,:),rate1st3D(:,:,:),rate2nd2D(:,:,:),rate2nd3D(:,:,:)
-  real(8) , allocatable :: flame_thickness(:,:,:),flame_efficiency(:,:,:)
-  real(8) , allocatable :: evap2D(:,:,:),evap3D(:,:,:),heat2D(:,:,:),heat3D(:,:,:)
-  real(8) , allocatable :: u(:,:,:),v(:,:,:),w(:,:,:),r(:,:,:),p(:,:,:),h(:,:,:),h_chem(:,:,:)
-  real(8) , allocatable :: temp(:,:,:),c(:,:,:),z(:,:,:),g(:,:,:),fmsoot(:,:,:),fnsoot(:,:,:)
-  real(8) , allocatable :: p_avg(:,:,:)
-  real(8) , allocatable :: pdf(:,:,:),z_val(:,:,:)
-  real(8) , allocatable :: y(:,:,:,:),y_local(:,:,:,:)
-  real(8) , allocatable :: sq_all(:,:,:,:),sf(:,:,:,:),q(:,:,:,:),sf_phase(:,:,:,:),sf_avg(:,:,:,:)
-  real(8) , allocatable :: ccpl(:,:), ccph(:,:), tmpr(:,:)
+  double precision :: time,time0,time1,time2,ref, ugconst
+  double precision , allocatable :: xu(:),xg(:),dxu(:),dxg(:)
+  double precision , allocatable :: yv(:),yg(:),dyv(:),dyg(:)
+  double precision , allocatable :: zw(:),zg(:),dzw(:),dzg(:)
+  double precision , allocatable :: u_local(:,:,:),v_local(:,:,:),w_local(:,:,:)
+  double precision , allocatable :: r_local(:,:,:),p_local(:,:,:),h_local(:,:,:),h_chem_local(:,:,:),equiv_ratio_local(:,:,:)
+  double precision , allocatable :: heat_rel_local(:,:,:),mass_evap_local(:,:,:)
+  double precision , allocatable :: t_local(:,:,:),c_local(:,:,:),z_local(:,:,:),rate_local(:,:,:,:)
+  double precision , allocatable :: g_local(:,:,:),fmsoot_local(:,:,:),fnsoot_local(:,:,:)
+  double precision , allocatable :: dp_local(:,:,:),su_local(:,:,:)
+  double precision , allocatable :: rate1st2D(:,:,:),rate1st3D(:,:,:),rate2nd2D(:,:,:),rate2nd3D(:,:,:)
+  double precision , allocatable :: flame_thickness(:,:,:),flame_efficiency(:,:,:)
+  double precision , allocatable :: evap2D(:,:,:),evap3D(:,:,:),heat2D(:,:,:),heat3D(:,:,:)
+  double precision , allocatable :: u(:,:,:),v(:,:,:),w(:,:,:),r(:,:,:),p(:,:,:),h(:,:,:),h_chem(:,:,:)
+  double precision , allocatable :: temp(:,:,:),c(:,:,:),z(:,:,:),g(:,:,:),fmsoot(:,:,:),fnsoot(:,:,:)
+  double precision , allocatable :: p_avg(:,:,:)
+  double precision , allocatable :: pdf(:,:,:),z_val(:,:,:)
+  double precision , allocatable :: y(:,:,:,:),y_local(:,:,:,:)
+  double precision , allocatable :: sq_all(:,:,:,:),sf(:,:,:,:),q(:,:,:,:),sf_phase(:,:,:,:),sf_avg(:,:,:,:)
+  double precision , allocatable :: ccpl(:,:), ccph(:,:), tmpr(:,:)
   double precision , allocatable , save :: cmu(:,:),clam(:,:)
   double precision , allocatable , save :: cdif(:,:,:)
   character :: filenumber*8,cpunumber*5,filenumber0*8,filenumber1*8,filenumber2*8,reaction_number*2, gridnumber*5
@@ -30,25 +30,25 @@ module globals
   integer ,      save :: p_on,substep,npaa,p_on_all
   !integer ,                      save :: p_in,igx,igy,igz
   logical, dimension(p_total) :: p_label=.false.
-  real(8)                     :: mass_in,mass_rate,equiv_ratio,wg_avg,p_dmin,interval=0.d0,heat2Dall,heat3Dall
-  real(8), dimension(p_total) :: p_x,p_u,gp_u0
-  real(8), dimension(p_total) :: p_y,p_v,gp_v0
-  real(8), dimension(p_total) :: p_z,p_w,gp_w0
-  real(8), dimension(p_total) :: p_r,p_mass,p_d,p_ds ,p_temp,cl,p_h
-  real(8), dimension(p_total) :: gp_mass0,gp_temp0
-  real(8), dimension(p_total) :: p_cl,p_id,parcel_on
-  real(8), dimension(p_total,noc) , save :: c_mass
+  double precision                     :: mass_in,mass_rate,equiv_ratio,wg_avg,p_dmin,interval=0.d0,heat2Dall,heat3Dall
+  double precision, dimension(p_total) :: p_x,p_u,gp_u0
+  double precision, dimension(p_total) :: p_y,p_v,gp_v0
+  double precision, dimension(p_total) :: p_z,p_w,gp_w0
+  double precision, dimension(p_total) :: p_r,p_mass,p_d,p_ds ,p_temp,cl,p_h
+  double precision, dimension(p_total) :: gp_mass0,gp_temp0
+  double precision, dimension(p_total) :: p_cl,p_id,parcel_on
+  double precision, dimension(p_total,noc) , save :: c_mass
 
-  real(8) :: integral_time,previous_time
+  double precision :: integral_time,previous_time
 
-  real(8), dimension(nv+noc,p_total) :: pval
-  real(8), allocatable , save :: pval_all(:,:), pval_all_tmp(:,:)
+  double precision, dimension(nv+noc,p_total) :: pval
+  double precision, allocatable , save :: pval_all(:,:), pval_all_tmp(:,:)
 
   integer :: rows, step_list0, step_list1, step_list2
   integer,allocatable :: step_list(:)
-  real(8),allocatable :: time_list(:)
+  double precision,allocatable :: time_list(:)
 
-  ! real(8) , dimension(1-ibd:nx+4,1-ibd:ny+4,1-ibd:nz+4,1:ns)::sf
+  ! double precision , dimension(1-ibd:nx+4,1-ibd:ny+4,1-ibd:nz+4,1:ns)::sf
 
   double precision , parameter :: na=6.02d+26
 
@@ -110,11 +110,11 @@ module pv3D
   !       Structure Type
   !===============================
   ! type vector
-  !   real(8) :: x,y,z
+  !   double precision :: x,y,z
   ! end type vector
   ! type scalar_value
   !   character(len=20)     :: name
-  !   real(8) , allocatable :: array(:,:,:)
+  !   double precision , allocatable :: array(:,:,:)
   ! end type scalar_value
 
   !===============================
@@ -124,7 +124,7 @@ module pv3D
   integer , private :: ifnwrite
   integer , private , parameter :: bytes=4 ! 8 or 4
   integer , private , save      :: num_output,num_output_pointer
-  real(8) , private , save , allocatable      :: output_scalar_all(:,:,:,:)
+  double precision , private , save , allocatable      :: output_scalar_all(:,:,:,:)
   real , private , save , allocatable      :: output_scalar_all4(:,:,:,:) !yada
   logical , private , save      :: vecflag
   integer , private , parameter :: ns=11
@@ -155,20 +155,20 @@ module pv3D
   character(8) , private :: filenumber, gridnumber
   character(16),allocatable , private , save :: str_varname(:)
   character(16),allocatable , private :: str_format(:)
-  real(8) , private , allocatable , save :: u_local(:,:,:),v_local(:,:,:),w_local(:,:,:)
-  real(8) , private , allocatable :: r_local(:,:,:)
-  real(8) , private , allocatable :: p_local(:,:,:)
-  real(8) , private , allocatable :: t_local(:,:,:)
-  real(8) , private , allocatable :: h_local(:,:,:)
-  real(8) , private , allocatable :: y_local(:,:,:,:)
-  real(8) , private , allocatable :: z_local(:,:,:)
-  real(8) , private , allocatable :: c_local(:,:,:)
-  real(8) , private , allocatable :: g_local(:,:,:)
-  real(8) , private , allocatable :: fmsoot_local(:,:,:),fnsoot_local(:,:,:)
-  real(8) , private :: time
-  real(8) , private , allocatable , save :: xg(:)!,dxu(:),dxg(:)
-  real(8) , private , allocatable , save :: yg(:)!,dyv(:),dyg(:)
-  real(8) , private , allocatable , save :: zg(:)!,dzw(:),dzg(:
+  double precision , private , allocatable , save :: u_local(:,:,:),v_local(:,:,:),w_local(:,:,:)
+  double precision , private , allocatable :: r_local(:,:,:)
+  double precision , private , allocatable :: p_local(:,:,:)
+  double precision , private , allocatable :: t_local(:,:,:)
+  double precision , private , allocatable :: h_local(:,:,:)
+  double precision , private , allocatable :: y_local(:,:,:,:)
+  double precision , private , allocatable :: z_local(:,:,:)
+  double precision , private , allocatable :: c_local(:,:,:)
+  double precision , private , allocatable :: g_local(:,:,:)
+  double precision , private , allocatable :: fmsoot_local(:,:,:),fnsoot_local(:,:,:)
+  double precision , private :: time
+  double precision , private , allocatable , save :: xg(:)!,dxu(:),dxg(:)
+  double precision , private , allocatable , save :: yg(:)!,dyv(:),dyg(:)
+  double precision , private , allocatable , save :: zg(:)!,dzw(:),dzg(:
   real(4) , private , allocatable:: array3d(:,:,:,:)
 
   ! type(scalar_value) , allocatable , private  :: valuebox(:)
@@ -241,7 +241,7 @@ contains
 
   subroutine pv_input_scalar(input,scalarname)
     implicit none
-    real(8) , intent(in)  :: input( x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
+    double precision , intent(in)  :: input( x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
     character(*) , intent(in) :: scalarname
 
     output_scalar_all(:,:,:,num_output_pointer)=input(:,:,:)
@@ -253,9 +253,9 @@ contains
 
   subroutine pv_input_vector(u,v,w)
     implicit none
-    real(8) , intent(in)  :: u( x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
-    real(8) , intent(in)  :: v( x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
-    real(8) , intent(in)  :: w( x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
+    double precision , intent(in)  :: u( x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
+    double precision , intent(in)  :: v( x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
+    double precision , intent(in)  :: w( x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
 
     u_local=u
     v_local=v
@@ -265,7 +265,7 @@ contains
 
   subroutine pv_input_grid(xgrid,ygrid,zgrid)
     implicit none
-    real(8) , intent(in)  :: xgrid(x_sta_reg:x_end_reg),ygrid(y_sta_reg:y_end_reg),zgrid(z_sta_reg:z_end_reg)
+    double precision , intent(in)  :: xgrid(x_sta_reg:x_end_reg),ygrid(y_sta_reg:y_end_reg),zgrid(z_sta_reg:z_end_reg)
 
     xg=xgrid
     yg=ygrid
@@ -352,7 +352,7 @@ contains
   subroutine scalar_output(output_array,scalarname,l)
     implicit none
 
-    real(8) :: output_array(x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
+    double precision :: output_array(x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
     integer , intent(in) :: l
     character(*) , intent(in) :: scalarname
 
@@ -402,7 +402,7 @@ contains
 
     integer :: l
     integer :: output_data_size=0
-    real(8) :: array3d(1:3,x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
+    double precision :: array3d(1:3,x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
 
     do k=z_sta_reg,z_end_reg
       do j=y_sta_reg,y_end_reg
@@ -627,7 +627,7 @@ contains
   subroutine timestep_output(time,stepnumber)
     implicit none
 
-    real(8) , intent(in) :: time
+    double precision , intent(in) :: time
     character(10)  :: file_preword,file_postword
     character(10)  :: file_preword_particle,file_postword_particle
     character(8) , intent(in) :: stepnumber
@@ -658,7 +658,7 @@ contains
 
 
   character(100) function flt_to_char(input)
-    real(8) , intent(in) :: input
+    double precision , intent(in) :: input
 
     write(flt_to_char,'(1e12.4)') input
 
@@ -697,16 +697,16 @@ module pv_particle
   integer , save :: p_sum,p_on_localmax,p_counter
   integer , allocatable :: p_i(:),p_j(:),p_k(:)
 
-  real(8) , allocatable :: output_scalar_all(:,:),velocity_all(:,:),points_all(:,:)
+  double precision , allocatable :: output_scalar_all(:,:),velocity_all(:,:),points_all(:,:)
 
   character(16),allocatable :: str_varname(:)
   character(16),allocatable :: str_format(:)
 
   !--- Eulerial Data's Variables ---
   integer :: euler_data_number
-  real(8) :: xg_sta,yg_sta,zg_sta,xg_end,yg_end,zg_end
+  double precision :: xg_sta,yg_sta,zg_sta,xg_end,yg_end,zg_end
 
-  real(8) , allocatable :: all_data(:,:,:,:)
+  double precision , allocatable :: all_data(:,:,:,:)
 
   double precision , allocatable , save :: p_d_output(:,:),p_d_output_local(:,:),p_d_all(:),p_d_all_all(:)
 
@@ -833,7 +833,7 @@ contains
   subroutine pv_input_velocity(p_u,p_v,p_w)
     implicit none
 
-    real(8) , intent(in) :: p_u(1:p_on_all),p_v(1:p_on_all),p_w(1:p_on_all)
+    double precision , intent(in) :: p_u(1:p_on_all),p_v(1:p_on_all),p_w(1:p_on_all)
 
     velocity_all(1,:)=p_u(:)
     velocity_all(2,:)=p_v(:)
@@ -844,7 +844,7 @@ contains
   subroutine pv_input_points(p_x,p_y,p_z)
     implicit none
 
-    real(8) , intent(in) :: p_x(1:p_on_all),p_y(1:p_on_all),p_z(1:p_on_all)
+    double precision , intent(in) :: p_x(1:p_on_all),p_y(1:p_on_all),p_z(1:p_on_all)
 
     points_all(1,:)=p_x(:)
     points_all(2,:)=p_y(:)
@@ -857,7 +857,7 @@ contains
     implicit none
 
     character(*) scalarname
-    real(8) , intent(in), dimension(1:p_on_all) :: input
+    double precision , intent(in), dimension(1:p_on_all) :: input
 
     write(*,*) scalarname//' input scalar' , maxval(input),minval(input)
 
@@ -875,8 +875,8 @@ contains
   subroutine scalar_output(output_array,scalarname)
     implicit none
 
-    real(8) , intent(in) :: output_array(1:p_on_all)
-    real(8) :: write_array(1:p_on_all)
+    double precision , intent(in) :: output_array(1:p_on_all)
+    double precision :: write_array(1:p_on_all)
     character(*) , intent(in) :: scalarname
 
     write_array=output_array!pack(output_array,pval_flag)
@@ -909,7 +909,7 @@ contains
   subroutine Pointsdata_output
     implicit none
 
-    real(8) :: range_max,range_min
+    double precision :: range_max,range_min
 
     range_max=max(maxval(points_all(1,:)),maxval(points_all(2,:)),maxval(points_all(3,:)))
     range_min=min(minval(points_all(1,:)),minval(points_all(2,:)),minval(points_all(3,:)))
@@ -930,7 +930,7 @@ contains
   subroutine Vectordata_output
     implicit none
 
-    real(8) :: range_max,range_min
+    double precision :: range_max,range_min
 
     range_max=max(maxval(velocity_all(1,:)),maxval(velocity_all(2,:)),maxval(velocity_all(3,:)))
     range_min=min(minval(velocity_all(1,:)),minval(velocity_all(2,:)),minval(velocity_all(3,:)))

@@ -6,25 +6,25 @@ module cema
     character(len=10), allocatable :: species_names_cema(:)  ! species_names in c
 
     ! pyJac
-    real(8), allocatable, target :: y(:)
-    real(8), allocatable, target :: jac(:, :)
-    real(8), allocatable, target :: conc(:)
-    real(8), allocatable, target :: fwd_rxn_rates(:)
-    real(8), allocatable, target :: rev_rxn_rates(:)
-    real(8), allocatable, target :: pres_mod(:)
-    real(8), allocatable :: rop(:) ! rate ob progress
-    real(8), target :: y_N
-    real(8), target :: mw_avg ! mass-averaged density
-    real(8), target :: rho ! average molecular weight
+    double precision, allocatable, target :: y(:)
+    double precision, allocatable, target :: jac(:, :)
+    double precision, allocatable, target :: conc(:)
+    double precision, allocatable, target :: fwd_rxn_rates(:)
+    double precision, allocatable, target :: rev_rxn_rates(:)
+    double precision, allocatable, target :: pres_mod(:)
+    double precision, allocatable :: rop(:) ! rate ob progress
+    double precision, target :: y_N
+    double precision, target :: mw_avg ! mass-averaged density
+    double precision, target :: rho ! average molecular weight
 
-    real(8), allocatable :: wr(:), wi(:)   ! real and imaginary component of eigenvalue
-    real(8), allocatable :: vl(:, :)       ! left eigenvecto
-    real(8), allocatable :: vr(:, :)       ! right eigenvector
-    real(8), allocatable :: work(:)        ! work array
+    double precision, allocatable :: wr(:), wi(:)   ! real and imaginary component of eigenvalue
+    double precision, allocatable :: vl(:, :)       ! left eigenvecto
+    double precision, allocatable :: vr(:, :)       ! right eigenvector
+    double precision, allocatable :: work(:)        ! work array
     
-    real(8), allocatable :: a_exp(:), b_exp(:)
-    real(8), allocatable :: EP(:), EI(:), PP(:), PI(:)
-    real(8) :: wr_max, EP_sum, PP_sum
+    double precision, allocatable :: a_exp(:), b_exp(:)
+    double precision, allocatable :: EP(:), EI(:), PP(:), PI(:)
+    double precision :: wr_max, EP_sum, PP_sum
 
     ! indices for reaction picked from spec_rates.c
     integer(4), allocatable :: stoich_coeffs(:, :)
@@ -243,7 +243,7 @@ contains
         double precision, intent(out)::index_PI
         double precision, intent(out)::rop_ith
 
-        real(8), parameter :: t = 0.0d0 ! dummy parameter for time
+        double precision, parameter :: t = 0.0d0 ! dummy parameter for time
 
         integer :: i, j, i_wr
 
