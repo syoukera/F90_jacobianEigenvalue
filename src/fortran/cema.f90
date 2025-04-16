@@ -389,9 +389,7 @@ contains
         do i = 1, nrf
             ! sum product along species
             do j = 1, nf-1
-                ! PP(i) = PP(i) + b_exp(j+1)*stoich_coeffs(j, i)
-                PP(i) = PP(i) + b_exp(j+1)*dble(stoich_coeffs(j, i))
-                ! print *, b_exp(j+1), stoich_coeffs(j, i), b_exp(j+1)*dble(stoich_coeffs(j, i))
+                PP(i) = PP(i) + a_exp(j+1)*dble(stoich_coeffs(j, i))
             end do 
 
             ! multiply rop
@@ -399,6 +397,7 @@ contains
 
             ! sum of PP
             PP_sum = PP_sum + abs(PP(i))
+
         end do
 
         print *, ' '
