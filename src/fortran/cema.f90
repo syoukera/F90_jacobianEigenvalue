@@ -250,16 +250,6 @@ contains
         ! call allocation_cema()
         call initialize_cema()
 
-        ! y = (/1.00000000d+03, 0.00000000d+00, 0.00000000d+00, 0.00000000d+00, &
-        !       1.96270854d-01, 0.00000000d+00, 0.00000000d+00, 0.00000000d+00, &
-        !       0.00000000d+00, 0.00000000d+00, 0.00000000d+00, 0.00000000d+00, &
-        !       0.00000000d+00, 6.54236179d-02, 0.00000000d+00, 0.00000000d+00, &
-        !       0.00000000d+00, 0.00000000d+00, 0.00000000d+00, 0.00000000d+00, &
-        !       0.00000000d+00, 0.00000000d+00, 0.00000000d+00, 0.00000000d+00, &
-        !       0.00000000d+00, 0.00000000d+00, 0.00000000d+00, 0.00000000d+00, &
-        !       0.00000000d+00, 0.00000000d+00, 0.00000000d+00, 0.00000000d+00, &
-            !   0.00000000d+00 /)
-
         ! Tamaoki mechanism
         y(1)  = t_local        ! T
         y(2)  = y_local(3)  ! HE
@@ -296,9 +286,6 @@ contains
         y(33) = y_local(31) ! N2H3
         ! y(34) = y_local(1)  ! N2
 
-        print *, 'T, temperature: ', t_local
-        print *, 'P, pressure: ', p_local
-        print *, 'y, mass fraction: ', y
         
         ! calclate Jacobian using pyJac
         call eval_jacob(t, p_local, c_loc(y), c_loc(jac))
@@ -326,21 +313,17 @@ contains
         lambda_e = wr(i_wr)
 
         ! calculate EP
-        ! print *, "EP:"
         EP_sum = 0.0d0
         do j = 1, nf
             a_exp(j) = vr(j, i_wr)  ! 右固有ベクトル
             b_exp(j) = vl(j, i_wr)  ! 左固有ベクトル
             EP(j) = a_exp(j) * b_exp(j)
             EP_sum = EP_sum + abs(EP(j))
-            ! print "(E13.6)", EP(j)
         end do
 
         ! calculate EI
-        ! print *, "EI:"
         do j = 1, nf
             EI(j) = abs(EP(j)) / EP_sum
-            ! print "(E13.6)", EI(j)
         end do
 
         ! get index of maximum EI
@@ -348,19 +331,10 @@ contains
         ! test to call pyJac function
         call eval_conc(t_local, p_local, c_loc(y(2)), c_loc(y_N), c_loc(mw_avg), c_loc(rho), c_loc(conc))
         
-        print *, ' '
-        print *, 'y_N:', y_N
-        print *, ' '
-        print *, 'conc: ', conc
 
         call eval_rxn_rates(t_local, p_local, c_loc(conc), c_loc(fwd_rxn_rates), c_loc(rev_rxn_rates))
         call get_rxn_pres_mod(t_local, p_local, c_loc(conc), c_loc(pres_mod))
         
-        print *, ' '
-        print *, 'fwd_rxn_rates: ', fwd_rxn_rates
-        print *, ' '
-        print *, 'rev_rxn_rates: ', rev_rxn_rates
-
         ! calculate rop
         do i = 1, nrf
 
@@ -380,10 +354,6 @@ contains
 
         rop_ith = rop(i)
 
-        ! print *, stoich_coeffs
-        print *, ' '
-        print *, 'rop: ', rop
-
         ! calulate Participation Pointer (PP)
         PP = 0.0d0
         do i = 1, nrf
@@ -400,21 +370,13 @@ contains
 
         end do
 
-        print *, ' '
-        print *, 'PP', PP
-
         ! calculate PI
         do i = 1, nrf
             PI(i) = abs(PP(i)) / PP_sum
         end do
 
-        print *, ' '
-        print *, 'PI:', PI
-
         ! get index of maximum PI
         index_PI = maxloc(PI, 1)
-
-        ! print *, index_PI
 
     end subroutine calc_cema
 
