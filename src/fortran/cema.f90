@@ -296,9 +296,9 @@ contains
         y(33) = y_local(31) ! N2H3
         ! y(34) = y_local(1)  ! N2
 
-        ! print *, 'T, temperature: ', t_local
-        ! print *, 'P, pressure: ', p_local
-        ! print *, 'y, mass fraction: ', y
+        print *, 'T, temperature: ', t_local
+        print *, 'P, pressure: ', p_local
+        print *, 'y, mass fraction: ', y
         
         ! calclate Jacobian using pyJac
         call eval_jacob(t, p_local, c_loc(y), c_loc(jac))
@@ -345,18 +345,28 @@ contains
 
         ! get index of maximum EI
         index_EI = maxloc(EI, 1)
-
         ! test to call pyJac function
-        call eval_conc(t_local, p_local, c_loc(y), c_loc(y_N), c_loc(mw_avg), c_loc(rho), c_loc(conc))
+        call eval_conc(t_local, p_local, c_loc(y(2)), c_loc(y_N), c_loc(mw_avg), c_loc(rho), c_loc(conc))
+        
+        print *, ' '
+        print *, 'y_N:', y_N
+        print *, ' '
+        print *, 'conc: ', conc
+
         call eval_rxn_rates(t_local, p_local, c_loc(conc), c_loc(fwd_rxn_rates), c_loc(rev_rxn_rates))
         call get_rxn_pres_mod(t_local, p_local, c_loc(conc), c_loc(pres_mod))
+        
+        print *, ' '
+        print *, 'fwd_rxn_rates: ', fwd_rxn_rates
+        print *, ' '
+        print *, 'rev_rxn_rates: ', rev_rxn_rates
 
         ! calculate rop
         do i = 1, nrf
 
             ! rop from forward/backword reaction
             if (list_i_rev_rates(i) /= -1) then        
-                rop(i) = fwd_rxn_rates(i) + rev_rxn_rates(list_i_rev_rates(i)+1) ! adjust 0 strat index
+                rop(i) = fwd_rxn_rates(i) - rev_rxn_rates(list_i_rev_rates(i)+1) ! adjust 0 strat index
             else 
                 rop(i) = fwd_rxn_rates(i)
             end if
@@ -371,8 +381,8 @@ contains
         rop_ith = rop(i)
 
         ! print *, stoich_coeffs
-
-        ! print *, rop
+        print *, ' '
+        print *, 'rop: ', rop
 
         ! calulate Participation Pointer (PP)
         PP = 0.0d0
@@ -391,14 +401,16 @@ contains
             PP_sum = PP_sum + abs(PP(i))
         end do
 
-        ! print *, PP
+        print *, ' '
+        print *, 'PP', PP
 
         ! calculate PI
         do i = 1, nrf
             PI(i) = abs(PP(i)) / PP_sum
         end do
 
-        ! print *, PI
+        print *, ' '
+        print *, 'PI:', PI
 
         ! get index of maximum PI
         index_PI = maxloc(PI, 1)
