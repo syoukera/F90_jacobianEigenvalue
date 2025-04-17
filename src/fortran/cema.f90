@@ -30,6 +30,11 @@ module cema
     integer(4), allocatable :: stoich_coeffs(:, :)
     integer(4), allocatable :: list_i_rev_rates(:)
     integer(4), allocatable :: list_k_pres_mod(:)
+    
+    ! indices for sort
+    integer(4), allocatable :: indices(:)
+    double precision, parameter :: threshold_negative = 1d0
+    integer(4), parameter :: k_negative = 7 ! n_element + 1
         
     ! LAPACK
     external dgeev
@@ -104,6 +109,8 @@ contains
         allocate(list_i_rev_rates(nrf))
         allocate(list_k_pres_mod(nrf))
 
+        allocate(indices(nf))
+
     end subroutine allocation_cema
 
     subroutine deallocation_cema()
@@ -131,6 +138,8 @@ contains
         deallocate(stoich_coeffs)
         deallocate(list_i_rev_rates)
         deallocate(list_k_pres_mod)
+
+        deallocate(indices)
 
     end subroutine deallocation_cema
 
@@ -207,11 +216,6 @@ contains
         end do
     
         close(10)
-    
-        ! print *, "Read", idx+1, "species:"
-        ! do i = 1, idx+1
-        !     print *, i, trim(species_names_cema(i))
-        ! end do
 
     end subroutine read_species_names_cema
 
@@ -300,10 +304,20 @@ contains
 
         ! get maximum eigenvalue
         i_wr = maxloc(wr, 1)
-
-        ! print *, "Maximum Eigenvalue ", i_wr, ":", wr(i_wr)
         lambda_e = wr(i_wr)
 
+        ! pick negative eigenvalue when maximum eigenvalue is small
+        if (lambda_e < threshold_negative) then
+            
+            ! get sorted indices for wr
+            call sort_indices_by_abs()
+
+            ! update eigenvalue and index
+            i_wr = indices(k_negative)
+            lambda_e = wr(i_wr)
+
+        end if
+        
         ! calculate EP
         EP_sum = 0.0d0
         do j = 1, nf
@@ -371,5 +385,25 @@ contains
         index_PI = maxloc(PI, 1)
 
     end subroutine calc_cema
+
+    ! sort indices of wr by abs
+    subroutine sort_indices_by_abs()
+
+        integer :: i, j, temp_idx
+        
+        ! initialize indices
+        indices = [(i, i = 1, nf)]
+
+        do i = 1, nf-1
+            do j = i+1, nf
+                if (abs(wr(indices(i))) < abs(wr(indices(j)))) then
+                    temp_idx = indices(i)
+                    indices(i) = indices(j)
+                    indices(j) = temp_idx
+                end if
+            end do
+        end do
+
+    end subroutine sort_indices_by_abs
 
 end module cema
