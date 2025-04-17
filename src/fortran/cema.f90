@@ -251,7 +251,7 @@ contains
         call initialize_cema()
 
         ! Tamaoki mechanism
-        y(1)  = t_local        ! T
+        y(1)  = t_local     ! T
         y(2)  = y_local(3)  ! HE
         y(3)  = y_local(2)  ! AR
         y(4)  = y_local(8)  ! H2
@@ -300,14 +300,6 @@ contains
 
         ! get maximum eigenvalue
         i_wr = maxloc(wr, 1)
-        ! wr_max = 0.0d0
-        ! do i = 1, nf
-        !     ! print "(E13.6)", wr(i)
-        !     if (wr(i) > wr_max) then
-        !         wr_max = wr(i)
-        !         i_wr = i
-        !     end if
-        ! end do
 
         ! print *, "Maximum Eigenvalue ", i_wr, ":", wr(i_wr)
         lambda_e = wr(i_wr)
