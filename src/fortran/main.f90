@@ -209,7 +209,8 @@ program pv
               sf(i,j,k,ptr_analyze+8)=(dyodx*dyfdx+dyody*dyfdy+1d-12) &
                                      /(sqrt(dyodx*dyodx+dyody*dyody)*sqrt(dyfdx*dyfdx+dyfdy*dyfdy)+1d-12)
               
-              call calc_z(y_local(i,j,k,:),sf(i,j,k,ptr_analyze+1),sf(i,j,k,ptr_analyze+3),sf(i,j,k,ptr_analyze+4),sf(i,j,k,24))
+              call calc_z(y_local(i,j,k,:),sf(i,j,k,ptr_analyze+1),sf(i,j,k,ptr_analyze+3),&
+                                           sf(i,j,k,ptr_analyze+4),sf(i,j,k,ptr_analyze+5))
               call calc_Dh(y_local(i,j,k,:),r_local(i,j,k),t_local(i,j,k),sf(i,j,k,ptr_analyze+6))
               call calc_cema(y_local(i,j,k,:),p_local(i,j,k),t_local(i,j,k),sf(i,j,k,ptr_analyze+9), &
                              sf(i,j,k,ptr_analyze+10), sf(i,j,k,ptr_analyze+11), sf(i,j,k,ptr_analyze+12))
@@ -237,11 +238,13 @@ program pv
         k=z_sta
         do j=y_sta+1,y_end-1
            do i=x_sta+1,x_end-1
-              dumdx=(dxg(i)*dxg(i)*sf(i+1,j,k,20)+(dxg(i+1)*dxg(i+1)-dxg(i)*dxg(i))*sf(i,j,k,ptr_analyze+1) &
-                   - dxg(i+1)*dxg(i+1)*sf(i-1,j,k,20)) &
+              dumdx=(dxg(i)*dxg(i)*sf(i+1,j,k,ptr_analyze+1) &
+                   + (dxg(i+1)*dxg(i+1)-dxg(i)*dxg(i))*sf(i,j,k,ptr_analyze+1) &
+                   - dxg(i+1)*dxg(i+1)*sf(i-1,j,k,ptr_analyze+1)) &
                    / (dxg(i)*dxg(i+1)*(dxg(i)+dxg(i+1))) 
-              dumdy=(dyg(j)*dyg(j)*sf(i,j+1,k,20)+(dyg(j+1)*dyg(j+1)-dyg(j)*dyg(j))*sf(i,j,k,ptr_analyze+1) &
-                   - dyg(j+1)*dyg(j+1)*sf(i,j-1,k,20)) &
+              dumdy=(dyg(j)*dyg(j)*sf(i,j+1,k,ptr_analyze+1) &
+                   + (dyg(j+1)*dyg(j+1)-dyg(j)*dyg(j))*sf(i,j,k,ptr_analyze+1) &
+                   - dyg(j+1)*dyg(j+1)*sf(i,j-1,k,ptr_analyze+1)) &
                    / (dyg(j)*dyg(j+1)*(dyg(j)+dyg(j+1))) 
               sf(i,j,k,ptr_analyze+2)=2d0 * sf(i,j,k,ptr_analyze+6) * (dumdx*dumdx+dumdy*dumdy)
            enddo
@@ -250,14 +253,17 @@ program pv
         do k=z_sta+1,z_end-1
            do j=y_sta+1,y_end-1
               do i=x_sta+1,x_end-1
-                 dumdx=(dxg(i)*dxg(i)*sf(i+1,j,k,20)+(dxg(i+1)*dxg(i+1)-dxg(i)*dxg(i))*sf(i,j,k,ptr_analyze+1) &
-                      - dxg(i+1)*dxg(i+1)*sf(i-1,j,k,20)) &
+                 dumdx=(dxg(i)*dxg(i)*sf(i+1,j,k,ptr_analyze+1) &
+                      + (dxg(i+1)*dxg(i+1)-dxg(i)*dxg(i))*sf(i,j,k,ptr_analyze+1) &
+                      - dxg(i+1)*dxg(i+1)*sf(i-1,j,k,ptr_analyze+1)) &
                       / (dxg(i)*dxg(i+1)*(dxg(i)+dxg(i+1))) 
-                 dumdy=(dyg(j)*dyg(j)*sf(i,j+1,k,20)+(dyg(j+1)*dyg(j+1)-dyg(j)*dyg(j))*sf(i,j,k,ptr_analyze+1) &
-                      - dyg(j+1)*dyg(j+1)*sf(i,j-1,k,20)) &
+                 dumdy=(dyg(j)*dyg(j)*sf(i,j+1,k,ptr_analyze+1) &
+                      + (dyg(j+1)*dyg(j+1)-dyg(j)*dyg(j))*sf(i,j,k,ptr_analyze+1) &
+                      - dyg(j+1)*dyg(j+1)*sf(i,j-1,k,ptr_analyze+1)) &
                       / (dyg(j)*dyg(j+1)*(dyg(j)+dyg(j+1))) 
-                 dumdz=(dzg(k)*dzg(k)*sf(i,j,k+1,20)+(dzg(k+1)*dzg(k+1)-dzg(k)*dzg(k))*sf(i,j,k,ptr_analyze+1) &
-                      - dzg(k+1)*dzg(k+1)*sf(i,j,k-1,20)) &
+                 dumdz=(dzg(k)*dzg(k)*sf(i,j,k+1,ptr_analyze+1) &
+                      + (dzg(k+1)*dzg(k+1)-dzg(k)*dzg(k))*sf(i,j,k,ptr_analyze+1) &
+                      - dzg(k+1)*dzg(k+1)*sf(i,j,k-1,ptr_analyze+1)) &
                       / (dzg(k)*dzg(k+1)*(dzg(k)+dzg(k+1))) 
                  sf(i,j,k,ptr_analyze+2)=2d0 * sf(i,j,k,ptr_analyze+6) * (dumdx*dumdx+dumdy*dumdy+dumdz*dumdz)
               enddo
