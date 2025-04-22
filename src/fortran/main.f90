@@ -5,8 +5,8 @@ program pv
                   read_species_names_cema, read_indices_cema, species_names_cema
   implicit none
   double precision::dYfdx,dYfdy,dYodx,dYody
-!   integer i_tmp
-  integer :: ptr_states, ptr_Y, ptr_analyze, ptr_EI
+!   integer(4)i_tmp
+  integer(4):: ptr_states, ptr_Y, ptr_analyze, ptr_EI
 
   open(200,file='./dat/setting_pv.dat',form='formatted')
    read(200,'()') !--- step infomation ---!

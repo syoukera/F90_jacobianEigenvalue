@@ -1,7 +1,7 @@
 module globals
-  integer :: nx,ny,nz,nf,ns,nq,nrf,nrb,nrp,ista,jsta,ksta,iend,jend,kend,ibd,jbd,kbd,x_sta,x_end,y_sta,y_end,z_sta,z_end
-  integer :: iprocs,jprocs,kprocs,myrank,myrank_i,myrank_j,myrank_k
-  integer :: i,j,k,ii,jj,kk,step,ifn,is,m,n,step0,step1,step2,l,step0_avg,step1_avg,step2_avg
+  integer(4) :: nx,ny,nz,nf,ns,nq,nrf,nrb,nrp,ista,jsta,ksta,iend,jend,kend,ibd,jbd,kbd,x_sta,x_end,y_sta,y_end,z_sta,z_end
+  integer(4) :: iprocs,jprocs,kprocs,myrank,myrank_i,myrank_j,myrank_k
+  integer(4) :: i,j,k,ii,jj,kk,step,ifn,is,m,n,step0,step1,step2,l,step0_avg,step1_avg,step2_avg
   double precision :: time,time0,time1,time2,ref, ugconst
   double precision , allocatable :: xu(:),xg(:),dxu(:),dxg(:)
   double precision , allocatable :: yv(:),yg(:),dyv(:),dyg(:)
@@ -26,9 +26,9 @@ module globals
   double precision , allocatable , save :: cdif(:,:,:)
   character :: filenumber*8,cpunumber*5,filenumber0*8,filenumber1*8,filenumber2*8,reaction_number*2, gridnumber*5
 
-  integer , parameter :: p_total =1000000,split=5,noc=1,nv=14+1
-  integer ,      save :: p_on,substep,npaa,p_on_all
-  !integer ,                      save :: p_in,igx,igy,igz
+  integer(4) , parameter :: p_total =1000000,split=5,noc=1,nv=14+1
+  integer(4) ,      save :: p_on,substep,npaa,p_on_all
+  !integer(4) ,                      save :: p_in,igx,igy,igz
   logical, dimension(p_total) :: p_label=.false.
   double precision                     :: mass_in,mass_rate,equiv_ratio,wg_avg,p_dmin,interval=0.d0,heat2Dall,heat3Dall
   double precision, dimension(p_total) :: p_x,p_u,gp_u0
@@ -44,7 +44,7 @@ module globals
   double precision, dimension(nv+noc,p_total) :: pval
   double precision, allocatable , save :: pval_all(:,:), pval_all_tmp(:,:)
 
-  integer :: rows, step_list0, step_list1, step_list2
+  integer(4) :: rows, step_list0, step_list1, step_list2
   integer,allocatable :: step_list(:)
   double precision,allocatable :: time_list(:)
 
@@ -52,7 +52,7 @@ module globals
 
   double precision , parameter :: na=6.02d+26
 
-  integer , dimension(1:100,1:8) , save :: step_phase=0
+  integer(4) , dimension(1:100,1:8) , save :: step_phase=0
 
   double precision :: phi
 !  double precision , dimension(1:6) , save :: wg
@@ -120,38 +120,38 @@ module pv3D
   !===============================
   !     Parameter Settings
   !===============================
-  integer , private , parameter :: ifn=10
-  integer , private :: ifnwrite
-  integer , private , parameter :: bytes=4 ! 8 or 4
-  integer , private , save      :: num_output,num_output_pointer
+  integer(4) , private , parameter :: ifn=10
+  integer(4) , private :: ifnwrite
+  integer(4) , private , parameter :: bytes=4 ! 8 or 4
+  integer(4) , private , save      :: num_output,num_output_pointer
   double precision , private , save , allocatable      :: output_scalar_all(:,:,:,:)
   real , private , save , allocatable      :: output_scalar_all4(:,:,:,:) !yada
   logical , private , save      :: vecflag
-  integer , private , parameter :: ns=11
-  integer , private , parameter :: nf=9
-  ! integer , private , parameter :: step0
-  ! integer , private , parameter :: step1
-  ! integer , private , parameter :: step2
-  ! integer , private , parameter :: nx
-  ! integer , private , parameter :: ny
-  ! integer , private , parameter :: nz
-  ! integer , private , parameter :: ibd
-  ! integer , private , parameter :: jbd
-  ! integer , private , parameter :: kbd
-  integer , private :: nq,ista,jsta,ksta,iend,jend,kend
-  integer , private , save :: iprocs,jprocs,kprocs,myrank,myrank_i,myrank_j,myrank_k
+  integer(4) , private , parameter :: ns=11
+  integer(4) , private , parameter :: nf=9
+  ! integer(4) , private , parameter :: step0
+  ! integer(4) , private , parameter :: step1
+  ! integer(4) , private , parameter :: step2
+  ! integer(4) , private , parameter :: nx
+  ! integer(4) , private , parameter :: ny
+  ! integer(4) , private , parameter :: nz
+  ! integer(4) , private , parameter :: ibd
+  ! integer(4) , private , parameter :: jbd
+  ! integer(4) , private , parameter :: kbd
+  integer(4) , private :: nq,ista,jsta,ksta,iend,jend,kend
+  integer(4) , private , save :: iprocs,jprocs,kprocs,myrank,myrank_i,myrank_j,myrank_k
   character(len=8), private :: data_type
 
 
   !===============================
   !          Variables
   !===============================
-  integer , private :: i,j,k,ii,jj,kk
-  integer , private :: x_sta_reg,x_end_reg,y_sta_reg,y_end_reg,z_sta_reg,z_end_reg
-  integer(8) , private :: grid_offset, vector_offset
-  integer(8) , private :: data_size
-  integer(8) , private :: block_data_size
-  integer(8) , private , allocatable :: scalar_offset(:)
+  integer(4) , private :: i,j,k,ii,jj,kk
+  integer(4) , private :: x_sta_reg,x_end_reg,y_sta_reg,y_end_reg,z_sta_reg,z_end_reg
+  integer(4) , private :: grid_offset, vector_offset
+  integer(4) , private :: data_size
+  integer(4) , private :: block_data_size
+  integer(4) , private , allocatable :: scalar_offset(:)
   character(8) , private :: filenumber, gridnumber
   character(16),allocatable , private , save :: str_varname(:)
   character(16),allocatable , private :: str_format(:)
@@ -180,11 +180,11 @@ contains
   !============================!
   subroutine pv_output_initial(x_sta_in,x_end_in,y_sta_in,y_end_in,z_sta_in,z_end_in,scalar_num,vector_flag)
     implicit none
-    integer , intent(in) :: x_sta_in,x_end_in,y_sta_in,y_end_in,z_sta_in,z_end_in
-    integer , intent(in) :: scalar_num
+    integer(4) , intent(in) :: x_sta_in,x_end_in,y_sta_in,y_end_in,z_sta_in,z_end_in
+    integer(4) , intent(in) :: scalar_num
     logical , intent(in) :: vector_flag
 
-    integer :: l
+    integer(4) :: l
 
     num_output=scalar_num
     vecflag=vector_flag
@@ -341,7 +341,7 @@ contains
   subroutine scalarall_output
     implicit none
 
-    integer :: l
+    integer(4) :: l
 
     do l=1,num_output
       call scalar_output(output_scalar_all(:,:,:,l),str_varname(l),l)
@@ -353,7 +353,7 @@ contains
     implicit none
 
     double precision :: output_array(x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
-    integer , intent(in) :: l
+    integer(4) , intent(in) :: l
     character(*) , intent(in) :: scalarname
 
 
@@ -400,8 +400,8 @@ contains
   subroutine appenddata_output_float64
     implicit none
 
-    integer :: l
-    integer :: output_data_size=0
+    integer(4) :: l
+    integer(4) :: output_data_size=0
     double precision :: array3d(1:3,x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
 
     do k=z_sta_reg,z_end_reg
@@ -480,8 +480,8 @@ contains
   subroutine appenddata_output_float32
     implicit none
 
-    integer :: l
-    integer :: output_data_size=0
+    integer(4) :: l
+    integer(4) :: output_data_size=0
 !    real(4) :: array3d(1:3,x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
 
     write(*,*) "************ 1 ************* "
@@ -553,7 +553,7 @@ contains
 
   subroutine pv_output_finalize(step,dir,filename)
     implicit none
-    integer , intent(in) :: step
+    integer(4) , intent(in) :: step
     character(*) , intent(in) :: dir,filename
     character(10) :: filenumber
 
@@ -642,7 +642,7 @@ contains
   end subroutine timestep_output
 
   character(100) function int_to_char(input)
-    integer , intent(in) :: input
+    integer(4) , intent(in) :: input
 
     write(int_to_char,'(1I100)') input
 
@@ -650,7 +650,7 @@ contains
 
 
   character(100) function int_to_char8(input)
-    integer(8) , intent(in) :: input
+    integer(4) , intent(in) :: input
 
     write(int_to_char8,'(1I100)') input
 
@@ -682,9 +682,9 @@ module pv_particle
 
 
   !--- Global Variables ---
-  integer :: step_start, step_end, step_int
-!  integer :: x_sta,x_end,y_sta,y_end,z_sta,z_end
-  integer :: pv_p_num=3
+  integer(4) :: step_start, step_end, step_int
+!  integer(4) :: x_sta,x_end,y_sta,y_end,z_sta,z_end
+  integer(4) :: pv_p_num=3
 
   !--- Flags ---
   logical :: filter_flag,pv_output_flag,pdf_output_flag,particle_read_flag,euler_read_flag
@@ -692,10 +692,10 @@ module pv_particle
   !--- Particle's Variables ---
   logical , allocatable :: pval_flag(:)
 
-  integer , save :: num_output,num_output_pointer
-  integer , save :: p_on_all_filtered
-  integer , save :: p_sum,p_on_localmax,p_counter
-  integer , allocatable :: p_i(:),p_j(:),p_k(:)
+  integer(4) , save :: num_output,num_output_pointer
+  integer(4) , save :: p_on_all_filtered
+  integer(4) , save :: p_sum,p_on_localmax,p_counter
+  integer(4) , allocatable :: p_i(:),p_j(:),p_k(:)
 
   double precision , allocatable :: output_scalar_all(:,:),velocity_all(:,:),points_all(:,:)
 
@@ -703,7 +703,7 @@ module pv_particle
   character(16),allocatable :: str_format(:)
 
   !--- Eulerial Data's Variables ---
-  integer :: euler_data_number
+  integer(4) :: euler_data_number
   double precision :: xg_sta,yg_sta,zg_sta,xg_end,yg_end,zg_end
 
   double precision , allocatable :: all_data(:,:,:,:)
@@ -728,7 +728,7 @@ contains
   subroutine grid_filter
     implicit none
 
-    integer :: logical_number
+    integer(4) :: logical_number
     pval_flag=.false.
     logical_number=0
 
@@ -753,7 +753,7 @@ contains
   subroutine pv_output_initialize(numberofpoints,numberofscalaroutput)
     implicit none
 
-    integer , intent(in) :: numberofpoints,numberofscalaroutput
+    integer(4) , intent(in) :: numberofpoints,numberofscalaroutput
 
     num_output=numberofscalaroutput
 
@@ -892,7 +892,7 @@ contains
   subroutine variableall_output
     implicit none
 
-    integer :: l
+    integer(4) :: l
 
     call pointdata_header_output
     write(*,*) num_output_pointer,num_output

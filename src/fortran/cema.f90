@@ -39,7 +39,7 @@ module cema
     ! LAPACK
     external dgeev
     character(1) :: jobvl, jobvr
-    integer :: n, lda, ldvl, ldvr, lwork, info
+    integer(4):: n, lda, ldvl, ldvr, lwork, info
 
     interface
 
@@ -187,7 +187,7 @@ contains
         implicit none
         character(len=10) :: dummy_name  ! temporary character for name
         character(len=100) :: line  ! temporary character for line
-        integer :: ios, idx
+        integer(4):: ios, idx
     
         open(unit=10, file="src/c/mechanism.h", status="old", action="read")
     
@@ -221,7 +221,7 @@ contains
 
     subroutine read_indices_cema()
         implicit none
-        integer :: idf
+        integer(4):: idf
 
         open(newunit=idf, file="ipynb/stoich_coeffs.bin", form="unformatted", access="stream", action="read")
         read(idf) stoich_coeffs
@@ -249,7 +249,7 @@ contains
 
         double precision, parameter :: t = 0.0d0 ! dummy parameter for time
 
-        integer :: i, j, i_wr
+        integer(4):: i, j, i_wr
 
         ! call allocation_cema()
         call initialize_cema()
@@ -389,7 +389,7 @@ contains
     ! sort indices of wr by abs
     subroutine sort_indices_by_abs()
 
-        integer :: i, j, temp_idx
+        integer(4):: i, j, temp_idx
         
         ! initialize indices
         indices = [(i, i = 1, nf)]
