@@ -1,8 +1,8 @@
 # コンパイラ設定
 CC = icx
 FC = ifx  # Fortranコンパイラ
-CFLAGS = -O0 -Wall -Wextra -Isrc/c -Isrc/c/jacobs
-FFLAGS = -O0 -fpe3 -check all -warn all # Fortran用のオプション
+CFLAGS = -O3 -Wall -Wextra -Isrc/c -Isrc/c/jacobs
+FFLAGS = -O3 -fpe3 -warn all # Fortran用のオプション
 # CFLAGS = -g -O0 -Isrc/c -Isrc/c/jacobs
 # FFLAGS = -g -O0 -fpe3
  # Fortran用のオプション
