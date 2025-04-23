@@ -3,3 +3,4 @@ bin
 *.mod
 xy_plane
 dat/Zst_*
+*__genmod.f90
