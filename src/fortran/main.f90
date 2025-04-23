@@ -7,6 +7,8 @@ program pv
   double precision::dYfdx,dYfdy,dYodx,dYody
 !   integer i_tmp
   integer :: ptr_states, ptr_Y, ptr_analyze, ptr_EI
+  
+  external :: allocation, Z_ini, chem_ini, calc_z, calc_Dh, deallocation, pv_particle_output
 
   open(200,file='./dat/setting_pv.dat',form='formatted')
    read(200,'()') !--- step infomation ---!
@@ -174,9 +176,9 @@ program pv
            ! do j=y_sta,y_end !output_all
            ! do i=x_sta,x_end !output_all
 
-           do k=max(ksta-kbd,z_sta),min(kend+kbd,z_end)
-           do j=max(jsta-jbd,y_sta),min(jend+jbd,y_end)
-           do i=max(ista-ibd,x_sta),min(iend+ibd,x_end) 
+           do k=max(ksta,z_sta),min(kend,z_end)
+           do j=max(jsta,y_sta),min(jend,y_end)
+           do i=max(ista,x_sta),min(iend,x_end) 
               ! do k=max(ksta,z_sta),min(kend,z_end)
               ! do j=max(jsta,y_sta),min(jend,y_end)
               ! do i=max(ista,x_sta),min(iend,x_end) 
@@ -233,7 +235,8 @@ program pv
         
      end do
 
-     sf(:,:,:,21)=0d0
+     sf(:,:,:,ptr_analyze+2)=0d0
+
      if(nz==1)then
         k=z_sta
         do j=y_sta+1,y_end-1
