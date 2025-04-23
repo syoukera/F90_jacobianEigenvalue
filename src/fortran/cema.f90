@@ -306,17 +306,17 @@ contains
         i_wr = maxloc(wr, 1)
         lambda_e = wr(i_wr)
 
-        ! pick negative eigenvalue when maximum eigenvalue is small
-        if (lambda_e < threshold_negative) then
+        ! ! pick negative eigenvalue when maximum eigenvalue is small
+        ! if (lambda_e < threshold_negative) then
             
-            ! get sorted indices for wr
-            call sort_indices_by_abs()
+        !     ! get sorted indices for wr
+        !     call sort_indices_by_abs()
 
-            ! update eigenvalue and index
-            i_wr = indices(k_negative)
-            lambda_e = wr(i_wr)
+        !     ! update eigenvalue and index
+        !     i_wr = indices(k_negative)
+        !     lambda_e = wr(i_wr)
 
-        end if
+        ! end if
         
         ! calculate EP
         EP_sum = 0.0d0
