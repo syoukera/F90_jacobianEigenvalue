@@ -1,9 +1,19 @@
 # コンパイラ設定
-CC = gcc
-FC = gfortran  # Fortranコンパイラ
-CFLAGS = -O2 -Wall -Wextra -Isrc/c -Isrc/c/jacobs
-FFLAGS = -O2 -Wall -Wextra  # Fortran用のオプション
-LDFLAGS = -llapack -lblas -lm  # 数学ライブラリをリンク
+CC = icx
+FC = ifx  # Fortranコンパイラ
+CFLAGS = -O0 -Wall -Wextra -Isrc/c -Isrc/c/jacobs
+FFLAGS = -O0 -fpe3 -check all -warn all # Fortran用のオプション
+# CFLAGS = -g -O0 -Isrc/c -Isrc/c/jacobs
+# FFLAGS = -g -O0 -fpe3
+ # Fortran用のオプション
+LDFLAGS = -qmkl  # 数学ライブラリをリンク
+
+# # コンパイラ設定
+# CC = gcc
+# FC = gfortran  # Fortranコンパイラ
+# CFLAGS = -O2 -Wall -Wextra -Isrc/c -Isrc/c/jacobs
+# FFLAGS = -O2 -Wall -Wextra  # Fortran用のオプション
+# LDFLAGS = -llapack -lblas -lm  # 数学ライブラリをリンク
 
 # ソースファイルの場所
 C_SRC_DIR = src/c
@@ -61,4 +71,4 @@ $(OBJ_DIR)/cema.o: $(OBJ_DIR)/pv_parallel.o
 # クリーンアップ
 .PHONY: clean
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR) *.mod src/fortran/*.mod
+	rm -rf $(OBJ_DIR) $(BIN_DIR) *.mod src/fortran/*.mod *__genmod.f90
