@@ -358,7 +358,7 @@ contains
 
         end do
 
-        rop_ith = rop(i)
+        rop_ith = rop(1)
 
         ! calulate Participation Pointer (PP)
         PP = 0.0d0
