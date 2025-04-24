@@ -104,7 +104,7 @@ module pv3D
   !===============================
   !     Subroutine's Scopes
   !===============================
-  public  :: pv_output, region_input
+  ! public  :: pv_output, region_input
 
   !===============================
   !       Structure Type
@@ -400,8 +400,8 @@ contains
   subroutine appenddata_output_float64
     implicit none
 
-    integer(4) :: l
-    integer(4) :: output_data_size=0
+    integer :: l
+    ! integer :: output_data_size=0
     double precision :: array3d(1:3,x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
 
     do k=z_sta_reg,z_end_reg
@@ -480,8 +480,8 @@ contains
   subroutine appenddata_output_float32
     implicit none
 
-    integer(4) :: l
-    integer(4) :: output_data_size=0
+    integer :: l
+    ! integer :: output_data_size=0
 !    real(4) :: array3d(1:3,x_sta_reg:x_end_reg,y_sta_reg:y_end_reg,z_sta_reg:z_end_reg)
 
     write(*,*) "************ 1 ************* "
@@ -629,7 +629,7 @@ contains
 
     double precision , intent(in) :: time
     character(10)  :: file_preword,file_postword
-    character(10)  :: file_preword_particle,file_postword_particle
+    ! character(10)  :: file_preword_particle,file_postword_particle
     character(8) , intent(in) :: stepnumber
 
     file_preword="pv2D_"
@@ -1068,6 +1068,7 @@ end subroutine deallocation
 
 subroutine Z_ini
   use globals
+  implicit none
   logical::oxi_flag
   double precision :: xn2
   
@@ -1108,7 +1109,7 @@ subroutine Z_ini
   nu_o2= cfuel + hfuel*0.25d0 - ofuel*0.5d0
 
   if(cfuel/=0d0)then
-     owc=owc/m_fuel
+     owc=owc/cfuel
   else
      owc=0d0
   endif
@@ -1221,12 +1222,12 @@ subroutine chem_ini
 end subroutine chem_ini
 
 subroutine calc_Dh(y,r,temp,dh)
-  use globals, only : nf,wg,cmu,clam,cdif,tmpr,ccpl,ccph,ugconst
+  use globals, only : nf,wg,clam,tmpr,ccpl,ccph,ugconst
   implicit none
   double precision, intent(in)::y(1:nf),r,temp
   double precision, intent(out)::dh
   double precision:: cpa,cp, lam0(1:nf),lam, lnt,x_chem(1:nf),dum1,dum2
-  integer:: i,j,k,l
+  integer:: i,l
   
   cp=0d0
   do l=1,nf
