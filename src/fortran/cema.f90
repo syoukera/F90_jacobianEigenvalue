@@ -237,7 +237,7 @@ contains
     
     end subroutine read_indices_cema
 
-    subroutine calc_cema(y_local,p_local,t_local,lambda_e,index_EI,index_PI,rop_ith)
+    subroutine calc_cema(y_local,p_local,t_local,lambda_e,index_EI,index_PI)
         implicit none
         double precision, intent(in)::y_local(1:nf)
         double precision, intent(in)::p_local
@@ -245,7 +245,6 @@ contains
         double precision, intent(out)::lambda_e
         double precision, intent(out)::index_EI
         double precision, intent(out)::index_PI
-        double precision, intent(out)::rop_ith
 
         double precision, parameter :: t = 0.0d0 ! dummy parameter for time
 
@@ -357,8 +356,6 @@ contains
             end if
 
         end do
-
-        rop_ith = rop(1)
 
         ! calulate Participation Pointer (PP)
         PP = 0.0d0
