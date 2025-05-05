@@ -1,6 +1,7 @@
 obj
 bin
 *.mod
-xy_plane
+xy_plane/*
+!xy_plane/.gitkeep
 dat/Zst_*
 *__genmod.f90
