@@ -215,7 +215,7 @@ program pv
                                            sf(i,j,k,ptr_analyze+4),sf(i,j,k,ptr_analyze+5))
               call calc_Dh(y_local(i,j,k,:),r_local(i,j,k),t_local(i,j,k),sf(i,j,k,ptr_analyze+6))
               call calc_cema(y_local(i,j,k,:),p_local(i,j,k),t_local(i,j,k),sf(i,j,k,ptr_analyze+9), &
-                             sf(i,j,k,ptr_analyze+10), sf(i,j,k,ptr_analyze+11), sf(i,j,k,ptr_analyze+12))
+                             sf(i,j,k,ptr_analyze+10), sf(i,j,k,ptr_analyze+11))
 
               ! ptr_EI
               if (flag_EI) then
@@ -274,6 +274,16 @@ program pv
         enddo
      endif
 
+     do i=x_sta,x_end
+      do j=y_sta,y_end
+         do k=z_sta,z_end
+
+            ! Damkohler_number = lambda_e/chi
+            sf(i,j,k,ptr_analyze+12) = sf(i,j,k,ptr_analyze+9)/sf(i,j,k,ptr_analyze+2)
+            
+         enddo 
+      enddo
+   enddo
 
      open(333,file='./dat/Zst_ypos_'//filenumber//'.dat',form='formatted')
      open(444,file='./dat/Zst_yneg_'//filenumber//'.dat',form='formatted')
@@ -362,7 +372,7 @@ program pv
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+9),'lambda_e')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+10),'index_maxEI')
         call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+11),'index_maxPI')
-        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+12),'rop_ith')
+        call pv_input_scalar(sf(x_sta:x_end,y_sta:y_end,z_sta:z_end,ptr_analyze+12),'Da')
          
         ! ptr_EI
         if (flag_EI) then
