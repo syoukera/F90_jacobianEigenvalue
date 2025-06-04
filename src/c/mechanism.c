@@ -5,8 +5,8 @@
     void apply_mask(double* y_specs) {
         double temp [NSP];
         memcpy(temp, y_specs, NSP * sizeof(double));
-        y_specs[0] = temp[0];
-        y_specs[1] = temp[1];
+        y_specs[0] = temp[1];
+        y_specs[1] = temp[2];
         y_specs[2] = temp[3];
         y_specs[3] = temp[4];
         y_specs[4] = temp[5];
@@ -30,22 +30,15 @@
         y_specs[22] = temp[23];
         y_specs[23] = temp[24];
         y_specs[24] = temp[25];
-        y_specs[25] = temp[26];
-        y_specs[26] = temp[27];
-        y_specs[27] = temp[28];
-        y_specs[28] = temp[29];
-        y_specs[29] = temp[30];
-        y_specs[30] = temp[31];
-        y_specs[31] = temp[32];
-        y_specs[32] = temp[2];
+        y_specs[25] = temp[0];
     }
     //reverse masking of ICs for cache optimized mechanisms
     void apply_reverse_mask(double* y_specs) {
         double temp [NSP];
         memcpy(temp, y_specs, NSP * sizeof(double));
-        y_specs[0] = temp[0];
-        y_specs[1] = temp[1];
-        y_specs[2] = temp[32];
+        y_specs[0] = temp[25];
+        y_specs[1] = temp[0];
+        y_specs[2] = temp[1];
         y_specs[3] = temp[2];
         y_specs[4] = temp[3];
         y_specs[5] = temp[4];
@@ -69,13 +62,6 @@
         y_specs[23] = temp[22];
         y_specs[24] = temp[23];
         y_specs[25] = temp[24];
-        y_specs[26] = temp[25];
-        y_specs[27] = temp[26];
-        y_specs[28] = temp[27];
-        y_specs[29] = temp[28];
-        y_specs[30] = temp[29];
-        y_specs[31] = temp[30];
-        y_specs[32] = temp[31];
     }
 void set_same_initial_conditions(int NUM, double** y_host, double** var_host) 
 {

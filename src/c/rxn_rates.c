@@ -8,7 +8,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
 
   //rxn 0
   kf = exp(2.5328436022934504e+01 - (7.6922142684371620e+03 / T));
-  fwd_rxn_rates[0] = C[4] * C[3] * kf;
+  fwd_rxn_rates[0] = C[2] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (-2.1408528770000004e+00 + 8.7779498000000045e-01 * logT + T * (-1.3418256150000000e-03 + T * (2.3540038000000022e-07 + T * (-2.7161184166666655e-11 + 1.1606318000000007e-14 * T))) - 8.0814411199999995e+03 / T);
   } else {
@@ -16,11 +16,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[0] = C[5] * C[6] * kf / Kc;
+  rev_rxn_rates[0] = C[3] * C[4] * kf / Kc;
 
   //rxn 1
   kf = exp(2.2058266903678753e+01 - (3.9995891015006255e+03 / T));
-  fwd_rxn_rates[1] = C[5] * C[2] * kf;
+  fwd_rxn_rates[1] = C[3] * C[0] * kf;
   if (T <= 1000.0) {
     Kc = (-4.2650110449999996e+00 + 9.7938601999999975e-01 * logT + T * (-3.5511342299999996e-03 + T * (2.9086212283333332e-06 + T * (-1.4923588516666668e-09 + 3.3133264600000005e-13 * T))) - 6.3823433299999863e+02 / T);
   } else {
@@ -28,11 +28,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[1] = C[6] * C[4] * kf / Kc;
+  rev_rxn_rates[1] = C[4] * C[2] * kf / Kc;
 
   //rxn 2
   kf = exp(2.7503187744418664e+01 - (9.6492351561744454e+03 / T));
-  fwd_rxn_rates[2] = C[5] * C[2] * kf;
+  fwd_rxn_rates[2] = C[3] * C[0] * kf;
   if (T <= 1000.0) {
     Kc = (-4.2650110449999996e+00 + 9.7938601999999975e-01 * logT + T * (-3.5511342299999996e-03 + T * (2.9086212283333332e-06 + T * (-1.4923588516666668e-09 + 3.3133264600000005e-13 * T))) - 6.3823433299999863e+02 / T);
   } else {
@@ -40,11 +40,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[2] = C[6] * C[4] * kf / Kc;
+  rev_rxn_rates[2] = C[4] * C[2] * kf / Kc;
 
   //rxn 3
   kf = exp(1.2301382825334498e+01 + 1.51 * logT - (1.7260431074669282e+03 / T));
-  fwd_rxn_rates[3] = C[6] * C[2] * kf;
+  fwd_rxn_rates[3] = C[4] * C[0] * kf;
   if (T <= 1000.0) {
     Kc = (-2.2370234609999997e+00 + 3.6231984000000006e-01 * logT + T * (-3.8079279499999997e-03 + T * (3.5636420449999996e-06 + T * (-1.8138311033333334e-09 + 3.8924452950000006e-13 * T))) - -7.2710291869999992e+03 / T);
   } else {
@@ -52,11 +52,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[3] = C[4] * C[8] * kf / Kc;
+  rev_rxn_rates[3] = C[2] * C[6] * kf / Kc;
 
   //rxn 4
   kf = exp(9.9034875525361272e+00 + 1.651 * logT - (3.1753154542613169e+02 / T));
-  fwd_rxn_rates[4] = C[6] * C[6] * kf;
+  fwd_rxn_rates[4] = C[4] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (2.0279875839999999e+00 + -6.1706618000000013e-01 * logT + T * (-2.5679372000000011e-04 + T * (6.5502081666666659e-07 + T * (-3.2147225166666670e-10 + 5.7911883500000007e-14 * T))) - -7.9092635199999986e+03 / T);
   } else {
@@ -64,11 +64,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[4] = C[5] * C[8] * kf / Kc;
+  rev_rxn_rates[4] = C[3] * C[6] * kf / Kc;
 
   //rxn 5
   kf = exp(1.9376192188979800e+01 - 0.057 * logT - (-4.1616258013852757e+02 / T));
-  fwd_rxn_rates[5] = C[6] * C[6] * kf;
+  fwd_rxn_rates[5] = C[4] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (2.0279875839999999e+00 + -6.1706618000000013e-01 * logT + T * (-2.5679372000000011e-04 + T * (6.5502081666666659e-07 + T * (-3.2147225166666670e-10 + 5.7911883500000007e-14 * T))) - -7.9092635199999986e+03 / T);
   } else {
@@ -76,11 +76,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[5] = C[5] * C[8] * kf / Kc;
+  rev_rxn_rates[5] = C[3] * C[6] * kf / Kc;
 
   //rxn 6
   kf = exp(3.8367417791399781e+01 - 1.4 * logT - (5.2526058179999411e+04 / T));
-  fwd_rxn_rates[6] = C[2] * kf;
+  fwd_rxn_rates[6] = C[0] * kf;
   if (T <= 1000.0) {
     Kc = (-4.2320448180000003e+00 + 1.6556688799999999e+00 * logT + T * (-3.9902603749999996e-03 + T * (3.2463584999999998e-06 + T * (-1.6797674500000001e-09 + 3.6880588050000004e-13 * T))) - 5.1865255172999998e+04 / T);
   } else {
@@ -88,71 +88,23 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[6] = C[4] * C[4] * kf / Kc;
+  rev_rxn_rates[6] = C[2] * C[2] * kf / Kc;
 
   //rxn 7
-  kf = exp(3.6296634312463055e+01 - 1.1 * logT - (5.2526058179999411e+04 / T));
-  fwd_rxn_rates[7] = C[2] * C[1] * kf;
+  kf = exp(1.6759949537130716e+01 - (-8.9975658196818301e+02 / T));
+  fwd_rxn_rates[7] = C[3] * C[3] * kf;
   if (T <= 1000.0) {
-    Kc = (-4.2320448180000003e+00 + 1.6556688799999999e+00 * logT + T * (-3.9902603749999996e-03 + T * (3.2463584999999998e-06 + T * (-1.6797674500000001e-09 + 3.6880588050000004e-13 * T))) - 5.1865255172999998e+04 / T);
+    Kc = (2.1078866500000002e+00 + -1.5540778400000002e+00 * logT + T * (1.7809517600000000e-03 + T * (-5.7313765166666677e-07 + T * (2.1456978249999992e-10 + -4.9079552499999993e-14 * T))) - -5.9308461960000001e+04 / T);
   } else {
-    Kc = (-1.9361713000000007e+00 + 1.0671342500000001e+00 * logT + T * (-4.1330401299999997e-04 + T * (2.4400394000000003e-08 + T * (-1.2841701166666667e-12 + 3.4440239999999998e-17 * T))) - 5.1760385581000002e+04 / T);
+    Kc = (-5.0029130599999991e+00 + -4.2631329000000040e-01 * logT + T * (3.5549915410000002e-04 + T * (-2.2128172766666666e-08 + T * (8.8917971666666646e-13 + -1.7001348600000012e-17 * T))) - -5.9668001179999999e+04 / T);
   }
 
-  Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[7] = C[4] * C[4] * C[1] * kf / Kc;
+  Kc = 8.2057360967184814e-02 * exp(Kc);
+  rev_rxn_rates[7] = C[1] * kf / Kc;
 
   //rxn 8
-  kf = exp(3.6296634312463055e+01 - 1.1 * logT - (5.2526058179999411e+04 / T));
-  fwd_rxn_rates[8] = C[2] * C[0] * kf;
-  if (T <= 1000.0) {
-    Kc = (-4.2320448180000003e+00 + 1.6556688799999999e+00 * logT + T * (-3.9902603749999996e-03 + T * (3.2463584999999998e-06 + T * (-1.6797674500000001e-09 + 3.6880588050000004e-13 * T))) - 5.1865255172999998e+04 / T);
-  } else {
-    Kc = (-1.9361713000000007e+00 + 1.0671342500000001e+00 * logT + T * (-4.1330401299999997e-04 + T * (2.4400394000000003e-08 + T * (-1.2841701166666667e-12 + 3.4440239999999998e-17 * T))) - 5.1760385581000002e+04 / T);
-  }
-
-  Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[8] = C[4] * C[4] * C[0] * kf / Kc;
-
-  //rxn 9
-  kf = exp(1.6759949537130716e+01 - (-8.9975658196818301e+02 / T));
-  fwd_rxn_rates[9] = C[5] * C[5] * kf;
-  if (T <= 1000.0) {
-    Kc = (2.1078866500000002e+00 + -1.5540778400000002e+00 * logT + T * (1.7809517600000000e-03 + T * (-5.7313765166666677e-07 + T * (2.1456978249999992e-10 + -4.9079552499999993e-14 * T))) - -5.9308461960000001e+04 / T);
-  } else {
-    Kc = (-5.0029130599999991e+00 + -4.2631329000000040e-01 * logT + T * (3.5549915410000002e-04 + T * (-2.2128172766666666e-08 + T * (8.8917971666666646e-13 + -1.7001348600000012e-17 * T))) - -5.9668001179999999e+04 / T);
-  }
-
-  Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[9] = C[3] * kf / Kc;
-
-  //rxn 10
-  kf = exp(1.6752553835169586e+01 - (-8.9975658196818301e+02 / T));
-  fwd_rxn_rates[10] = C[5] * C[5] * C[1] * kf;
-  if (T <= 1000.0) {
-    Kc = (2.1078866500000002e+00 + -1.5540778400000002e+00 * logT + T * (1.7809517600000000e-03 + T * (-5.7313765166666677e-07 + T * (2.1456978249999992e-10 + -4.9079552499999993e-14 * T))) - -5.9308461960000001e+04 / T);
-  } else {
-    Kc = (-5.0029130599999991e+00 + -4.2631329000000040e-01 * logT + T * (3.5549915410000002e-04 + T * (-2.2128172766666666e-08 + T * (8.8917971666666646e-13 + -1.7001348600000012e-17 * T))) - -5.9668001179999999e+04 / T);
-  }
-
-  Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[10] = C[3] * C[1] * kf / Kc;
-
-  //rxn 11
-  kf = exp(1.6752553835169586e+01 - (-8.9975658196818301e+02 / T));
-  fwd_rxn_rates[11] = C[5] * C[5] * C[0] * kf;
-  if (T <= 1000.0) {
-    Kc = (2.1078866500000002e+00 + -1.5540778400000002e+00 * logT + T * (1.7809517600000000e-03 + T * (-5.7313765166666677e-07 + T * (2.1456978249999992e-10 + -4.9079552499999993e-14 * T))) - -5.9308461960000001e+04 / T);
-  } else {
-    Kc = (-5.0029130599999991e+00 + -4.2631329000000040e-01 * logT + T * (3.5549915410000002e-04 + T * (-2.2128172766666666e-08 + T * (8.8917971666666646e-13 + -1.7001348600000012e-17 * T))) - -5.9668001179999999e+04 / T);
-  }
-
-  Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[11] = C[3] * C[0] * kf / Kc;
-
-  //rxn 12
   kf = exp(2.9178583624644560e+01 - 1.0 * logT);
-  fwd_rxn_rates[12] = C[4] * C[5] * kf;
+  fwd_rxn_rates[8] = C[2] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-3.2966226999999737e-02 + -6.7628286000000015e-01 * logT + T * (4.3912614500000004e-04 + T * (-3.3773727166666666e-07 + T * (1.8740859833333332e-10 + -3.7473234499999999e-14 * T))) - -5.1227020839999997e+04 / T);
   } else {
@@ -160,11 +112,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[12] = C[6] * kf / Kc;
+  rev_rxn_rates[8] = C[4] * kf / Kc;
 
-  //rxn 13
+  //rxn 9
   kf = exp(5.7070331003036365e+01 - 3.322 * logT - (6.0783891239338271e+04 / T));
-  fwd_rxn_rates[13] = C[8] * kf;
+  fwd_rxn_rates[9] = C[6] * kf;
   if (T <= 1000.0) {
     Kc = (-1.9950213570000006e+00 + 1.2933490399999998e+00 * logT + T * (-1.8233242499999993e-04 + T * (-3.1728354499999994e-07 + T * (1.3406365333333332e-10 + -2.0438649000000009e-14 * T))) - 5.9136284359999998e+04 / T);
   } else {
@@ -172,11 +124,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[13] = C[4] * C[6] * kf / Kc;
+  rev_rxn_rates[9] = C[2] * C[4] * kf / Kc;
 
-  //rxn 14
+  //rxn 10
   kf = exp(5.2959457138863051e+01 - 2.44 * logT - (6.0476927304774181e+04 / T));
-  fwd_rxn_rates[14] = C[8] * C[8] * kf;
+  fwd_rxn_rates[10] = C[6] * C[6] * kf;
   if (T <= 1000.0) {
     Kc = (-1.9950213570000006e+00 + 1.2933490399999998e+00 * logT + T * (-1.8233242499999993e-04 + T * (-3.1728354499999994e-07 + T * (1.3406365333333332e-10 + -2.0438649000000009e-14 * T))) - 5.9136284359999998e+04 / T);
   } else {
@@ -184,11 +136,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[14] = C[4] * C[6] * C[8] * kf / Kc;
+  rev_rxn_rates[10] = C[2] * C[4] * C[6] * kf / Kc;
 
-  //rxn 15
+  //rxn 11
   kf = exp(2.2270828345662423e+01 + 0.44 * logT);
-  fwd_rxn_rates[15] = C[4] * C[3] * kf;
+  fwd_rxn_rates[11] = C[2] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (2.4863276100000000e+00 + -9.8065828999999960e-01 * logT + T * (-8.7619340500000027e-04 + T * (1.8851647483333337e-06 + T * (-1.2162580258333335e-09 + 3.0242619400000007e-13 * T))) - -2.4145697955000000e+04 / T);
   } else {
@@ -196,11 +148,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[15] = C[7] * kf / Kc;
+  rev_rxn_rates[11] = C[5] * kf / Kc;
 
-  //rxn 16
+  //rxn 12
   kf = exp(7.9373746961632952e+00 + 2.09 * logT - (-7.3017158861064513e+02 / T));
-  fwd_rxn_rates[16] = C[7] * C[4] * kf;
+  fwd_rxn_rates[12] = C[5] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (1.7457172080000003e+00 + -6.7501059000000030e-01 * logT + T * (4.8664537800000001e-03 + T * (-5.1315232483333333e-06 + T * (2.8960254758333334e-09 + -6.7123207450000016e-13 * T))) - -2.7719557218000002e+04 / T);
   } else {
@@ -208,11 +160,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[16] = C[2] * C[3] * kf / Kc;
+  rev_rxn_rates[12] = C[0] * C[1] * kf / Kc;
 
-  //rxn 17
+  //rxn 13
   kf = exp(2.4985945713987725e+01 - (1.4844977163345300e+02 / T));
-  fwd_rxn_rates[17] = C[7] * C[4] * kf;
+  fwd_rxn_rates[13] = C[5] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (-4.6601467139999997e+00 + 1.1821704099999994e+00 * logT + T * (-2.6506064999999666e-05 + T * (-1.9875016400000000e-06 + T * (1.3765054400000002e-09 + -3.2829311050000005e-13 * T))) - -1.8999881764999998e+04 / T);
   } else {
@@ -220,11 +172,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[17] = C[6] * C[6] * kf / Kc;
+  rev_rxn_rates[13] = C[4] * C[4] * kf / Kc;
 
-  //rxn 18
+  //rxn 14
   kf = 1400000000.0;
-  fwd_rxn_rates[18] = C[7] * C[4] * kf;
+  fwd_rxn_rates[14] = C[5] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (-2.6321591299999998e+00 + 5.6510422999999932e-01 * logT + T * (-2.8329978499999978e-04 + T * (-1.3324808233333337e-06 + T * (1.0550331883333334e-09 + -2.7038122700000004e-13 * T))) - -2.6909145284999999e+04 / T);
   } else {
@@ -232,11 +184,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[18] = C[8] * C[5] * kf / Kc;
+  rev_rxn_rates[14] = C[6] * C[3] * kf / Kc;
 
-  //rxn 19
+  //rxn 15
   kf = exp(1.7182806387950748e+01 + 1.0 * logT - (-3.6433096495803380e+02 / T));
-  fwd_rxn_rates[19] = C[7] * C[5] * kf;
+  fwd_rxn_rates[15] = C[5] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-2.5192938369999998e+00 + 3.0437542999999989e-01 * logT + T * (1.3153195500000005e-03 + T * (-2.2229020200000005e-06 + T * (1.4036666241666665e-09 + -3.3989942850000006e-13 * T))) - -2.7081322885000001e+04 / T);
   } else {
@@ -244,11 +196,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[19] = C[3] * C[6] * kf / Kc;
+  rev_rxn_rates[15] = C[1] * C[4] * kf / Kc;
 
-  //rxn 20
+  //rxn 16
   kf = exp(3.9785800467071169e+01 - 2.49 * logT - (2.9388022587775106e+02 / T));
-  fwd_rxn_rates[20] = C[7] * C[6] * kf;
+  fwd_rxn_rates[16] = C[5] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-4.9130625299999942e-01 + -3.1269075000000068e-01 * logT + T * (1.0585258300000004e-03 + T * (-1.5678812033333337e-06 + T * (1.0821943724999999e-09 + -2.8198754500000005e-13 * T))) - -3.4990586405000002e+04 / T);
   } else {
@@ -256,11 +208,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[20] = C[8] * C[3] * kf / Kc;
+  rev_rxn_rates[16] = C[6] * C[1] * kf / Kc;
 
-  //rxn 21
+  //rxn 17
   kf = exp(1.3997832114758229e+01 + 1.24 * logT - (-6.5921762996550319e+02 / T));
-  fwd_rxn_rates[21] = C[7] * C[6] * kf;
+  fwd_rxn_rates[17] = C[5] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-4.9130625299999942e-01 + -3.1269075000000068e-01 * logT + T * (1.0585258300000004e-03 + T * (-1.5678812033333337e-06 + T * (1.0821943724999999e-09 + -2.8198754500000005e-13 * T))) - -3.4990586405000002e+04 / T);
   } else {
@@ -268,11 +220,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[21] = C[8] * C[3] * kf / Kc;
+  rev_rxn_rates[17] = C[6] * C[1] * kf / Kc;
 
-  //rxn 22
+  //rxn 18
   kf = exp(3.9016113209388891e+01 - 1.835 * logT - (4.0257565188733020e+02 / T));
-  fwd_rxn_rates[22] = C[4] * C[4] * C[3] * kf;
+  fwd_rxn_rates[18] = C[2] * C[2] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (4.2320448180000003e+00 + -1.6556688799999999e+00 * logT + T * (3.9902603749999996e-03 + T * (-3.2463584999999998e-06 + T * (1.6797674500000001e-09 + -3.6880588050000004e-13 * T))) - -5.1865255172999998e+04 / T);
   } else {
@@ -280,11 +232,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[22] = C[2] * C[3] * kf / Kc;
+  rev_rxn_rates[18] = C[0] * C[1] * kf / Kc;
 
-  //rxn 23
+  //rxn 19
   kf = exp(3.8227655849024622e+01 - 1.835 * logT - (4.0257565188733020e+02 / T));
-  fwd_rxn_rates[23] = C[4] * C[4] * C[3] * kf;
+  fwd_rxn_rates[19] = C[2] * C[2] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (-2.1738191039999997e+00 + 2.0151211999999985e-01 * logT + T * (-9.0269946999999994e-04 + T * (-1.0233689166666655e-07 + T * (1.6024741416666672e-10 + -2.5866916500000004e-14 * T))) - -4.3145579720000002e+04 / T);
   } else {
@@ -292,11 +244,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[23] = C[6] * C[6] * kf / Kc;
+  rev_rxn_rates[19] = C[4] * C[4] * kf / Kc;
 
-  //rxn 24
+  //rxn 20
   kf = exp(3.8836061801129475e+01 - 1.835 * logT - (4.0257565188733020e+02 / T));
-  fwd_rxn_rates[24] = C[4] * C[3] * C[5] * kf;
+  fwd_rxn_rates[20] = C[2] * C[1] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-3.2966226999999737e-02 + -6.7628286000000015e-01 * logT + T * (4.3912614500000004e-04 + T * (-3.3773727166666666e-07 + T * (1.8740859833333332e-10 + -3.7473234499999999e-14 * T))) - -5.1227020839999997e+04 / T);
   } else {
@@ -304,11 +256,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[24] = C[6] * C[3] * kf / Kc;
+  rev_rxn_rates[20] = C[4] * C[1] * kf / Kc;
 
-  //rxn 25
+  //rxn 21
   kf = exp(3.7781368746396204e+01 - 1.835 * logT - (4.0257565188733020e+02 / T));
-  fwd_rxn_rates[25] = C[4] * C[3] * C[6] * kf;
+  fwd_rxn_rates[21] = C[2] * C[1] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (1.9950213570000006e+00 + -1.2933490399999998e+00 * logT + T * (1.8233242499999993e-04 + T * (3.1728354499999994e-07 + T * (-1.3406365333333332e-10 + 2.0438649000000009e-14 * T))) - -5.9136284359999998e+04 / T);
   } else {
@@ -316,11 +268,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[25] = C[8] * C[3] * kf / Kc;
+  rev_rxn_rates[21] = C[6] * C[1] * kf / Kc;
 
-  //rxn 26
+  //rxn 22
   kf = exp(1.3997832114758229e+01 + 0.7712 * logT - (-9.1837570586797199e+02 / T));
-  fwd_rxn_rates[26] = C[7] * C[7] * kf;
+  fwd_rxn_rates[22] = C[5] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (4.0728100000007039e-03 + -5.0598829000000123e-01 * logT + T * (2.8270585790000002e-03 + T * (-2.4714744483333342e-06 + T * (1.3495994425000003e-09 + -3.1256372750000008e-13 * T))) - -1.9298724230000000e+04 / T);
   } else {
@@ -328,11 +280,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[26] = C[9] * C[3] * kf / Kc;
+  rev_rxn_rates[22] = C[7] * C[1] * kf / Kc;
 
-  //rxn 27
+  //rxn 23
   kf = exp(2.0985630101413904e+01 + 0.295 * logT - (3.7223151212632270e+03 / T));
-  fwd_rxn_rates[27] = C[7] * C[7] * kf;
+  fwd_rxn_rates[23] = C[5] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (4.0728100000007039e-03 + -5.0598829000000123e-01 * logT + T * (2.8270585790000002e-03 + T * (-2.4714744483333342e-06 + T * (1.3495994425000003e-09 + -3.1256372750000008e-13 * T))) - -1.9298724230000000e+04 / T);
   } else {
@@ -340,11 +292,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[27] = C[9] * C[3] * kf / Kc;
+  rev_rxn_rates[23] = C[7] * C[1] * kf / Kc;
 
-  //rxn 28
+  //rxn 24
   kf = exp(2.8324168296488494e+01 + 0.9 * logT - (2.4531450567319323e+04 / T));
-  fwd_rxn_rates[28] = C[9] * kf;
+  fwd_rxn_rates[24] = C[7] * kf;
   if (T <= 1000.0) {
     Kc = (-7.1505471340000000e+00 + 2.6688169899999998e+00 * logT + T * (-1.9773712389999998e-03 + T * (-1.4011919400000000e-06 + T * (1.2431640233333333e-09 + -3.1815557700000004e-13 * T))) - 2.4444540419999998e+04 / T);
   } else {
@@ -352,11 +304,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[28] = C[6] * C[6] * kf / Kc;
+  rev_rxn_rates[24] = C[4] * C[4] * kf / Kc;
 
-  //rxn 29
+  //rxn 25
   kf = exp(2.3901319667294356e+01 - (1.9977816724908762e+03 / T));
-  fwd_rxn_rates[29] = C[9] * C[4] * kf;
+  fwd_rxn_rates[25] = C[7] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (-5.1555257769999994e+00 + 1.3754679500000000e+00 * logT + T * (-1.7950388139999999e-03 + T * (-1.0839083950000000e-06 + T * (1.1091003700000000e-09 + -2.9771692800000002e-13 * T))) - -3.4691743940000000e+04 / T);
   } else {
@@ -364,11 +316,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[29] = C[8] * C[6] * kf / Kc;
+  rev_rxn_rates[25] = C[6] * C[4] * kf / Kc;
 
-  //rxn 30
+  //rxn 26
   kf = exp(2.4594466847854303e+01 - (4.0005955406303437e+03 / T));
-  fwd_rxn_rates[30] = C[9] * C[4] * kf;
+  fwd_rxn_rates[26] = C[7] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (1.7416443979999996e+00 + -1.6902229999999996e-01 * logT + T * (2.0393952009999995e-03 + T * (-2.6600487999999995e-06 + T * (1.5464260333333332e-09 + -3.5866834699999998e-13 * T))) - -8.4208329880000019e+03 / T);
   } else {
@@ -376,11 +328,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[30] = C[7] * C[2] * kf / Kc;
+  rev_rxn_rates[26] = C[5] * C[0] * kf / Kc;
 
-  //rxn 31
+  //rxn 27
   kf = exp(9.1695183774559279e+00 + 2.0 * logT - (1.9977816724908762e+03 / T));
-  fwd_rxn_rates[31] = C[9] * C[5] * kf;
+  fwd_rxn_rates[27] = C[7] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-2.5233666470000005e+00 + 8.1036372000000023e-01 * logT + T * (-1.5117390290000001e-03 + T * (2.4857242833333391e-07 + T * (5.4067181666666520e-11 + -2.7335700999999922e-14 * T))) - -7.7825986550000016e+03 / T);
   } else {
@@ -388,11 +340,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[31] = C[6] * C[7] * kf / Kc;
+  rev_rxn_rates[27] = C[4] * C[5] * kf / Kc;
 
-  //rxn 32
+  //rxn 28
   kf = exp(2.1253894088008582e+01 - (1.6002382162521374e+02 / T));
-  fwd_rxn_rates[32] = C[9] * C[6] * kf;
+  fwd_rxn_rates[28] = C[7] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-4.9537906299999968e-01 + 1.9329754000000055e-01 * logT + T * (-1.7685327490000002e-03 + T * (9.0359324499999997e-07 + T * (-2.6740507000000012e-10 + 3.0576182500000098e-14 * T))) - -1.5691862174999998e+04 / T);
   } else {
@@ -400,11 +352,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[32] = C[7] * C[8] * kf / Kc;
+  rev_rxn_rates[28] = C[5] * C[6] * kf / Kc;
 
-  //rxn 33
+  //rxn 29
   kf = exp(2.5053999177232743e+01 - (3.6584062365261134e+03 / T));
-  fwd_rxn_rates[33] = C[9] * C[6] * kf;
+  fwd_rxn_rates[29] = C[7] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-4.9537906299999968e-01 + 1.9329754000000055e-01 * logT + T * (-1.7685327490000002e-03 + T * (9.0359324499999997e-07 + T * (-2.6740507000000012e-10 + 3.0576182500000098e-14 * T))) - -1.5691862174999998e+04 / T);
   } else {
@@ -412,11 +364,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[33] = C[7] * C[8] * kf / Kc;
+  rev_rxn_rates[29] = C[5] * C[6] * kf / Kc;
 
-  //rxn 34
+  //rxn 30
   kf = exp(3.0722063569286863e+01 - (4.7035932727385945e+04 / T));
-  fwd_rxn_rates[34] = C[12] * kf;
+  fwd_rxn_rates[30] = C[9] * kf;
   if (T <= 1000.0) {
     Kc = (-1.4238820944000006e+00 + 1.2312286500000003e+00 * logT + T * (1.8208946799999999e-03 + T * (-2.4105978433333330e-06 + T * (1.2529938041666665e-09 + -2.6695530350000001e-13 * T))) - 5.3680333839999999e+04 / T);
   } else {
@@ -424,11 +376,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[34] = C[13] * C[4] * kf / Kc;
+  rev_rxn_rates[30] = C[10] * C[2] * kf / Kc;
 
-  //rxn 35
+  //rxn 31
   kf = exp(6.2915691395583204e+00 + 2.4 * logT - (4.9899252051434578e+03 / T));
-  fwd_rxn_rates[35] = C[12] * C[4] * kf;
+  fwd_rxn_rates[31] = C[9] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (2.8081627235999997e+00 + -4.2444023000000008e-01 * logT + T * (5.8111550549999995e-03 + T * (-5.6569563433333328e-06 + T * (2.9327612541666664e-09 + -6.3576118400000010e-13 * T))) - 1.8150786669999979e+03 / T);
   } else {
@@ -436,11 +388,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[35] = C[13] * C[2] * kf / Kc;
+  rev_rxn_rates[31] = C[10] * C[0] * kf / Kc;
 
-  //rxn 36
+  //rxn 32
   kf = exp(9.1484649682580947e+00 + 1.94 * logT - (3.2507983889901911e+03 / T));
-  fwd_rxn_rates[36] = C[12] * C[5] * kf;
+  fwd_rxn_rates[32] = C[9] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-1.4568483214000003e+00 + 5.5494579000000011e-01 * logT + T * (2.2600208249999999e-03 + T * (-2.7483351150000000e-06 + T * (1.4404024025000000e-09 + -3.0442853799999999e-13 * T))) - 2.4533129999999983e+03 / T);
   } else {
@@ -448,11 +400,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[36] = C[13] * C[6] * kf / Kc;
+  rev_rxn_rates[32] = C[10] * C[4] * kf / Kc;
 
-  //rxn 37
+  //rxn 33
   kf = exp(7.6009024595420822e+00 + 2.04 * logT - (2.8482227371028614e+02 / T));
-  fwd_rxn_rates[37] = C[12] * C[6] * kf;
+  fwd_rxn_rates[33] = C[9] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (5.7113926260000003e-01 + -6.2120389999999581e-02 * logT + T * (2.0032271049999998e-03 + T * (-2.0933142983333332e-06 + T * (1.1189301508333332e-09 + -2.4651665449999999e-13 * T))) - -5.4559505199999994e+03 / T);
   } else {
@@ -460,11 +412,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[37] = C[13] * C[8] * kf / Kc;
+  rev_rxn_rates[33] = C[10] * C[6] * kf / Kc;
 
-  //rxn 38
+  //rxn 34
   kf = exp(1.9519293032620475e+01 - (1.1070830426901581e+04 / T));
-  fwd_rxn_rates[38] = C[12] * C[7] * kf;
+  fwd_rxn_rates[34] = C[9] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (1.0665183255999997e+00 + -2.5541793000000013e-01 * logT + T * (3.7717598540000000e-03 + T * (-2.9969075433333337e-06 + T * (1.3863352208333336e-09 + -2.7709283700000002e-13 * T))) - 1.0235911655000000e+04 / T);
   } else {
@@ -472,11 +424,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[38] = C[13] * C[9] * kf / Kc;
+  rev_rxn_rates[34] = C[10] * C[7] * kf / Kc;
 
-  //rxn 39
+  //rxn 35
   kf = exp(1.3142166004700508e+01 + 1.5 * logT - (1.8619123899789022e+03 / T));
-  fwd_rxn_rates[39] = C[13] * C[4] * kf;
+  fwd_rxn_rates[35] = C[10] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (3.9232200123999998e+00 + -8.5469866999999988e-01 * logT + T * (5.1691723699999999e-03 + T * (-4.6074631033333329e-06 + T * (2.3239963141666665e-09 + -4.9838631250000005e-13 * T))) - -5.7847616730000009e+03 / T);
   } else {
@@ -484,11 +436,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[39] = C[14] * C[2] * kf / Kc;
+  rev_rxn_rates[35] = C[11] * C[0] * kf / Kc;
 
-  //rxn 40
+  //rxn 36
   kf = 66000000000.0;
-  fwd_rxn_rates[40] = C[13] * C[5] * kf;
+  fwd_rxn_rates[36] = C[10] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-3.3998740560000007e-01 + -3.2499151999999976e-01 * logT + T * (-1.8004332999999994e-04 + T * (8.6653811666666668e-07 + T * (-4.8424865916666660e-10 + 9.4481119000000050e-14 * T))) - -1.3529437600000001e+04 / T);
   } else {
@@ -496,11 +448,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[40] = C[18] * C[4] * kf / Kc;
+  rev_rxn_rates[36] = C[15] * C[2] * kf / Kc;
 
-  //rxn 41
+  //rxn 37
   kf = 7230000000.0;
-  fwd_rxn_rates[41] = C[13] * C[5] * kf;
+  fwd_rxn_rates[37] = C[10] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-3.4179103260000021e-01 + 1.2468734999999986e-01 * logT + T * (1.6180381399999999e-03 + T * (-1.6988418750000001e-06 + T * (8.3163746250000005e-10 + -1.6705366650000000e-13 * T))) - -5.1465273400000042e+03 / T);
   } else {
@@ -508,11 +460,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[41] = C[14] * C[6] * kf / Kc;
+  rev_rxn_rates[37] = C[11] * C[4] * kf / Kc;
 
-  //rxn 42
+  //rxn 38
   kf = exp(8.1016777474545716e+00 + 1.949 * logT - (-1.0919864557443832e+02 / T));
-  fwd_rxn_rates[42] = C[13] * C[6] * kf;
+  fwd_rxn_rates[38] = C[10] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (1.6861965514000001e+00 + -4.9237882999999982e-01 * logT + T * (1.3612444199999998e-03 + T * (-1.0438210583333333e-06 + T * (5.1016521083333336e-10 + -1.0914178299999999e-13 * T))) - -1.3055790860000001e+04 / T);
   } else {
@@ -520,11 +472,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[42] = C[14] * C[8] * kf / Kc;
+  rev_rxn_rates[38] = C[11] * C[6] * kf / Kc;
 
-  //rxn 43
+  //rxn 39
   kf = exp(3.6337180406857406e+01 - 1.91 * logT - (1.5398518684690382e+02 / T));
-  fwd_rxn_rates[43] = C[13] * C[7] * kf;
+  fwd_rxn_rates[39] = C[10] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (-1.0624455155999994e+00 + -2.5057036000000110e-01 * logT + T * (-9.4470127499999982e-04 + T * (5.2543309499999996e-07 + T * (-3.6735778333333469e-11 + -3.5470890500000063e-14 * T))) - -2.9534635885000000e+04 / T);
   } else {
@@ -532,11 +484,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[43] = C[12] * C[3] * kf / Kc;
+  rev_rxn_rates[39] = C[9] * C[1] * kf / Kc;
 
-  //rxn 44
+  //rxn 40
   kf = exp(1.0986986203394190e+01 + 1.59 * logT - (-6.9092046255163041e+02 / T));
-  fwd_rxn_rates[44] = C[13] * C[7] * kf;
+  fwd_rxn_rates[40] = C[10] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (-1.0624455155999994e+00 + -2.5057036000000110e-01 * logT + T * (-9.4470127499999982e-04 + T * (5.2543309499999996e-07 + T * (-3.6735778333333469e-11 + -3.5470890500000063e-14 * T))) - -2.9534635885000000e+04 / T);
   } else {
@@ -544,11 +496,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[44] = C[12] * C[3] * kf / Kc;
+  rev_rxn_rates[40] = C[9] * C[1] * kf / Kc;
 
-  //rxn 45
+  //rxn 41
   kf = exp(2.0743068464242590e+01 + 0.166 * logT - (-4.7201995183789467e+02 / T));
-  fwd_rxn_rates[45] = C[13] * C[7] * kf;
+  fwd_rxn_rates[41] = C[10] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (-2.9721465355999994e+00 + 2.4011271000000001e-01 * logT + T * (-4.6334311499999972e-04 + T * (-4.6594270666666678e-07 + T * (5.7078452916666670e-10 + -1.7590010799999999e-13 * T))) - -4.0438582885000003e+04 / T);
   } else {
@@ -556,11 +508,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[45] = C[18] * C[8] * kf / Kc;
+  rev_rxn_rates[41] = C[15] * C[6] * kf / Kc;
 
-  //rxn 46
+  //rxn 42
   kf = exp(1.4599412101792684e+01 + 0.791 * logT - (-7.1859753861888441e+02 / T));
-  fwd_rxn_rates[46] = C[13] * C[7] * kf;
+  fwd_rxn_rates[42] = C[10] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (6.2651643739999940e-01 + -4.2484707000000022e-01 * logT + T * (2.3066313150000000e-03 + T * (-2.2162679650000000e-06 + T * (1.2850277158333335e-09 + -3.1113760450000006e-13 * T))) - -1.1908782664999999e+04 / T);
   } else {
@@ -568,11 +520,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[46] = C[20] * C[6] * kf / Kc;
+  rev_rxn_rates[42] = C[17] * C[4] * kf / Kc;
 
-  //rxn 47
+  //rxn 43
   kf = exp(9.9522777167055594e+00 + 0.64 * logT - (4.0811106710078099e+02 / T));
-  fwd_rxn_rates[47] = C[13] * C[7] * kf;
+  fwd_rxn_rates[43] = C[10] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (-5.5791500559999996e-01 + 1.2817939999999695e-02 * logT + T * (-1.2831866500000004e-04 + T * (2.3165724333333314e-07 + T * (-2.1084168749999999e-10 + 6.1184308499999938e-14 * T))) - -2.7471869084999998e+04 / T);
   } else {
@@ -580,11 +532,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[47] = C[19] * C[8] * kf / Kc;
+  rev_rxn_rates[43] = C[16] * C[6] * kf / Kc;
 
-  //rxn 48
+  //rxn 44
   kf = exp(1.9376192188979800e+01 + 0.4872 * logT - (1.4618528359158678e+04 / T));
-  fwd_rxn_rates[48] = C[13] * C[3] * kf;
+  fwd_rxn_rates[44] = C[10] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (3.1458102743999996e+00 + -7.2922249999999922e-01 * logT + T * (9.9131176499999991e-04 + T * (6.6340550000000457e-09 + T * (-1.1863890833333314e-10 + 2.8761823999999995e-14 * T))) - 1.5172540219999999e+04 / T);
   } else {
@@ -592,11 +544,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[48] = C[20] * C[5] * kf / Kc;
+  rev_rxn_rates[44] = C[17] * C[3] * kf / Kc;
 
-  //rxn 49
+  //rxn 45
   kf = exp(-1.0448214727977801e+01 + 3.764 * logT - (9.1510477869638744e+03 / T));
-  fwd_rxn_rates[49] = C[13] * C[3] * kf;
+  fwd_rxn_rates[45] = C[10] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (-2.4808402826000000e+00 + 5.5280346000000025e-01 * logT + T * (-1.5218689449999995e-03 + T * (1.1019384966666667e-06 + T * (-5.1140984333333315e-10 + 1.0608743700000006e-13 * T))) - -5.4479964799999980e+03 / T);
   } else {
@@ -604,11 +556,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[49] = C[18] * C[6] * kf / Kc;
+  rev_rxn_rates[45] = C[15] * C[4] * kf / Kc;
 
-  //rxn 50
+  //rxn 46
   kf = exp(-5.1849886812410331e+00 + 3.53 * logT - (2.7777719980225783e+02 / T));
-  fwd_rxn_rates[50] = C[13] * C[13] * kf;
+  fwd_rxn_rates[46] = C[10] * C[10] * kf;
   if (T <= 1000.0) {
     Kc = (1.1150572888000001e+00 + -4.3025844000000024e-01 * logT + T * (-6.4198268500000001e-04 + T * (1.0494932399999999e-06 + T * (-6.0876493999999985e-10 + 1.3737487149999997e-13 * T))) - -7.5998403400000025e+03 / T);
   } else {
@@ -616,11 +568,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[50] = C[12] * C[14] * kf / Kc;
+  rev_rxn_rates[46] = C[9] * C[11] * kf / Kc;
 
-  //rxn 51
+  //rxn 47
   kf = exp(2.2617630984737906e+00 + 2.46 * logT - (5.3844493439930417e+01 / T));
-  fwd_rxn_rates[51] = C[13] * C[14] * kf;
+  fwd_rxn_rates[47] = C[10] * C[11] * kf;
   if (T <= 1000.0) {
     Kc = (1.8157086844000003e+00 + -7.2417902000000023e-01 * logT + T * (-1.9767925399999998e-03 + T * (2.6587755566666663e-06 + T * (-1.4597999724999999e-09 + 3.1874076150000003e-13 * T))) - -1.4208008039999997e+04 / T);
   } else {
@@ -628,11 +580,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[51] = C[12] * C[11] * kf / Kc;
+  rev_rxn_rates[47] = C[9] * C[8] * kf / Kc;
 
-  //rxn 52
+  //rxn 48
   kf = 70000000000.0;
-  fwd_rxn_rates[52] = C[13] * C[11] * kf;
+  fwd_rxn_rates[48] = C[10] * C[8] * kf;
   if (T <= 1000.0) {
     Kc = (-3.8683507156000010e+00 + 8.3902512000000051e-01 * logT + T * (9.6118364099999994e-04 + T * (-1.1967601288333334e-06 + T * (6.4036487249999999e-10 + -1.4823559150000001e-13 * T))) - -2.7703432980000001e+04 / T);
   } else {
@@ -640,11 +592,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[52] = C[32] * C[4] * C[4] * kf / Kc;
+  rev_rxn_rates[48] = C[25] * C[2] * C[2] * kf / Kc;
 
-  //rxn 53
+  //rxn 49
   kf = exp(8.1886891244442008e+00 + 1.63 * logT - (-6.2902445607395339e+02 / T));
-  fwd_rxn_rates[53] = C[13] * C[18] * kf;
+  fwd_rxn_rates[49] = C[10] * C[15] * kf;
   if (T <= 1000.0) {
     Kc = (-6.6869282559999910e-01 + -4.7885430000000895e-02 * logT + T * (-1.2981184149999997e-03 + T * (1.1646729933333335e-06 + T * (-5.9902985166666668e-10 + 1.2932366200000001e-13 * T))) - -2.9979874499999998e+04 / T);
   } else {
@@ -652,11 +604,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[53] = C[12] * C[16] * kf / Kc;
+  rev_rxn_rates[49] = C[9] * C[13] * kf / Kc;
 
-  //rxn 54
+  //rxn 50
   kf = exp(1.7574382383898246e+01 + 0.294 * logT - (-4.3780102142747160e+02 / T));
-  fwd_rxn_rates[54] = C[13] * C[16] * kf;
+  fwd_rxn_rates[50] = C[10] * C[13] * kf;
   if (T <= 1000.0) {
     Kc = (1.1552362173999988e+00 + -1.6384855999999992e-01 * logT + T * (4.1692998999999986e-04 + T * (1.1227399833333275e-07 + T * (-2.1799250333333320e-10 + 7.0599038500000041e-14 * T))) - 8.5703931999999986e+02 / T);
   } else {
@@ -664,11 +616,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[54] = C[15] * C[6] * kf / Kc;
+  rev_rxn_rates[50] = C[12] * C[4] * kf / Kc;
 
-  //rxn 55
+  //rxn 51
   kf = exp(3.7800711709239330e+01 - 2.369 * logT - (4.3578814316803494e+02 / T));
-  fwd_rxn_rates[55] = C[13] * C[16] * kf;
+  fwd_rxn_rates[51] = C[10] * C[13] * kf;
   if (T <= 1000.0) {
     Kc = (6.0926852439999912e-01 + -6.8093863999999904e-01 * logT + T * (2.2629234110000001e-03 + T * (-1.9507540121666669e-06 + T * (9.6141722000000020e-10 + -1.9991462849999999e-13 * T))) - -6.2684940619999994e+04 / T);
   } else {
@@ -676,11 +628,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[55] = C[32] * C[8] * kf / Kc;
+  rev_rxn_rates[51] = C[25] * C[6] * kf / Kc;
 
-  //rxn 56
+  //rxn 52
   kf = exp(-2.6450754019408218e+00 + 3.02 * logT - (-2.4859046504042640e+03 / T));
-  fwd_rxn_rates[56] = C[13] * C[24] * kf;
+  fwd_rxn_rates[52] = C[10] * C[19] * kf;
   if (T <= 1000.0) {
     Kc = (-5.7626814655999983e+00 + 9.9864339999999929e-01 * logT + T * (-6.6774995100000005e-03 + T * (4.9102349833333333e-06 + T * (-2.1652670474999998e-09 + 4.1514241150000000e-13 * T))) - -1.4526983140000000e+04 / T);
   } else {
@@ -688,11 +640,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[56] = C[12] * C[23] * kf / Kc;
+  rev_rxn_rates[52] = C[9] * C[18] * kf / Kc;
 
-  //rxn 57
+  //rxn 53
   kf = exp(3.5494287839938124e+01 - 2.191 * logT - (2.2896490201091905e+02 / T));
-  fwd_rxn_rates[57] = C[13] * C[23] * kf;
+  fwd_rxn_rates[53] = C[10] * C[18] * kf;
   if (T <= 1000.0) {
     Kc = (5.3676955744000008e+00 + -1.6802259600000000e+00 * logT + T * (6.4498917850000000e-03 + T * (-5.0810584566666662e-06 + T * (2.4932126458333336e-09 + -5.2748530399999999e-13 * T))) - -4.5947708100000003e+04 / T);
   } else {
@@ -700,11 +652,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[57] = C[17] * C[8] * kf / Kc;
+  rev_rxn_rates[53] = C[14] * C[6] * kf / Kc;
 
-  //rxn 58
+  //rxn 54
   kf = exp(2.0628955157475168e+01 + 0.0321 * logT - (-7.6086798206705407e+02 / T));
-  fwd_rxn_rates[58] = C[13] * C[23] * kf;
+  fwd_rxn_rates[54] = C[10] * C[18] * kf;
   if (T <= 1000.0) {
     Kc = (-1.6858636559999951e-01 + 1.5953451999999979e-01 * logT + T * (-3.9462201500000034e-04 + T * (-3.9491078666666636e-07 + T * (5.1316459833333336e-10 + -1.6616012600000001e-13 * T))) - -8.0651808999999994e+03 / T);
   } else {
@@ -712,11 +664,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[58] = C[20] * C[16] * kf / Kc;
+  rev_rxn_rates[54] = C[17] * C[13] * kf / Kc;
 
-  //rxn 59
+  //rxn 55
   kf = exp(4.3931438323680823e+01 - 2.71 * logT);
-  fwd_rxn_rates[59] = C[14] * C[4] * kf;
+  fwd_rxn_rates[55] = C[11] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (3.0882480560000047e-01 + -8.0097021000000002e-01 * logT + T * (-1.1789119949999999e-03 + T * (1.3611046033333334e-06 + T * (-6.4422886416666668e-10 + 1.2958043200000001e-13 * T))) - -4.6080493499999997e+04 / T);
   } else {
@@ -724,11 +676,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[59] = C[13] * kf / Kc;
+  rev_rxn_rates[55] = C[10] * kf / Kc;
 
-  //rxn 60
+  //rxn 56
   kf = 100000000000.0;
-  fwd_rxn_rates[60] = C[14] * C[4] * kf;
+  fwd_rxn_rates[56] = C[11] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (4.6238714080000003e+00 + -1.1486192499999999e+00 * logT + T * (3.8343625149999997e-03 + T * (-2.9981807866666665e-06 + T * (1.4729612816666667e-09 + -3.1702042250000002e-13 * T))) - -1.2392929372999995e+04 / T);
   } else {
@@ -736,11 +688,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[60] = C[11] * C[2] * kf / Kc;
+  rev_rxn_rates[56] = C[8] * C[0] * kf / Kc;
 
-  //rxn 61
+  //rxn 57
   kf = 92000000000.0;
-  fwd_rxn_rates[61] = C[14] * C[5] * kf;
+  fwd_rxn_rates[57] = C[11] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-2.1237375199999993e+00 + 5.7381489999999591e-02 * logT + T * (-8.3617906000000002e-04 + T * (9.8171787000000030e-07 + T * (-4.7451357083333332e-10 + 8.6429909499999985e-14 * T))) - -3.5909471759999993e+04 / T);
   } else {
@@ -748,11 +700,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[61] = C[16] * C[4] * kf / Kc;
+  rev_rxn_rates[57] = C[13] * C[2] * kf / Kc;
 
-  //rxn 62
+  //rxn 58
   kf = exp(2.6491586832740182e+01 - 0.376 * logT - (-2.3148099983521487e+01 / T));
-  fwd_rxn_rates[62] = C[14] * C[6] * kf;
+  fwd_rxn_rates[58] = C[11] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (1.8036270000001409e-03 + -4.4967886999999962e-01 * logT + T * (-1.7980814699999998e-03 + T * (2.5653799916666666e-06 + T * (-1.3158861216666668e-09 + 2.6153478550000005e-13 * T))) - -8.3829102599999969e+03 / T);
   } else {
@@ -760,11 +712,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[62] = C[18] * C[4] * kf / Kc;
+  rev_rxn_rates[58] = C[15] * C[2] * kf / Kc;
 
-  //rxn 63
+  //rxn 59
   kf = exp(9.6803440012219184e+00 + 1.733 * logT - (-2.8985446935887774e+02 / T));
-  fwd_rxn_rates[63] = C[14] * C[6] * kf;
+  fwd_rxn_rates[59] = C[11] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (2.3868479470000006e+00 + -7.8629940999999981e-01 * logT + T * (2.6434565000000004e-05 + T * (5.6546125833333319e-07 + T * (-3.4086982166666663e-10 + 7.2224107000000006e-14 * T))) - -1.9663958559999995e+04 / T);
   } else {
@@ -772,11 +724,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[63] = C[11] * C[8] * kf / Kc;
+  rev_rxn_rates[59] = C[8] * C[6] * kf / Kc;
 
-  //rxn 64
+  //rxn 60
   kf = exp(6.1312264894831410e+00 + 2.0 * logT - (3.2709271715845580e+03 / T));
-  fwd_rxn_rates[64] = C[14] * C[3] * kf;
+  fwd_rxn_rates[60] = C[11] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (-2.1390492500000002e+00 + 4.2811610999999994e-01 * logT + T * (-3.1399070850000000e-03 + T * (2.8007803716666670e-06 + T * (-1.3430473058333333e-09 + 2.7314110350000005e-13 * T))) - -3.0146913999999356e+02 / T);
   } else {
@@ -784,11 +736,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[64] = C[18] * C[5] * kf / Kc;
+  rev_rxn_rates[60] = C[15] * C[3] * kf / Kc;
 
-  //rxn 65
+  //rxn 61
   kf = exp(7.1701195434496281e+00 + 1.5 * logT - (5.0321956485916274e+01 / T));
-  fwd_rxn_rates[65] = C[14] * C[3] * kf;
+  fwd_rxn_rates[61] = C[11] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (-4.2645903969999992e+00 + 9.3517646999999959e-01 * logT + T * (-2.1780046750000002e-03 + T * (1.2171182500000003e-06 + T * (-5.0167475500000007e-10 + 9.8036227500000018e-14 * T))) - -2.7828030639999997e+04 / T);
   } else {
@@ -796,11 +748,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[65] = C[16] * C[6] * kf / Kc;
+  rev_rxn_rates[61] = C[13] * C[4] * kf / Kc;
 
-  //rxn 66
+  //rxn 62
   kf = exp(-7.4698741971356784e+00 + 3.88 * logT - (1.7210109118183365e+02 / T));
-  fwd_rxn_rates[66] = C[14] * C[14] * kf;
+  fwd_rxn_rates[62] = C[11] * C[11] * kf;
   if (T <= 1000.0) {
     Kc = (7.0065139560000000e-01 + -2.9392057999999999e-01 * logT + T * (-1.3348098550000000e-03 + T * (1.6092823166666668e-06 + T * (-8.5103503250000004e-10 + 1.8136589000000001e-13 * T))) - -6.6081676999999909e+03 / T);
   } else {
@@ -808,11 +760,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[66] = C[13] * C[11] * kf / Kc;
+  rev_rxn_rates[62] = C[10] * C[8] * kf / Kc;
 
-  //rxn 67
+  //rxn 63
   kf = 30000000000.0;
-  fwd_rxn_rates[67] = C[14] * C[11] * kf;
+  fwd_rxn_rates[63] = C[11] * C[8] * kf;
   if (T <= 1000.0) {
     Kc = (-3.5595259100000005e+00 + 3.8054910000000497e-02 * logT + T * (-2.1772835400000001e-04 + T * (1.6434447449999998e-07 + T * (-3.8639916666666640e-12 + -1.8655159500000003e-14 * T))) - -7.3783926479999995e+04 / T);
   } else {
@@ -820,11 +772,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[67] = C[32] * C[4] * kf / Kc;
+  rev_rxn_rates[63] = C[25] * C[2] * kf / Kc;
 
-  //rxn 68
+  //rxn 64
   kf = exp(2.6937873935368604e+01 - 0.4 * logT);
-  fwd_rxn_rates[68] = C[14] * C[16] * kf;
+  fwd_rxn_rates[64] = C[11] * C[13] * kf;
   if (T <= 1000.0) {
     Kc = (9.1367485399999993e+00 + -2.9543991299999997e+00 * logT + T * (7.8164067600000001e-03 + T * (-3.8710929366666665e-06 + T * (1.3784051125000001e-09 + -2.3502788900000000e-13 * T))) - -1.7735637239999996e+04 / T);
   } else {
@@ -832,11 +784,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[68] = C[17] * C[4] * kf / Kc;
+  rev_rxn_rates[64] = C[14] * C[2] * kf / Kc;
 
-  //rxn 69
+  //rxn 65
   kf = exp(2.1716517609956693e+01 - 0.0721 * logT - (-2.5764841720789133e+02 / T));
-  fwd_rxn_rates[69] = C[14] * C[16] * kf;
+  fwd_rxn_rates[65] = C[11] * C[13] * kf;
   if (T <= 1000.0) {
     Kc = (-1.0769280270000010e+00 + -1.8855981000000011e-01 * logT + T * (9.0167899100000032e-04 + T * (-9.0693295383333362e-07 + T * (4.5125200916666674e-10 + -9.0772845499999997e-14 * T))) - -4.9629149760000000e+04 / T);
   } else {
@@ -844,11 +796,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[69] = C[32] * C[6] * kf / Kc;
+  rev_rxn_rates[65] = C[25] * C[4] * kf / Kc;
 
-  //rxn 70
+  //rxn 66
   kf = 10000000000.0;
-  fwd_rxn_rates[70] = C[14] * C[24] * kf;
+  fwd_rxn_rates[66] = C[11] * C[19] * kf;
   if (T <= 1000.0) {
     Kc = (-6.8777387543999993e+00 + 1.4289018399999995e+00 * logT + T * (-6.0355168250000001e-03 + T * (3.8607417433333334e-06 + T * (-1.5565021074999999e-09 + 2.7776753999999995e-13 * T))) - -6.9271427999999978e+03 / T);
   } else {
@@ -856,11 +808,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[70] = C[13] * C[23] * kf / Kc;
+  rev_rxn_rates[66] = C[10] * C[18] * kf / Kc;
 
-  //rxn 71
+  //rxn 67
   kf = 4100000000.0;
-  fwd_rxn_rates[71] = C[14] * C[23] * kf;
+  fwd_rxn_rates[67] = C[11] * C[18] * kf;
   if (T <= 1000.0) {
     Kc = (3.6814990230000002e+00 + -1.1878471300000002e+00 * logT + T * (5.0886473649999989e-03 + T * (-4.0372373983333333e-06 + T * (1.9830474349999999e-09 + -4.1834352100000000e-13 * T))) - -3.2891917239999995e+04 / T);
   } else {
@@ -868,11 +820,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[71] = C[17] * C[6] * kf / Kc;
+  rev_rxn_rates[67] = C[14] * C[4] * kf / Kc;
 
-  //rxn 72
+  //rxn 68
   kf = 5900000000.0;
-  fwd_rxn_rates[72] = C[14] * C[23] * kf;
+  fwd_rxn_rates[68] = C[11] * C[18] * kf;
   if (T <= 1000.0) {
     Kc = (-5.4534458899999994e+00 + 1.3168731299999998e+00 * logT + T * (-4.5258408650000002e-03 + T * (2.3992355300000002e-06 + T * (-7.1124379916666670e-10 + 7.8219153500000048e-14 * T))) - -2.3539190259999992e+04 / T);
   } else {
@@ -880,11 +832,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[72] = C[18] * C[16] * kf / Kc;
+  rev_rxn_rates[68] = C[15] * C[13] * kf / Kc;
 
-  //rxn 73
+  //rxn 69
   kf = 38000000000.0;
-  fwd_rxn_rates[73] = C[11] * C[6] * kf;
+  fwd_rxn_rates[69] = C[8] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-2.4825978829999995e+00 + 2.2661471999999971e-01 * logT + T * (-1.1194073450000001e-03 + T * (1.0712774283333334e-06 + T * (-4.5511600083333338e-10 + 7.2117685999999987e-14 * T))) - -2.4154776719999994e+04 / T);
   } else {
@@ -892,11 +844,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[73] = C[16] * C[4] * kf / Kc;
+  rev_rxn_rates[69] = C[13] * C[2] * kf / Kc;
 
-  //rxn 74
+  //rxn 70
   kf = exp(1.5671808548329901e+01 + 1.0 * logT - (3.1602188673155420e+03 / T));
-  fwd_rxn_rates[74] = C[11] * C[3] * kf;
+  fwd_rxn_rates[70] = C[8] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (-4.6234507599999990e+00 + 1.1044096999999993e+00 * logT + T * (-2.4612329600000003e-03 + T * (1.3066778083333336e-06 + T * (-4.8227718499999998e-10 + 8.3724003999999982e-14 * T))) - -1.6073335599999999e+04 / T);
   } else {
@@ -904,11 +856,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[74] = C[16] * C[5] * kf / Kc;
+  rev_rxn_rates[70] = C[13] * C[3] * kf / Kc;
 
-  //rxn 75
+  //rxn 71
   kf = exp(2.2963975526222370e+01 + 0.14 * logT);
-  fwd_rxn_rates[75] = C[11] * C[16] * kf;
+  fwd_rxn_rates[71] = C[8] * C[13] * kf;
   if (T <= 1000.0) {
     Kc = (-1.4357883900000008e+00 + -1.9326579999999538e-02 * logT + T * (6.1845070600000020e-04 + T * (-8.1737339550000011e-07 + T * (4.7064957916666673e-10 + -1.0508506899999999e-13 * T))) - -3.7874454719999994e+04 / T);
   } else {
@@ -916,11 +868,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[75] = C[32] * C[5] * kf / Kc;
+  rev_rxn_rates[71] = C[25] * C[3] * kf / Kc;
 
-  //rxn 76
+  //rxn 72
   kf = 1000000000.0;
-  fwd_rxn_rates[76] = C[15] * kf;
+  fwd_rxn_rates[72] = C[12] * kf;
   if (T <= 1000.0) {
     Kc = (-2.5409890500000003e+00 + 7.7625896000000072e-01 * logT + T * (1.6636609959999999e-03 + T * (-2.3803115555000001e-06 + T * (1.3134733766666666e-09 + -2.9095231600000000e-13 * T))) - -4.4056955799999996e+03 / T);
   } else {
@@ -928,11 +880,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[76] = C[32] * C[4] * kf / Kc;
+  rev_rxn_rates[72] = C[25] * C[2] * kf / Kc;
 
-  //rxn 77
+  //rxn 73
   kf = 100000000000.0;
-  fwd_rxn_rates[77] = C[15] * C[4] * kf;
+  fwd_rxn_rates[73] = C[12] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (1.6910557680000000e+00 + -8.7940991999999962e-01 * logT + T * (5.6539213709999991e-03 + T * (-5.6266700555000003e-06 + T * (2.9932408266666665e-09 + -6.5975819650000009e-13 * T))) - -5.6270950752999997e+04 / T);
   } else {
@@ -940,11 +892,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[77] = C[32] * C[2] * kf / Kc;
+  rev_rxn_rates[73] = C[25] * C[0] * kf / Kc;
 
-  //rxn 78
+  //rxn 74
   kf = exp(2.5970289909106896e+01 - 0.274 * logT - (-1.1070830426901580e+01 / T));
-  fwd_rxn_rates[78] = C[15] * C[5] * kf;
+  fwd_rxn_rates[74] = C[12] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (7.6397212900000007e+00 + -2.6658632199999999e+00 * logT + T * (9.0175149099999997e-03 + T * (-5.6822088100000000e-06 + T * (2.4280350783333335e-09 + -4.7268059399999999e-13 * T))) - -2.3739203900000000e+04 / T);
   } else {
@@ -952,11 +904,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[78] = C[17] * C[4] * kf / Kc;
+  rev_rxn_rates[74] = C[14] * C[2] * kf / Kc;
 
-  //rxn 79
+  //rxn 75
   kf = exp(2.3208172486734412e+01 + 0.145 * logT - (-1.0919864557443832e+02 / T));
-  fwd_rxn_rates[79] = C[15] * C[5] * kf;
+  fwd_rxn_rates[75] = C[12] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-2.5739552770000005e+00 + 9.9976099999999679e-02 * logT + T * (2.1027871409999999e-03 + T * (-2.7180488271666667e-06 + T * (1.5008819750000001e-09 + -3.2842555049999999e-13 * T))) - -5.5632716419999997e+04 / T);
   } else {
@@ -964,11 +916,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[79] = C[32] * C[6] * kf / Kc;
+  rev_rxn_rates[75] = C[25] * C[4] * kf / Kc;
 
-  //rxn 80
+  //rxn 76
   kf = exp(2.0069339369539748e+01 + 0.381 * logT - (-2.0581680202739756e+02 / T));
-  fwd_rxn_rates[80] = C[15] * C[5] * kf;
+  fwd_rxn_rates[76] = C[12] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-1.4970272499999995e+00 + 2.8853590999999978e-01 * logT + T * (1.2011081499999998e-03 + T * (-1.8111158733333331e-06 + T * (1.0496299658333334e-09 + -2.3765270499999999e-13 * T))) - -6.0035666600000040e+03 / T);
   } else {
@@ -976,11 +928,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[80] = C[14] * C[16] * kf / Kc;
+  rev_rxn_rates[76] = C[11] * C[13] * kf / Kc;
 
-  //rxn 81
+  //rxn 77
   kf = 50000000000.0;
-  fwd_rxn_rates[81] = C[15] * C[6] * kf;
+  fwd_rxn_rates[77] = C[12] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-5.4596769299999970e-01 + -5.1709007999999912e-01 * logT + T * (1.8459934210000000e-03 + T * (-2.0630280104999999e-06 + T * (1.1794097233333333e-09 + -2.7051366700000003e-13 * T))) - -6.3541979939999997e+04 / T);
   } else {
@@ -988,11 +940,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[81] = C[32] * C[8] * kf / Kc;
+  rev_rxn_rates[77] = C[25] * C[6] * kf / Kc;
 
-  //rxn 82
+  //rxn 78
   kf = exp(2.7051202620675607e+01 - 0.385 * logT - (-6.5418543431691161e+00 / T));
-  fwd_rxn_rates[82] = C[15] * C[3] * kf;
+  fwd_rxn_rates[78] = C[12] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (-5.4661440000000283e-02 + -2.0439932999999888e-01 * logT + T * (7.8746759099999983e-04 + T * (-4.9514680716666643e-07 + T * (9.7215350833333459e-11 + 1.1473878000000072e-14 * T))) - -2.8551393534999999e+04 / T);
   } else {
@@ -1000,11 +952,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[82] = C[32] * C[7] * kf / Kc;
+  rev_rxn_rates[78] = C[25] * C[5] * kf / Kc;
 
-  //rxn 83
+  //rxn 79
   kf = 50000000000.0;
-  fwd_rxn_rates[83] = C[15] * C[14] * kf;
+  fwd_rxn_rates[79] = C[12] * C[11] * kf;
   if (T <= 1000.0) {
     Kc = (-2.2321642444000007e+00 + -2.4711249999999296e-02 * logT + T * (4.8474900100000013e-04 + T * (-1.0192069521666666e-06 + T * (6.6924451250000005e-10 + -1.6137188400000001e-13 * T))) - -5.0486189079999996e+04 / T);
   } else {
@@ -1012,11 +964,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[83] = C[32] * C[13] * kf / Kc;
+  rev_rxn_rates[79] = C[25] * C[10] * kf / Kc;
 
-  //rxn 84
+  //rxn 80
   kf = 50000000000.0;
-  fwd_rxn_rates[84] = C[15] * C[13] * kf;
+  fwd_rxn_rates[80] = C[12] * C[10] * kf;
   if (T <= 1000.0) {
     Kc = (-1.1171069555999988e+00 + -4.5496968999999954e-01 * logT + T * (-1.5723368399999976e-04 + T * (3.0286287833333109e-08 + T * (6.0479572500000042e-11 + -2.3997012500000003e-14 * T))) - -5.8086029420000006e+04 / T);
   } else {
@@ -1024,11 +976,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[84] = C[32] * C[12] * kf / Kc;
+  rev_rxn_rates[80] = C[25] * C[9] * kf / Kc;
 
-  //rxn 85
+  //rxn 81
   kf = 50000000000.0;
-  fwd_rxn_rates[85] = C[15] * C[16] * kf;
+  fwd_rxn_rates[81] = C[12] * C[13] * kf;
   if (T <= 1000.0) {
     Kc = (-4.4841413000000063e-01 + -4.0708425999999864e-01 * logT + T * (1.1408847310000003e-03 + T * (-1.1343867055000004e-06 + T * (6.5950942416666667e-10 + -1.5332067449999995e-13 * T))) - -2.8106154920000001e+04 / T);
   } else {
@@ -1036,167 +988,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[85] = C[32] * C[18] * kf / Kc;
+  rev_rxn_rates[81] = C[25] * C[15] * kf / Kc;
 
-  //rxn 86
-  kf = exp(4.6388174096502127e+01 - 1.31 * logT - (3.2246309716175150e+04 / T));
-  fwd_rxn_rates[86] = C[22] * kf;
-  if (T <= 1000.0) {
-    Kc = (-1.3101216191399999e+01 + 3.9738034799999999e+00 * logT + T * (-5.3219057899999995e-03 + T * (3.9117811666666912e-08 + T * (8.7821589916666664e-10 + -2.9530356999999996e-13 * T))) - 3.1449521869999997e+04 / T);
-  } else {
-    Kc = (8.4090028699999984e+00 + 5.5003580000000030e-01 * logT + T * (-1.7864178100000000e-03 + T * (2.4157321850000004e-07 + T * (-2.0543208508333333e-11 + 8.5485748149999999e-16 * T))) - 3.2444534369999998e+04 / T);
-  }
-
-  Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[86] = C[13] * C[6] * kf / Kc;
-
-  //rxn 87
-  kf = exp(1.3081541382884074e+01 + 1.5 * logT - (3.1446190608049078e+03 / T));
-  fwd_rxn_rates[87] = C[22] * C[4] * kf;
-  if (T <= 1000.0) {
-    Kc = (-1.3388941220000001e+00 + 4.4400996000000070e-01 * logT + T * (1.1098848259999995e-03 + T * (-2.5634109500000000e-06 + T * (1.6838270250000000e-09 + -4.2242456650000006e-13 * T))) - -6.9936124630000013e+03 / T);
-  } else {
-    Kc = (-1.9156419400000004e+00 + 6.6838765000000055e-01 * logT + T * (-1.2567018619999999e-03 + T * (1.7411283433333338e-07 + T * (-1.4060270466666666e-11 + 4.9045919500000013e-16 * T))) - -6.9244492910000008e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[87] = C[21] * C[2] * kf / Kc;
-
-  //rxn 88
-  kf = exp(1.2388394202324129e+01 + 1.5 * logT - (2.5498135351413775e+03 / T));
-  fwd_rxn_rates[88] = C[22] * C[4] * kf;
-  if (T <= 1000.0) {
-    Kc = (-3.5825082219999995e+00 + 7.1111712000000082e-01 * logT + T * (1.0014919649999994e-03 + T * (-3.4360070133333330e-06 + T * (2.4665056250000003e-09 + -6.4695394450000002e-13 * T))) - -1.3324634203000000e+04 / T);
-  } else {
-    Kc = (2.6065124700000006e+00 + -1.1106542000000008e-01 * logT + T * (-8.0398557200000000e-04 + T * (8.8316571000000041e-08 + T * (-4.7114525499999959e-12 + 1.3610627500000004e-16 * T))) - -1.2920330270999999e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[88] = C[20] * C[2] * kf / Kc;
-
-  //rxn 89
-  kf = exp(1.2706847933442663e+01 + 1.5 * logT - (1.9449436181806641e+03 / T));
-  fwd_rxn_rates[89] = C[22] * C[5] * kf;
-  if (T <= 1000.0) {
-    Kc = (-5.6039051670000006e+00 + 1.4233959800000000e+00 * logT + T * (-2.4412494039999996e-03 + T * (3.4521027833333320e-07 + T * (1.9146817333333312e-10 + -9.1091920500000011e-14 * T))) - -6.3553781299999973e+03 / T);
-  } else {
-    Kc = (-2.7737180000000095e-01 + 5.3041526000000028e-01 * logT + T * (-1.1026413056999999e-03 + T * (1.5021157603333333e-07 + T * (-1.2251519379166666e-11 + 4.2773217470000010e-16 * T))) - -6.1659276299999983e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[89] = C[21] * C[6] * kf / Kc;
-
-  //rxn 90
-  kf = exp(1.2043553716032399e+01 + 1.5 * logT - (1.5146908902260798e+03 / T));
-  fwd_rxn_rates[90] = C[22] * C[5] * kf;
-  if (T <= 1000.0) {
-    Kc = (-7.8475192669999991e+00 + 1.6905031400000001e+00 * logT + T * (-2.5496422649999998e-03 + T * (-5.2738578499999981e-07 + T * (9.7414677333333343e-10 + -3.1562129849999996e-13 * T))) - -1.2686399870000001e+04 / T);
-  } else {
-    Kc = (4.2447826099999997e+00 + -2.4903781000000036e-01 * logT + T * (-6.4992501569999998e-04 + T * (6.4415312700000010e-08 + T * (-2.9027014624999961e-12 + 7.3379254700000088e-17 * T))) - -1.2161808610000000e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[90] = C[20] * C[6] * kf / Kc;
-
-  //rxn 91
-  kf = exp(2.7080502011022101e+00 + 2.61 * logT - (-1.7798876009068586e+03 / T));
-  fwd_rxn_rates[91] = C[22] * C[6] * kf;
-  if (T <= 1000.0) {
-    Kc = (-3.5759175829999998e+00 + 8.0632980000000032e-01 * logT + T * (-2.6980431240000002e-03 + T * (1.0002310950000000e-06 + T * (-1.3000407833333353e-10 + -3.3180036999999991e-14 * T))) - -1.4264641650000001e+04 / T);
-  } else {
-    Kc = (2.9396452000000073e-01 + 7.4030470000000292e-02 * logT + T * (-7.3712152000000029e-04 + T * (1.1855178149999999e-07 + T * (-1.0980803824999995e-11 + 4.3259442500000009e-16 * T))) - -1.4221425789999998e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[91] = C[21] * C[8] * kf / Kc;
-
-  //rxn 92
-  kf = exp(5.0106352940962555e+00 + 2.28 * logT - (-6.5217255605747494e+02 / T));
-  fwd_rxn_rates[92] = C[22] * C[6] * kf;
-  if (T <= 1000.0) {
-    Kc = (-5.8195316829999992e+00 + 1.0734369600000004e+00 * logT + T * (-2.8064359849999999e-03 + T * (1.2763503166666668e-07 + T * (6.5267452166666663e-10 + -2.5770941500000001e-13 * T))) - -2.0595663389999994e+04 / T);
-  } else {
-    Kc = (4.8161189300000018e+00 + -7.0542260000000034e-01 * logT + T * (-2.8440523000000000e-04 + T * (3.2755518166666713e-08 + T * (-1.6319859083333291e-12 + 7.8241505000000065e-17 * T))) - -2.0217306769999999e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[92] = C[20] * C[8] * kf / Kc;
-
-  //rxn 93
-  kf = exp(-9.1150301921718579e+00 + 4.0 * logT - (-4.8812297791338786e+01 / T));
-  fwd_rxn_rates[93] = C[22] * C[13] * kf;
-  if (T <= 1000.0) {
-    Kc = (-4.1470568455999999e+00 + 8.6845018999999990e-01 * logT + T * (-4.7012702290000000e-03 + T * (3.0935453933333336e-06 + T * (-1.2489342291666666e-09 + 2.1333661749999998e-13 * T))) - -8.8086911299999992e+03 / T);
-  } else {
-    Kc = (1.2819206600000008e+00 + -2.6144185000000020e-01 * logT + T * (-3.3467363500000046e-04 + T * (4.5084393333333278e-08 + T * (-2.6784349166666638e-12 + -4.3615991499999821e-17 * T))) - -8.8337201699999987e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[93] = C[21] * C[12] * kf / Kc;
-
-  //rxn 94
-  kf = exp(-4.6564634803756420e+00 + 3.42 * logT - (-5.0976141920233187e+02 / T));
-  fwd_rxn_rates[94] = C[22] * C[13] * kf;
-  if (T <= 1000.0) {
-    Kc = (-6.3906709455999984e+00 + 1.1355573500000000e+00 * logT + T * (-4.8096630900000001e-03 + T * (2.2209493300000002e-06 + T * (-4.6625562916666658e-10 + -1.1192760499999930e-14 * T))) - -1.5139712869999999e+04 / T);
-  } else {
-    Kc = (5.8040750700000014e+00 + -1.0408949199999999e+00 * logT + T * (1.1804265499999983e-04 + T * (-4.0711870000000006e-08 + T * (6.6703830000000026e-12 + -3.9796891149999982e-16 * T))) - -1.4829601149999999e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[94] = C[20] * C[12] * kf / Kc;
-
-  //rxn 95
-  kf = exp(-1.2750799820971846e+01 + 4.4 * logT - (7.8703539943973055e+02 / T));
-  fwd_rxn_rates[95] = C[22] * C[14] * kf;
-  if (T <= 1000.0) {
-    Kc = (-5.2621141344000000e+00 + 1.2987086300000001e+00 * logT + T * (-4.0592875440000004e-03 + T * (2.0440521533333333e-06 + T * (-6.4016928916666683e-10 + 7.5961745999999962e-14 * T))) - -1.2088507899999968e+03 / T);
-  } else {
-    Kc = (1.4507704399999990e+00 + 4.4425950000000380e-02 * logT + T * (-5.9651733000000006e-04 + T * (8.8858117166666678e-08 + T * (-9.4283477666666661e-12 + 5.1250449650000010e-16 * T))) - -1.0973761099999974e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[95] = C[21] * C[13] * kf / Kc;
-
-  //rxn 96
-  kf = exp(-1.3410045449856110e+01 + 4.6 * logT - (1.2198042252186106e+03 / T));
-  fwd_rxn_rates[96] = C[22] * C[14] * kf;
-  if (T <= 1000.0) {
-    Kc = (-7.5057282343999994e+00 + 1.5658157900000003e+00 * logT + T * (-4.1676804050000005e-03 + T * (1.1714560900000001e-06 + T * (1.4250931083333340e-10 + -1.4856763199999999e-13 * T))) - -7.5398725299999933e+03 / T);
-  } else {
-    Kc = (5.9729248500000001e+00 + -7.3502712000000026e-01 * logT + T * (-1.4380103999999977e-04 + T * (3.0618538333332885e-09 + T * (-7.9529849999999677e-14 + 1.5815157649999991e-16 * T))) - -7.0932570899999992e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[96] = C[20] * C[13] * kf / Kc;
-
-  //rxn 97
-  kf = exp(3.3672958299864741e+00 + 2.69 * logT - (4.8092693813590186e+03 / T));
-  fwd_rxn_rates[97] = C[22] * C[7] * kf;
-  if (T <= 1000.0) {
-    Kc = (-3.0805385199999997e+00 + 6.1303225999999977e-01 * logT + T * (-9.2951037499999995e-04 + T * (9.6637849999999504e-08 + T * (1.3740099166666680e-10 + -6.3756219500000038e-14 * T))) - 1.4272205250000011e+03 / T);
-  } else {
-    Kc = (-3.6053220560000008e+00 + 6.4300754000000016e-01 * logT + T * (-5.8396399499999988e-04 + T * (3.9818225999999992e-08 + T * (-4.4897015833333267e-13 + -5.3757370249999872e-17 * T))) - 1.3240781060999982e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[97] = C[21] * C[9] * kf / Kc;
-
-  //rxn 98
-  kf = exp(2.6390573296152584e+00 + 2.69 * logT - (3.2296631672661065e+03 / T));
-  fwd_rxn_rates[98] = C[22] * C[7] * kf;
-  if (T <= 1000.0) {
-    Kc = (-5.3241526199999996e+00 + 8.8013941999999989e-01 * logT + T * (-1.0379032360000001e-03 + T * (-7.7595821333333393e-07 + T * (9.2007959166666701e-10 + -2.8828559750000004e-13 * T))) - -4.9038012149999986e+03 / T);
-  } else {
-    Kc = (9.1683235400000029e-01 + -1.3644552999999959e-01 * logT + T * (-1.3124770500000046e-04 + T * (-4.5978037333333291e-08 + T * (8.8998477583333331e-12 + -4.0811029025000007e-16 * T))) - -4.6718028739000019e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[98] = C[20] * C[9] * kf / Kc;
-
-  //rxn 99
+  //rxn 82
   kf = exp(4.9383906370056117e+01 - 2.83 * logT - (3.2666498052832550e+04 / T));
-  fwd_rxn_rates[99] = C[20] * kf;
+  fwd_rxn_rates[82] = C[17] * kf;
   if (T <= 1000.0) {
     Kc = (-5.5936843300000003e+00 + 1.9583088200000001e+00 * logT + T * (-2.9523068549999996e-03 + T * (1.4330417133333332e-06 + T * (-5.8017953333333338e-10 + 1.1479884750000005e-13 * T))) - 3.0606484140000000e+04 / T);
   } else {
@@ -1204,23 +1000,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[99] = C[18] * C[4] * kf / Kc;
+  rev_rxn_rates[82] = C[15] * C[2] * kf / Kc;
 
-  //rxn 100
-  kf = exp(5.9962522597649510e+01 - 4.0 * logT - (2.2141660853803161e+04 / T));
-  fwd_rxn_rates[100] = C[20] * kf;
-  if (T <= 1000.0) {
-    Kc = (2.2436140999999998e+00 + -2.6710716000000012e-01 * logT + T * (1.0839286099999999e-04 + T * (8.7259606333333322e-07 + T * (-7.8267860000000010e-10 + 2.2452937799999995e-13 * T))) - 6.3310217400000001e+03 / T);
-  } else {
-    Kc = (-4.5221544100000006e+00 + 7.7945307000000019e-01 * logT + T * (-4.5271628999999985e-04 + T * (8.5796263333333336e-08 + T * (-9.3488179166666664e-12 + 3.5435292000000009e-16 * T))) - 5.9958809799999999e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[100] = C[21] * kf / Kc;
-
-  //rxn 101
+  //rxn 83
   kf = exp(5.6604907035049649e+01 - 4.29 * logT - (3.0344139761007515e+04 / T));
-  fwd_rxn_rates[101] = C[20] * kf;
+  fwd_rxn_rates[83] = C[17] * kf;
   if (T <= 1000.0) {
     Kc = (-3.4542144319999992e+00 + 1.4859831599999991e+00 * logT + T * (1.5607297849999995e-03 + T * (-3.0592416366666663e-06 + T * (1.7535518691666667e-09 + -3.9163867450000004e-13 * T))) - 2.4416883070000003e+03 / T);
   } else {
@@ -1228,11 +1012,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[101] = C[2] * C[16] * kf / Kc;
+  rev_rxn_rates[83] = C[0] * C[13] * kf / Kc;
 
-  //rxn 102
+  //rxn 84
   kf = exp(1.0308952660644293e+01 + 2.0 * logT - (1.0064391297183255e+03 / T));
-  fwd_rxn_rates[102] = C[20] * C[4] * kf;
+  fwd_rxn_rates[84] = C[17] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (-1.3616395120000000e+00 + 3.0263993999999972e-01 * logT + T * (1.0379535199999998e-03 + T * (-1.8133167866666666e-06 + T * (1.0995879166666666e-09 + -2.5400703299999999e-13 * T))) - -2.1258771032999997e+04 / T);
   } else {
@@ -1240,11 +1024,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[102] = C[18] * C[2] * kf / Kc;
+  rev_rxn_rates[84] = C[15] * C[0] * kf / Kc;
 
-  //rxn 103
+  //rxn 85
   kf = 50000000000.0;
-  fwd_rxn_rates[103] = C[20] * C[4] * kf;
+  fwd_rxn_rates[85] = C[17] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (-5.2866631513999991e+00 + 1.6070174799999997e+00 * logT + T * (-2.3331373799999997e-03 + T * (2.2876632500000017e-07 + T * (9.1477724166666588e-11 + -1.7155505999999988e-14 * T))) - -7.0910991000000031e+03 / T);
   } else {
@@ -1252,11 +1036,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[103] = C[13] * C[6] * kf / Kc;
+  rev_rxn_rates[85] = C[10] * C[4] * kf / Kc;
 
-  //rxn 104
+  //rxn 86
   kf = exp(1.0308952660644293e+01 + 2.0 * logT - (1.0064391297183255e+03 / T));
-  fwd_rxn_rates[104] = C[20] * C[5] * kf;
+  fwd_rxn_rates[86] = C[17] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-5.6266505569999996e+00 + 1.2820259599999999e+00 * logT + T * (-2.5131807099999992e-03 + T * (1.0953044416666666e-06 + T * (-3.9277093500000001e-10 + 7.7325613000000061e-14 * T))) - -2.0620536699999997e+04 / T);
   } else {
@@ -1264,11 +1048,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[104] = C[18] * C[6] * kf / Kc;
+  rev_rxn_rates[86] = C[15] * C[4] * kf / Kc;
 
-  //rxn 105
+  //rxn 87
   kf = 100000000000.0;
-  fwd_rxn_rates[105] = C[20] * C[6] * kf;
+  fwd_rxn_rates[87] = C[17] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-3.5986629729999997e+00 + 6.6495978000000022e-01 * logT + T * (-2.7699744300000002e-03 + T * (1.7503252583333337e-06 + T * (-7.1424318666666701e-10 + 1.3523749650000007e-13 * T))) - -2.8529800219999997e+04 / T);
   } else {
@@ -1276,11 +1060,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[105] = C[18] * C[8] * kf / Kc;
+  rev_rxn_rates[87] = C[15] * C[6] * kf / Kc;
 
-  //rxn 106
+  //rxn 88
   kf = exp(3.9908341858524357e+00 + 2.16 * logT - (-1.8100807747984084e+03 / T));
-  fwd_rxn_rates[106] = C[20] * C[7] * kf;
+  fwd_rxn_rates[88] = C[17] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (-3.1032839099999991e+00 + 4.7166223999999968e-01 * logT + T * (-1.0014416809999995e-03 + T * (8.4673201333333315e-07 + T * (-4.4683811666666684e-10 + 1.0466131399999998e-13 * T))) - -1.2837938044999999e+04 / T);
   } else {
@@ -1288,11 +1072,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[106] = C[18] * C[9] * kf / Kc;
+  rev_rxn_rates[88] = C[15] * C[7] * kf / Kc;
 
-  //rxn 107
+  //rxn 89
   kf = exp(5.1532915944977793e+00 + 2.19 * logT - (9.0629843631135209e+03 / T));
-  fwd_rxn_rates[107] = C[20] * C[3] * kf;
+  fwd_rxn_rates[89] = C[17] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (-3.1073567199999999e+00 + 9.7765053000000046e-01 * logT + T * (-3.8285002600000001e-03 + T * (3.3182064616666677e-06 + T * (-1.7964375591666672e-09 + 4.1722504150000017e-13 * T))) - 6.4607861850000008e+03 / T);
   } else {
@@ -1300,11 +1084,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[107] = C[18] * C[7] * kf / Kc;
+  rev_rxn_rates[89] = C[15] * C[5] * kf / Kc;
 
-  //rxn 108
+  //rxn 90
   kf = exp(2.1821878125614521e+01 - (5.0321956485916274e+02 / T));
-  fwd_rxn_rates[108] = C[20] * C[13] * kf;
+  fwd_rxn_rates[90] = C[17] * C[10] * kf;
   if (T <= 1000.0) {
     Kc = (-4.1698022355999989e+00 + 7.2708016999999980e-01 * logT + T * (-4.7732015349999995e-03 + T * (3.8436395566666664e-06 + T * (-1.8331733375000000e-09 + 3.8175415100000011e-13 * T))) - -2.3073849699999999e+04 / T);
   } else {
@@ -1312,11 +1096,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[108] = C[18] * C[12] * kf / Kc;
+  rev_rxn_rates[90] = C[15] * C[9] * kf / Kc;
 
-  //rxn 109
+  //rxn 91
   kf = exp(2.9957322735539909e+00 + 2.0 * logT - (6.5418543431691160e+03 / T));
-  fwd_rxn_rates[109] = C[20] * C[16] * kf;
+  fwd_rxn_rates[91] = C[17] * C[13] * kf;
   if (T <= 1000.0) {
     Kc = (-3.5011094099999998e+00 + 7.7496560000000070e-01 * logT + T * (-3.4750831199999994e-03 + T * (2.6789665633333329e-06 + T * (-1.2341434858333333e-09 + 2.5243048900000010e-13 * T))) - 6.9060247999999992e+03 / T);
   } else {
@@ -1324,11 +1108,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[109] = C[18] * C[18] * kf / Kc;
+  rev_rxn_rates[91] = C[15] * C[15] * kf / Kc;
 
-  //rxn 110
+  //rxn 92
   kf = exp(-4.8345833503158966e+00 + 2.95 * logT - (-1.6571020270812230e+03 / T));
-  fwd_rxn_rates[110] = C[20] * C[23] * kf;
+  fwd_rxn_rates[92] = C[17] * C[18] * kf;
   if (T <= 1000.0) {
     Kc = (1.5928792299999994e+00 + -2.7156322999999949e-01 * logT + T * (1.9042979750000001e-03 + T * (-1.0665954266666670e-06 + T * (3.3209370999999982e-10 + -3.3388260499999941e-14 * T))) - -8.5468665600000004e+03 / T);
   } else {
@@ -1336,143 +1120,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[110] = C[24] * C[18] * kf / Kc;
+  rev_rxn_rates[92] = C[19] * C[15] * kf / Kc;
 
-  //rxn 111
-  kf = exp(4.9047434133434905e+01 - 2.84 * logT - (2.9656741835409899e+04 / T));
-  fwd_rxn_rates[111] = C[21] * kf;
-  if (T <= 1000.0) {
-    Kc = (-7.8372984299999997e+00 + 2.2254159800000002e+00 * logT + T * (-3.0606997159999998e-03 + T * (5.6044564999999996e-07 + T * (2.0249906666666672e-10 + -1.0973053049999990e-13 * T))) - 2.4275462399999997e+04 / T);
-  } else {
-    Kc = (2.5271416800000002e+00 + 5.4933431999999982e-01 * logT + T * (-9.0874190500000009e-04 + T * (2.0678326733333332e-07 + T * (-2.4361004575000000e-11 + 1.0925249189999998e-15 * T))) - 2.4744199000000001e+04 / T);
-  }
-
-  Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[111] = C[18] * C[4] * kf / Kc;
-
-  //rxn 112
-  kf = 40000000000.0;
-  fwd_rxn_rates[112] = C[21] * C[4] * kf;
-  if (T <= 1000.0) {
-    Kc = (-7.5302772513999994e+00 + 1.8741246399999998e+00 * logT + T * (-2.4415302409999998e-03 + T * (-6.4382973833333305e-07 + T * (8.7415632416666669e-10 + -2.4168488399999994e-13 * T))) - -1.3422120840000001e+04 / T);
-  } else {
-    Kc = (1.2260816109999999e+01 + -1.1854860999999999e+00 * logT + T * (-1.1641193500000003e-04 + T * (4.3059990166666656e-08 + T * (-5.1987679250000009e-12 + 3.2995804649999988e-16 * T))) - -1.2391401920000002e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[112] = C[13] * C[6] * kf / Kc;
-
-  //rxn 113
-  kf = exp(1.3081541382884074e+01 + 1.5 * logT - (1.9021699551676352e+02 / T));
-  fwd_rxn_rates[113] = C[21] * C[4] * kf;
-  if (T <= 1000.0) {
-    Kc = (-3.6052536119999994e+00 + 5.6974709999999984e-01 * logT + T * (9.2956065899999982e-04 + T * (-2.6859128499999998e-06 + T * (1.8822665166666666e-09 + -4.7853641099999989e-13 * T))) - -2.7589792773000001e+04 / T);
-  } else {
-    Kc = (4.4633129800000013e+00 + -5.1779992999999980e-01 * logT + T * (-4.9543789200000017e-04 + T * (1.8238287333333331e-07 + T * (-2.3076834458333333e-11 + 1.0580846790000001e-15 * T))) - -2.7016186581000002e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[113] = C[18] * C[2] * kf / Kc;
-
-  //rxn 114
-  kf = 70000000000.0;
-  fwd_rxn_rates[114] = C[21] * C[5] * kf;
-  if (T <= 1000.0) {
-    Kc = (-7.8702646569999999e+00 + 1.5491331200000000e+00 * logT + T * (-2.6215735709999993e-03 + T * (2.2270837833333320e-07 + T * (3.8990766500000009e-10 + -1.4720376499999989e-13 * T))) - -2.6951558440000001e+04 / T);
-  } else {
-    Kc = (6.1015831199999990e+00 + -6.5577232000000008e-01 * logT + T * (-3.4137733569999999e-04 + T * (1.5848161503333332e-07 + T * (-2.1268083370833334e-11 + 9.9535765869999992e-16 * T))) - -2.6257664919999996e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[114] = C[18] * C[6] * kf / Kc;
-
-  //rxn 115
-  kf = exp(1.2706847933442663e+01 + 1.5 * logT - (-1.8015260421958027e+02 / T));
-  fwd_rxn_rates[115] = C[21] * C[5] * kf;
-  if (T <= 1000.0) {
-    Kc = (-7.8702646569999999e+00 + 1.5491331200000000e+00 * logT + T * (-2.6215735709999993e-03 + T * (2.2270837833333320e-07 + T * (3.8990766500000009e-10 + -1.4720376499999989e-13 * T))) - -2.6951558440000001e+04 / T);
-  } else {
-    Kc = (6.1015831199999990e+00 + -6.5577232000000008e-01 * logT + T * (-3.4137733569999999e-04 + T * (1.5848161503333332e-07 + T * (-2.1268083370833334e-11 + 9.9535765869999992e-16 * T))) - -2.6257664919999996e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[115] = C[18] * C[6] * kf / Kc;
-
-  //rxn 116
-  kf = exp(7.7832240163360371e+00 + 2.0 * logT - (-5.9983772131212197e+02 / T));
-  fwd_rxn_rates[116] = C[21] * C[6] * kf;
-  if (T <= 1000.0) {
-    Kc = (-5.8422770730000000e+00 + 9.3206694000000034e-01 * logT + T * (-2.8783672910000003e-03 + T * (8.7772919500000011e-07 + T * (6.8435413333333243e-11 + -8.9291881499999870e-14 * T))) - -3.4860821960000001e+04 / T);
-  } else {
-    Kc = (6.6729194400000011e+00 + -1.1121571100000005e+00 * logT + T * (2.4142450000000045e-05 + T * (1.2682182049999998e-07 + T * (-1.9997367816666666e-11 + 1.0002199089999998e-15 * T))) - -3.4313163080000006e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[116] = C[18] * C[8] * kf / Kc;
-
-  //rxn 117
-  kf = exp(3.3672958299864741e+00 + 2.69 * logT - (-8.0515130377466039e+02 / T));
-  fwd_rxn_rates[117] = C[21] * C[7] * kf;
-  if (T <= 1000.0) {
-    Kc = (-5.3468980099999985e+00 + 7.3876939999999980e-01 * logT + T * (-1.1098345419999996e-03 + T * (-2.5864050000000286e-08 + T * (3.3584048333333337e-10 + -1.1986806399999992e-13 * T))) - -1.9168959784999999e+04 / T);
-  } else {
-    Kc = (2.7736328640000005e+00 + -5.4318004000000020e-01 * logT + T * (1.7729997500000002e-04 + T * (4.8088264999999982e-08 + T * (-9.4655341500000011e-12 + 5.1386811374999995e-16 * T))) - -1.8767659183899999e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[117] = C[18] * C[9] * kf / Kc;
-
-  //rxn 118
-  kf = exp(3.3672958299864741e+00 + 2.69 * logT - (-8.0515130377466039e+02 / T));
-  fwd_rxn_rates[118] = C[21] * C[7] * kf;
-  if (T <= 1000.0) {
-    Kc = (3.0846113300000004e+00 + -1.1190205500000010e+00 * logT + T * (3.7565689540000006e-03 + T * (-2.5681122983333337e-06 + T * (1.2121984508333333e-09 + -2.4880750800000005e-13 * T))) - -2.0725944755000000e+04 / T);
-  } else {
-    Kc = (1.8741432200000010e+00 + -7.4684866000000039e-01 * logT + T * (1.0576006455000004e-03 + T * (-1.6432528516666666e-07 + T * (1.5437277133333332e-11 + -5.9866899825000005e-16 * T))) - -2.0609274153899998e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[118] = C[22] * C[3] * kf / Kc;
-
-  //rxn 119
-  kf = exp(2.1821878125614521e+01 - (1.2580489121479070e+04 / T));
-  fwd_rxn_rates[119] = C[21] * C[3] * kf;
-  if (T <= 1000.0) {
-    Kc = (-5.3509708199999997e+00 + 1.2447576900000006e+00 * logT + T * (-3.9368931210000003e-03 + T * (2.4456103983333343e-06 + T * (-1.0137589591666668e-09 + 1.9269566350000017e-13 * T))) - 1.2976444500000093e+02 / T);
-  } else {
-    Kc = (4.5048116999999994e+00 + -4.3933891999999997e-01 * logT + T * (-2.9633667550000019e-04 + T * (1.7259532416666665e-07 + T * (-2.4453841125000000e-11 + 1.1662944822499998e-15 * T))) - 5.1753686390000098e+02 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[119] = C[18] * C[7] * kf / Kc;
-
-  //rxn 120
-  kf = exp(7.4955419438842563e+00 + 1.94 * logT - (-5.7970893871775547e+02 / T));
-  fwd_rxn_rates[120] = C[21] * C[13] * kf;
-  if (T <= 1000.0) {
-    Kc = (-6.4134163355999991e+00 + 9.9418732999999992e-01 * logT + T * (-4.8815943959999997e-03 + T * (2.9710434933333330e-06 + T * (-1.0504947374999998e-09 + 1.5722477300000010e-13 * T))) - -2.9404871439999999e+04 / T);
-  } else {
-    Kc = (7.6608755800000008e+00 + -1.4476294300000001e+00 * logT + T * (4.2659033499999987e-04 + T * (5.3354432333333267e-08 + T * (-1.1694998908333332e-11 + 5.2400949250000000e-16 * T))) - -2.8925457459999998e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[120] = C[12] * C[18] * kf / Kc;
-
-  //rxn 121
-  kf = exp(2.0212440213180422e+01 - (1.0064391297183255e+03 / T));
-  fwd_rxn_rates[121] = C[21] * C[23] * kf;
-  if (T <= 1000.0) {
-    Kc = (-6.5073487000000041e-01 + -4.4560699999993680e-03 * logT + T * (1.7959051140000004e-03 + T * (-1.9391914900000003e-06 + T * (1.1147723100000000e-09 + -2.5791763849999989e-13 * T))) - -1.4877888300000001e+04 / T);
-  } else {
-    Kc = (6.2877978999999939e-01 + -4.3592509999999862e-02 * logT + T * (-1.6912688500000006e-04 + T * (1.2930579899999999e-07 + T * (-2.0242863241666662e-11 + 1.0022959239999998e-15 * T))) - -1.4641348699999999e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[121] = C[24] * C[18] * kf / Kc;
-
-  //rxn 122
+  //rxn 93
   kf = exp(2.8036486224036711e+01 - 0.41 * logT);
-  fwd_rxn_rates[122] = C[16] * C[4] * kf;
+  fwd_rxn_rates[93] = C[13] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (2.0925749199999997e+00 + -1.1833432199999994e+00 * logT + T * (-5.2277626499999978e-04 + T * (1.2459248499999997e-06 + T * (-6.5396395249999996e-10 + 1.3763164150000005e-13 * T))) - -2.3700459340000001e+04 / T);
   } else {
@@ -1480,11 +1132,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[122] = C[18] * kf / Kc;
+  rev_rxn_rates[93] = C[15] * kf / Kc;
 
-  //rxn 123
+  //rxn 94
   kf = exp(2.0690742645240849e+01 + 0.62 * logT - (1.7914616508986194e+02 / T));
-  fwd_rxn_rates[123] = C[18] * C[4] * kf;
+  fwd_rxn_rates[94] = C[15] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (2.1394698980000006e+00 + -4.7232566000000098e-01 * logT + T * (4.5130366399999990e-03 + T * (-4.4922833499999993e-06 + T * (2.3337314025000000e-09 + -5.0643752200000009e-13 * T))) - -2.8164795833000000e+04 / T);
   } else {
@@ -1492,11 +1144,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[123] = C[16] * C[2] * kf / Kc;
+  rev_rxn_rates[94] = C[13] * C[0] * kf / Kc;
 
-  //rxn 124
+  //rxn 95
   kf = 10000000000.0;
-  fwd_rxn_rates[124] = C[18] * C[5] * kf;
+  fwd_rxn_rates[95] = C[15] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-2.1255411469999994e+00 + 5.0706035999999921e-01 * logT + T * (9.6190240999999982e-04 + T * (-1.5836621216666663e-06 + T * (8.4137255083333323e-10 + -1.7510487600000004e-13 * T))) - -2.7526561500000003e+04 / T);
   } else {
@@ -1504,11 +1156,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[124] = C[16] * C[6] * kf / Kc;
+  rev_rxn_rates[95] = C[13] * C[4] * kf / Kc;
 
-  //rxn 125
+  //rxn 96
   kf = 36000000000.0;
-  fwd_rxn_rates[125] = C[18] * C[6] * kf;
+  fwd_rxn_rates[96] = C[15] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-9.7553562999999066e-02 + -1.1000582000000048e-01 * logT + T * (7.0510868999999971e-04 + T * (-9.2864130499999979e-07 + T * (5.1990029916666653e-10 + -1.1719299250000008e-13 * T))) - -3.5435825019999997e+04 / T);
   } else {
@@ -1516,11 +1168,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[125] = C[16] * C[8] * kf / Kc;
+  rev_rxn_rates[96] = C[13] * C[6] * kf / Kc;
 
-  //rxn 126
+  //rxn 97
   kf = exp(2.3718998110500401e+01 - (8.0515130377466039e+03 / T));
-  fwd_rxn_rates[126] = C[18] * C[3] * kf;
+  fwd_rxn_rates[97] = C[15] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (3.9375269000000035e-01 + 2.0268492999999976e-01 * logT + T * (-3.5341714000000049e-04 + T * (6.3923989833333377e-07 + T * (-5.6229407333333352e-10 + 1.6479455250000007e-13 * T))) - -4.4523861499999998e+02 / T);
   } else {
@@ -1528,11 +1180,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[126] = C[7] * C[16] * kf / Kc;
+  rev_rxn_rates[97] = C[5] * C[13] * kf / Kc;
 
-  //rxn 127
+  //rxn 98
   kf = exp(2.2096981415859442e+01 - (2.5160978242958136e+03 / T));
-  fwd_rxn_rates[127] = C[18] * C[18] * kf;
+  fwd_rxn_rates[98] = C[15] * C[15] * kf;
   if (T <= 1000.0) {
     Kc = (9.0373913500000000e+00 + -2.6147260800000005e+00 * logT + T * (1.0319596920000000e-02 + T * (-7.3651142333333332e-06 + T * (3.2141915333333336e-09 + -6.1375566700000008e-13 * T))) - -4.4788551999999996e+04 / T);
   } else {
@@ -1540,11 +1192,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[127] = C[17] * C[8] * kf / Kc;
+  rev_rxn_rates[98] = C[14] * C[6] * kf / Kc;
 
-  //rxn 128
+  //rxn 99
   kf = exp(3.7841896339182610e+00 + 2.64 * logT - (2.0330070420310176e+03 / T));
-  fwd_rxn_rates[128] = C[18] * C[23] * kf;
+  fwd_rxn_rates[99] = C[15] * C[18] * kf;
   if (T <= 1000.0) {
     Kc = (5.0939886399999992e+00 + -1.0465288300000002e+00 * logT + T * (5.3793810950000000e-03 + T * (-3.7455619899999997e-06 + T * (1.5662371958333332e-09 + -2.8581874950000004e-13 * T))) - -1.5452891360000001e+04 / T);
   } else {
@@ -1552,11 +1204,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[128] = C[24] * C[16] * kf / Kc;
+  rev_rxn_rates[99] = C[19] * C[13] * kf / Kc;
 
-  //rxn 129
+  //rxn 100
   kf = exp(2.1465203181675790e+01 - (-2.5010012373500388e+02 / T));
-  fwd_rxn_rates[129] = C[16] * C[7] * kf;
+  fwd_rxn_rates[100] = C[13] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (7.9510280299999936e-01 + -5.8438158999999956e-01 * logT + T * (2.7012533300000002e-03 + T * (-1.8213571783333339e-06 + T * (7.7186311750000015e-10 + -1.4497747850000005e-13 * T))) - -3.8436017650000008e+03 / T);
   } else {
@@ -1564,11 +1216,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[129] = C[23] * C[6] * kf / Kc;
+  rev_rxn_rates[100] = C[18] * C[4] * kf / Kc;
 
-  //rxn 130
+  //rxn 101
   kf = exp(2.7893385380396040e+01 - 0.75 * logT);
-  fwd_rxn_rates[130] = C[16] * C[5] * kf;
+  fwd_rxn_rates[101] = C[13] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (5.4222832899999993e+00 + -2.4428348599999996e+00 * logT + T * (3.1668855399999999e-03 + T * (-1.7159281000000015e-07 + T * (-4.1723372416666657e-10 + 1.4584239750000001e-13 * T))) - -3.6070740839999999e+04 / T);
   } else {
@@ -1576,11 +1228,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[130] = C[23] * kf / Kc;
+  rev_rxn_rates[101] = C[18] * kf / Kc;
 
-  //rxn 131
+  //rxn 102
   kf = exp(1.4617512143436301e+01 - 3.5 * logT - (1.1070830426901580e+03 / T));
-  fwd_rxn_rates[131] = C[16] * C[7] * kf;
+  fwd_rxn_rates[102] = C[13] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (1.8013798780000002e+01 + -5.8271054900000001e+00 * logT + T * (1.4202886205000001e-02 + T * (-6.7423937283333339e-06 + T * (2.2963173500000002e-09 + -3.7227156050000004e-13 * T))) - -2.7497359225000000e+04 / T);
   } else {
@@ -1588,11 +1240,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[131] = C[27] * kf / Kc;
+  rev_rxn_rates[102] = C[20] * kf / Kc;
 
-  //rxn 132
+  //rxn 103
   kf = exp(2.5590800287401994e+01 - (1.8216548247901690e+02 / T));
-  fwd_rxn_rates[132] = C[23] * C[4] * kf;
+  fwd_rxn_rates[103] = C[18] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (-5.4552495169999986e+00 + 1.7665519999999995e+00 * logT + T * (-2.7277593949999999e-03 + T * (-1.6614446166666640e-07 + T * (6.0464232249999984e-10 + -1.8331563200000000e-13 * T))) - -1.5156280000000001e+04 / T);
   } else {
@@ -1600,11 +1252,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[132] = C[16] * C[6] * kf / Kc;
+  rev_rxn_rates[103] = C[13] * C[4] * kf / Kc;
 
-  //rxn 133
+  //rxn 104
   kf = exp(2.5423746202738826e+01 - 0.52 * logT);
-  fwd_rxn_rates[133] = C[23] * C[5] * kf;
+  fwd_rxn_rates[104] = C[18] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-3.3143966399999987e+00 + 8.8875701999999901e-01 * logT + T * (-1.3859337799999997e-03 + T * (-4.0154484166666662e-07 + T * (6.3180350666666650e-10 + -1.9492195000000001e-13 * T))) - -2.3237721120000002e+04 / T);
   } else {
@@ -1612,11 +1264,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[133] = C[16] * C[3] * kf / Kc;
+  rev_rxn_rates[104] = C[13] * C[1] * kf / Kc;
 
-  //rxn 134
+  //rxn 105
   kf = exp(-6.2659013928097425e+00 + 3.32 * logT - (1.5318003554312913e+03 / T));
-  fwd_rxn_rates[134] = C[23] * C[7] * kf;
+  fwd_rxn_rates[105] = C[18] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (4.7002359499999997e+00 + -1.2492137600000004e+00 * logT + T * (5.7327982350000002e-03 + T * (-4.3848018883333337e-06 + T * (2.1285312691666664e-09 + -4.5061330200000006e-13 * T))) - -1.5007652745000001e+04 / T);
   } else {
@@ -1624,29 +1276,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[134] = C[24] * C[3] * kf / Kc;
+  rev_rxn_rates[105] = C[19] * C[1] * kf / Kc;
 
-  //rxn 135
-  kf = exp(-3.9633162998156966e+00 + 3.26 * logT - (2.5075430916932078e+03 / T));
-  fwd_rxn_rates[135] = C[23] * C[7] * kf;
-  if (T <= 1500.0) {
-    Kc = (1.2793370199999998e+01 + 9.3483800000000006e-01 * logT + T * (5.0501799999999996e-03 + T * (-8.2743600000000005e-07 + T * (7.2509333333333340e-11 + -1.1620675000000001e-16 * T))) - -5.9157159099999999e+03 / T);
-  } else {
-    Kc = (-1.7156781800000001e+01 + 5.4796300000000002e+00 * logT + T * (9.9763700000000000e-04 + T * (-2.9006450000000003e-08 + T * (-8.0798933333333343e-12 + 8.5073999999999990e-16 * T))) - -7.8095029100000002e+03 / T);
-  }
-
-  if (T <= 1000.0) {
-    Kc += (-1.9076054599999996e+00 + -3.4633729100000004e+00 * logT + T * (1.6689079050000001e-03 + T * (-4.6614667483333340e-06 + T * (2.9225435258333332e-09 + -6.9417901400000007e-13 * T))) - -4.2245800449999997e+03 / T);
-  } else {
-    Kc += (5.9711837800000005e+00 + -4.3960807600000003e+00 * logT + T * (-1.6986029794999998e-03 + T * (1.7219945816666666e-07 + T * (-1.3030088450000000e-11 + 4.5177518674999996e-16 * T))) - -3.5634960639000001e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[135] = C[25] * C[3] * kf / Kc;
-
-  //rxn 136
+  //rxn 106
   kf = exp(2.1416413017506358e+01 - (1.3498864827347041e+04 / T));
-  fwd_rxn_rates[136] = C[23] * C[23] * kf;
+  fwd_rxn_rates[106] = C[18] * C[18] * kf;
   if (T <= 1000.0) {
     Kc = (-8.7366799299999975e+00 + 3.3315918799999986e+00 * logT + T * (-4.5528193200000001e-03 + T * (-2.2995203166666625e-07 + T * (1.0490372308333330e-09 + -3.4076434750000002e-13 * T))) - 1.2833019720000000e+04 / T);
   } else {
@@ -1654,23 +1288,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[136] = C[16] * C[16] * C[3] * kf / Kc;
+  rev_rxn_rates[106] = C[13] * C[13] * C[1] * kf / Kc;
 
-  //rxn 137
-  kf = exp(1.6077273656438063e+01 + 0.73 * logT - (1.0517288905556501e+04 / T));
-  fwd_rxn_rates[137] = C[23] * C[23] * kf;
-  if (T <= 1000.0) {
-    Kc = (5.7547053500000009e+00 + -1.4958701400000001e+00 * logT + T * (4.5106226299999998e-03 + T * (-1.8706753666666665e-06 + T * (2.8784251916666658e-10 + 3.9691597000000015e-14 * T))) - 1.1864772690000002e+04 / T);
-  } else {
-    Kc = (-8.5326558800000001e+00 + 9.7468135999999994e-01 * logT + T * (-2.8802950499999991e-04 + T * (3.6259537333333349e-08 + T * (-6.0989992250000001e-12 + 3.1367161949999997e-16 * T))) - 1.1418339660000000e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[137] = C[26] * C[16] * kf / Kc;
-
-  //rxn 138
+  //rxn 107
   kf = exp(2.0723265836946410e+01 - (3.0193173891549766e+04 / T));
-  fwd_rxn_rates[138] = C[23] * C[16] * kf;
+  fwd_rxn_rates[107] = C[18] * C[13] * kf;
   if (T <= 1000.0) {
     Kc = (7.9460894199999998e+00 + -2.1230236000000002e+00 * logT + T * (7.2666520400000000e-03 + T * (-5.2543556483333338e-06 + T * (2.4847221900000001e-09 + -5.1637974849999997e-13 * T))) - -5.0638865999999998e+03 / T);
   } else {
@@ -1678,11 +1300,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[138] = C[17] * C[3] * kf / Kc;
+  rev_rxn_rates[107] = C[14] * C[1] * kf / Kc;
 
-  //rxn 139
+  //rxn 108
   kf = exp(2.5423746202738826e+01 - 0.3 * logT);
-  fwd_rxn_rates[139] = C[16] * C[6] * kf;
+  fwd_rxn_rates[108] = C[13] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (1.2641813076999998e+01 + -3.9964240499999995e+00 * logT + T * (7.5843642250000010e-03 + T * (-2.3334926783333334e-06 + T * (3.0763092083333330e-10 + 3.5128524000000024e-14 * T))) - -2.3997070700000000e+04 / T);
   } else {
@@ -1690,11 +1312,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[139] = C[24] * kf / Kc;
+  rev_rxn_rates[108] = C[19] * kf / Kc;
 
-  //rxn 140
+  //rxn 109
   kf = exp(2.5649493574615367e+00 + 2.76 * logT - (1.4980846445857274e+04 / T));
-  fwd_rxn_rates[140] = C[23] * C[2] * kf;
+  fwd_rxn_rates[109] = C[18] * C[0] * kf;
   if (T <= 1000.0) {
     Kc = (2.9545187419999990e+00 + -5.7420317000000010e-01 * logT + T * (8.6634445500000015e-04 + T * (7.4672135999999954e-07 + T * (-7.6749420666666690e-10 + 2.2061877250000005e-13 * T))) - 1.2711904472999999e+04 / T);
   } else {
@@ -1702,11 +1324,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[140] = C[24] * C[4] * kf / Kc;
+  rev_rxn_rates[109] = C[19] * C[2] * kf / Kc;
 
-  //rxn 141
+  //rxn 110
   kf = 1800000000.0;
-  fwd_rxn_rates[141] = C[11] * C[23] * kf;
+  fwd_rxn_rates[110] = C[8] * C[18] * kf;
   if (T <= 1000.0) {
     Kc = (3.3226386599999995e+00 + -1.0186139000000001e+00 * logT + T * (4.8054190799999997e-03 + T * (-3.9476778399999996e-06 + T * (2.0024450049999998e-09 + -4.3265574449999999e-13 * T))) - -2.1137222199999993e+04 / T);
   } else {
@@ -1714,227 +1336,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[141] = C[17] * C[5] * kf / Kc;
+  rev_rxn_rates[110] = C[14] * C[3] * kf / Kc;
 
-  //rxn 142
-  kf = exp(1.7840862248699423e+01 + 0.86 * logT - (2.5160978242958136e+03 / T));
-  fwd_rxn_rates[142] = C[24] * C[4] * kf;
-  if (T <= 1000.0) {
-    Kc = (-1.0549238157000000e+01 + 2.8130808300000005e+00 * logT + T * (-8.1071404899999994e-03 + T * (3.5794175283333333e-06 + T * (-9.6159487333333331e-10 + 1.0250311750000004e-13 * T))) - 2.9661136000000261e+02 / T);
-  } else {
-    Kc = (2.0279445209999999e+01 + -2.2873156000000003e+00 * logT + T * (2.2768813500000009e-04 + T * (1.0075948416666669e-07 + T * (-1.6946444333333336e-11 + 8.4843013400000002e-16 * T))) - 1.5921686799999989e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[142] = C[18] * C[6] * kf / Kc;
-
-  //rxn 143
-  kf = exp(8.9996193406605300e+00 + 1.89 * logT - (1.9373953247077766e+03 / T));
-  fwd_rxn_rates[143] = C[24] * C[4] * kf;
-  if (T <= 1000.0) {
-    Kc = (-1.0646791719999998e+01 + 2.7030750099999992e+00 * logT + T * (-7.4020318000000002e-03 + T * (2.6507762233333337e-06 + T * (-4.4169457416666668e-10 + -1.4689875000000040e-14 * T))) - -3.5139213659999994e+04 / T);
-  } else {
-    Kc = (2.0107702480000000e+01 + -2.3540759300000005e+00 * logT + T * (2.5628370499999973e-04 + T * (1.5007060666666707e-08 + T * (-3.5842613083333340e-12 + 2.0067594950000007e-16 * T))) - -3.3842733180000003e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[143] = C[16] * C[8] * kf / Kc;
-
-  //rxn 144
-  kf = exp(2.3208172486734412e+01 - (2.9991886065606100e+03 / T));
-  fwd_rxn_rates[144] = C[24] * C[5] * kf;
-  if (T <= 1000.0) {
-    Kc = (-7.2195297869999990e+00 + 1.5535891900000003e+00 * logT + T * (-4.4174786850000002e-03 + T * (2.1618998683333332e-06 + T * (-7.2486464499999993e-10 + 1.1071387350000000e-13 * T))) - -1.2073670140000002e+04 / T);
-  } else {
-    Kc = (5.4728033299999996e+00 + -6.1217981000000021e-01 * logT + T * (-1.7225045070000012e-04 + T * (2.9175816033333367e-08 + T * (-1.0252201291666683e-12 + -6.9382652999999593e-18 * T))) - -1.1616316220000001e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[144] = C[23] * C[6] * kf / Kc;
-
-  //rxn 145
-  kf = exp(1.6380459915425810e+01 + 1.0 * logT - (6.7934641255986975e+01 / T));
-  fwd_rxn_rates[145] = C[24] * C[6] * kf;
-  if (T <= 1000.0) {
-    Kc = (-5.1915422029999991e+00 + 9.3652300999999971e-01 * logT + T * (-4.6742724050000007e-03 + T * (2.8169206850000001e-06 + T * (-1.0463368966666666e-09 + 1.6862575700000001e-13 * T))) - -1.9982933659999999e+04 / T);
-  } else {
-    Kc = (6.0441396500000018e+00 + -1.0685646000000002e+00 * logT + T * (1.9326933499999989e-04 + T * (-2.4839784999999527e-09 + T * (2.4549542499999869e-13 + -2.0760149999998806e-18 * T))) - -1.9671814380000000e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[145] = C[23] * C[8] * kf / Kc;
-
-  //rxn 146
-  kf = exp(1.9113827924512311e+01 - (1.6455279770894624e+04 / T));
-  fwd_rxn_rates[146] = C[24] * C[23] * kf;
-  if (T <= 1000.0) {
-    Kc = (4.5768829000000011e+00 + -1.2462998500000007e+00 * logT + T * (3.9172686499999998e-03 + T * (-2.5875438716666664e-06 + T * (1.2168233116666664e-09 + -2.6242260600000000e-13 * T))) - 3.4331324000000177e+02 / T);
-  } else {
-    Kc = (-6.3349819400000005e+00 + 6.1512058999999830e-01 * logT + T * (-8.1711900000000027e-05 + T * (-5.4524276666666533e-09 + T * (-2.8029972500000058e-13 + 3.9157144500000188e-17 * T))) - -8.1845880000000761e+01 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[146] = C[27] * C[16] * kf / Kc;
-
-  //rxn 147
-  kf = exp(-7.9575774034808147e+00 + 3.64 * logT - (6.1090855173902355e+03 / T));
-  fwd_rxn_rates[147] = C[24] * C[24] * kf;
-  if (T <= 1000.0) {
-    Kc = (-1.7833355279999999e+01 + 4.9329470599999992e+00 * logT + T * (-1.2258636630000000e-02 + T * (5.1504133633333339e-06 + T * (-1.3539678174999997e-09 + 1.3349723300000005e-13 * T))) - 4.0141370400000014e+03 / T);
-  } else {
-    Kc = (2.2006064370000001e+01 + -1.7611491000000008e+00 * logT + T * (-4.8333131500000008e-04 + T * (9.2484529000000062e-08 + T * (-7.7024026416666714e-12 + 2.9090494450000019e-16 * T))) - 5.5428145199999963e+03 / T);
-  }
-
-  Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[147] = C[16] * C[23] * C[8] * kf / Kc;
-
-  //rxn 148
-  kf = exp(3.3152482033790797e+01 - (1.6253991944950956e+04 / T));
-  fwd_rxn_rates[148] = C[25] * kf;
-  if (T <= 1000.0) {
-    Kc = (6.6078414099999989e+00 + 2.2141591500000000e+00 * logT + T * (4.0638903300000001e-03 + T * (2.7666485999999999e-07 + T * (-7.9401225666666672e-10 + 2.4356571200000001e-13 * T))) - -1.0783072700000001e+04 / T);
-  } else {
-    Kc = (-9.8472156900000005e+00 + 4.7918271700000004e+00 * logT + T * (1.8258127700000000e-03 + T * (-2.1548898333333335e-07 + T * (1.7241066333333335e-11 + -6.1577374500000006e-16 * T))) - -1.1595389499999999e+04 / T);
-  }
-
-  if (T <= 1500.0) {
-    Kc += (-1.2793370199999998e+01 + -9.3483800000000006e-01 * logT + T * (-5.0501799999999996e-03 + T * (8.2743600000000005e-07 + T * (-7.2509333333333340e-11 + 1.1620675000000001e-16 * T))) - 5.9157159099999999e+03 / T);
-  } else {
-    Kc += (1.7156781800000001e+01 + -5.4796300000000002e+00 * logT + T * (-9.9763700000000000e-04 + T * (2.9006450000000003e-08 + T * (8.0798933333333343e-12 + -8.5073999999999990e-16 * T))) - 7.8095029100000002e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[148] = C[24] * kf / Kc;
-
-  //rxn 149
-  kf = exp(1.2388394202324129e+01 + 1.5 * logT - (2.5598779264385607e+03 / T));
-  fwd_rxn_rates[149] = C[25] * C[4] * kf;
-  if (T <= 1000.0) {
-    Kc = (3.6533226679999999e+00 + 2.7883623200000001e+00 * logT + T * (3.1975458749999995e-03 + T * (-4.7005649999999971e-07 + T * (-2.6518049999999820e-11 + 2.2946939499999954e-14 * T))) - -2.3494977172999999e+04 / T);
-  } else {
-    Kc = (-6.0126824999999986e+00 + 4.3176197500000004e+00 * logT + T * (1.4995017629999999e-03 + T * (-1.6241190900000000e-07 + T * (1.4407095116666665e-11 + -5.5998498999999997e-16 * T))) - -2.3970227381000001e+04 / T);
-  }
-
-  if (T <= 1500.0) {
-    Kc += (-1.2793370199999998e+01 + -9.3483800000000006e-01 * logT + T * (-5.0501799999999996e-03 + T * (8.2743600000000005e-07 + T * (-7.2509333333333340e-11 + 1.1620675000000001e-16 * T))) - 5.9157159099999999e+03 / T);
-  } else {
-    Kc += (1.7156781800000001e+01 + -5.4796300000000002e+00 * logT + T * (-9.9763700000000000e-04 + T * (2.9006450000000003e-08 + T * (8.0798933333333343e-12 + -8.5073999999999990e-16 * T))) - 7.8095029100000002e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[149] = C[23] * C[2] * kf / Kc;
-
-  //rxn 150
-  kf = exp(1.2043553716032399e+01 + 1.5 * logT - (1.5197230858746716e+03 / T));
-  fwd_rxn_rates[150] = C[25] * C[5] * kf;
-  if (T <= 1000.0) {
-    Kc = (-6.1168837700000012e-01 + 3.7677483400000003e+00 * logT + T * (-3.5358835500000005e-04 + T * (2.4385647283333335e-06 + T * (-1.5188769016666666e-09 + 3.5427958550000001e-13 * T))) - -2.2856742839999999e+04 / T);
-  } else {
-    Kc = (-4.3744123600000009e+00 + 4.1796473600000006e+00 * logT + T * (1.6535623192999998e-03 + T * (-1.8631316729999999e-07 + T * (1.6215846204166667e-11 + -6.2271201030000000e-16 * T))) - -2.3211705719999998e+04 / T);
-  }
-
-  if (T <= 1500.0) {
-    Kc += (-1.2793370199999998e+01 + -9.3483800000000006e-01 * logT + T * (-5.0501799999999996e-03 + T * (8.2743600000000005e-07 + T * (-7.2509333333333340e-11 + 1.1620675000000001e-16 * T))) - 5.9157159099999999e+03 / T);
-  } else {
-    Kc += (1.7156781800000001e+01 + -5.4796300000000002e+00 * logT + T * (-9.9763700000000000e-04 + T * (2.9006450000000003e-08 + T * (8.0798933333333343e-12 + -8.5073999999999990e-16 * T))) - 7.8095029100000002e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[150] = C[23] * C[6] * kf / Kc;
-
-  //rxn 151
-  kf = exp(7.0900768357760917e+00 + 2.0 * logT - (-2.9991886065606099e+02 / T));
-  fwd_rxn_rates[151] = C[25] * C[6] * kf;
-  if (T <= 1000.0) {
-    Kc = (1.4162992070000002e+00 + 3.1506821599999997e+00 * logT + T * (-6.1038207500000016e-04 + T * (3.0935855449999999e-06 + T * (-1.8403491533333334e-09 + 4.1219146900000002e-13 * T))) - -3.0766006359999999e+04 / T);
-  } else {
-    Kc = (-3.8030760399999988e+00 + 3.7232625700000002e+00 * logT + T * (2.0190821049999997e-03 + T * (-2.1797296183333331e-07 + T * (1.7486561758333334e-11 + -6.1784975999999992e-16 * T))) - -3.1267203879999997e+04 / T);
-  }
-
-  if (T <= 1500.0) {
-    Kc += (-1.2793370199999998e+01 + -9.3483800000000006e-01 * logT + T * (-5.0501799999999996e-03 + T * (8.2743600000000005e-07 + T * (-7.2509333333333340e-11 + 1.1620675000000001e-16 * T))) - 5.9157159099999999e+03 / T);
-  } else {
-    Kc += (1.7156781800000001e+01 + -5.4796300000000002e+00 * logT + T * (-9.9763700000000000e-04 + T * (2.9006450000000003e-08 + T * (8.0798933333333343e-12 + -8.5073999999999990e-16 * T))) - 7.8095029100000002e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[151] = C[23] * C[8] * kf / Kc;
-
-  //rxn 152
-  kf = exp(2.1976028805441779e+01 + 0.24 * logT);
-  fwd_rxn_rates[152] = C[23] * C[5] * kf;
-  if (T <= 1000.0) {
-    Kc = (1.1176988640000001e+01 + -3.9387050000000001e+00 * logT + T * (7.6775081699999997e-03 + T * (-2.0422681766666667e-06 + T * (-1.2939120499999989e-10 + 1.8553399449999998e-13 * T))) - -2.4205968150000001e+04 / T);
-  } else {
-    Kc = (-1.9021777270000001e+01 + 1.0550860499999994e+00 * logT + T * (2.1632069430000005e-04 + T * (-2.9533154133333332e-08 + T * (8.2367871250000045e-13 + 1.3752394699999968e-17 * T))) - -2.5412605459999999e+04 / T);
-  }
-
-  Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[152] = C[26] * kf / Kc;
-
-  //rxn 153
-  kf = 60000000000.0;
-  fwd_rxn_rates[153] = C[26] * C[4] * kf;
-  if (T <= 1000.0) {
-    Kc = (-1.1209954867000000e+01 + 3.2624221400000000e+00 * logT + T * (-7.2383820250000001e-03 + T * (1.7045309049999999e-06 + T * (3.1679980333333306e-10 + -2.2300722899999996e-13 * T))) - -2.7021052690000000e+04 / T);
-  } else {
-    Kc = (2.2596218710000002e+01 + -2.2601926899999993e+00 * logT + T * (3.5104387499999986e-04 + T * (-1.8768498166666656e-08 + T * (2.2692424916666670e-12 + -1.1091965500000000e-16 * T))) - -2.5589258460000001e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[153] = C[23] * C[6] * kf / Kc;
-
-  //rxn 154
-  kf = 10000000000.0;
-  fwd_rxn_rates[154] = C[26] * C[5] * kf;
-  if (T <= 1000.0) {
-    Kc = (-9.0691019900000001e+00 + 2.3846271600000004e+00 * logT + T * (-5.8965564099999999e-03 + T * (1.4691305249999999e-06 + T * (3.4396098749999971e-10 + -2.3461354699999997e-13 * T))) - -3.5102493810000000e+04 / T);
-  } else {
-    Kc = (1.4018864210000000e+01 + -1.4813993399999998e+00 * logT + T * (1.3917845980000002e-04 + T * (7.4049813666666668e-09 + T * (6.5501004166667371e-14 + -3.0753743300000002e-17 * T))) - -3.4255395720000000e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[154] = C[23] * C[3] * kf / Kc;
-
-  //rxn 155
-  kf = 14000000000.0;
-  fwd_rxn_rates[155] = C[26] * C[6] * kf;
-  if (T <= 1000.0) {
-    Kc = (-6.5498081530000007e+00 + 2.0802517299999996e+00 * logT + T * (-7.2118759600000009e-03 + T * (3.6920325450000002e-06 + T * (-1.0597056366666667e-09 + 1.0528588150000010e-13 * T))) - -8.0211709250000004e+03 / T);
-  } else {
-    Kc = (1.2422092790000001e+01 + -1.2649659399999997e+00 * logT + T * (1.8421912000000007e-04 + T * (2.1518690499999991e-08 + T * (-3.1202567499999996e-12 + 1.4018308025000003e-16 * T))) - -7.4801939360999995e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[155] = C[23] * C[7] * kf / Kc;
-
-  //rxn 156
-  kf = 1500000000.0;
-  fwd_rxn_rates[156] = C[26] * C[7] * kf;
-  if (T <= 1000.0) {
-    Kc = (-1.3696282477000000e+01 + 4.2430804299999991e+00 * logT + T * (-6.3621886200000005e-03 + T * (-1.8063384333333379e-07 + T * (1.5330578291666665e-09 + -5.2543342300000003e-13 * T))) - -2.8753547350000003e+03 / T);
-  } else {
-    Kc = (2.0618548690000001e+01 + -1.2715194499999996e+00 * logT + T * (-2.6136135449999988e-04 + T * (1.5419445000000013e-08 + T * (2.3620790416666669e-12 + -1.8468921825000003e-16 * T))) - -1.3625963239000000e+03 / T);
-  }
-
-  Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[156] = C[23] * C[3] * C[6] * kf / Kc;
-
-  //rxn 157
-  kf = exp(1.7727533563392420e+01 - (1.4794655206859384e+03 / T));
-  fwd_rxn_rates[157] = C[26] * C[23] * kf;
-  if (T <= 1000.0) {
-    Kc = (-1.4491385279999999e+01 + 4.8274620199999987e+00 * logT + T * (-9.0634419500000007e-03 + T * (1.6407233350000001e-06 + T * (7.6119471166666639e-10 + -3.8045594449999998e-13 * T))) - 9.6824703000000045e+02 / T);
-  } else {
-    Kc = (2.4507985600000001e+01 + -1.5618040300000002e+00 * logT + T * (-3.6517173949999994e-04 + T * (7.3197672833333334e-08 + T * (-6.8571769333333332e-12 + 2.6916548150000000e-16 * T))) - 2.5755493999999999e+03 / T);
-  }
-
-  Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[157] = C[16] * C[23] * C[3] * kf / Kc;
-
-  //rxn 158
+  //rxn 111
   kf = 30000000000.0;
-  fwd_rxn_rates[158] = C[23] * C[6] * kf;
+  fwd_rxn_rates[111] = C[18] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (1.7218695976999999e+01 + -5.2427238999999997e+00 * logT + T * (1.1501632875000001e-02 + T * (-4.9210365499999998e-06 + T * (1.5244542324999998e-09 + -2.2729408199999999e-13 * T))) - -2.3653757459999997e+04 / T);
   } else {
@@ -1942,23 +1348,71 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[158] = C[27] * kf / Kc;
+  rev_rxn_rates[111] = C[20] * kf / Kc;
 
-  //rxn 159
-  kf = exp(1.3235692062711331e+01 + 1.5 * logT - (8.2528008636902687e+03 / T));
-  fwd_rxn_rates[159] = C[27] * C[4] * kf;
+  //rxn 112
+  kf = exp(1.7840862248699423e+01 + 0.86 * logT - (2.5160978242958136e+03 / T));
+  fwd_rxn_rates[112] = C[19] * C[2] * kf;
   if (T <= 1000.0) {
-    Kc = (-1.7766962919999987e+00 + 3.2463288000000001e-01 * logT + T * (-2.7299047500000014e-04 + T * (-2.9852854999999682e-08 + T * (-1.6148658583333299e-10 + 8.1495430499999917e-14 * T))) - -1.1904450230000002e+03 / T);
+    Kc = (-1.0549238157000000e+01 + 2.8130808300000005e+00 * logT + T * (-8.1071404899999994e-03 + T * (3.5794175283333333e-06 + T * (-9.6159487333333331e-10 + 1.0250311750000004e-13 * T))) - 2.9661136000000261e+02 / T);
   } else {
-    Kc = (1.6368592500000023e+00 + -1.1464664999999918e-01 * logT + T * (-5.3262861199999999e-04 + T * (9.4789039333333324e-08 + T * (-8.6526707166666692e-12 + 3.3030322999999987e-16 * T))) - -8.7465234100000089e+02 / T);
+    Kc = (2.0279445209999999e+01 + -2.2873156000000003e+00 * logT + T * (2.2768813500000009e-04 + T * (1.0075948416666669e-07 + T * (-1.6946444333333336e-11 + 8.4843013400000002e-16 * T))) - 1.5921686799999989e+03 / T);
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[159] = C[2] * C[26] * kf / Kc;
+  rev_rxn_rates[112] = C[15] * C[4] * kf / Kc;
 
-  //rxn 160
+  //rxn 113
+  kf = exp(8.9996193406605300e+00 + 1.89 * logT - (1.9373953247077766e+03 / T));
+  fwd_rxn_rates[113] = C[19] * C[2] * kf;
+  if (T <= 1000.0) {
+    Kc = (-1.0646791719999998e+01 + 2.7030750099999992e+00 * logT + T * (-7.4020318000000002e-03 + T * (2.6507762233333337e-06 + T * (-4.4169457416666668e-10 + -1.4689875000000040e-14 * T))) - -3.5139213659999994e+04 / T);
+  } else {
+    Kc = (2.0107702480000000e+01 + -2.3540759300000005e+00 * logT + T * (2.5628370499999973e-04 + T * (1.5007060666666707e-08 + T * (-3.5842613083333340e-12 + 2.0067594950000007e-16 * T))) - -3.3842733180000003e+04 / T);
+  }
+
+  Kc = 1.0000000000000000e+00 * exp(Kc);
+  rev_rxn_rates[113] = C[13] * C[6] * kf / Kc;
+
+  //rxn 114
+  kf = exp(2.3208172486734412e+01 - (2.9991886065606100e+03 / T));
+  fwd_rxn_rates[114] = C[19] * C[3] * kf;
+  if (T <= 1000.0) {
+    Kc = (-7.2195297869999990e+00 + 1.5535891900000003e+00 * logT + T * (-4.4174786850000002e-03 + T * (2.1618998683333332e-06 + T * (-7.2486464499999993e-10 + 1.1071387350000000e-13 * T))) - -1.2073670140000002e+04 / T);
+  } else {
+    Kc = (5.4728033299999996e+00 + -6.1217981000000021e-01 * logT + T * (-1.7225045070000012e-04 + T * (2.9175816033333367e-08 + T * (-1.0252201291666683e-12 + -6.9382652999999593e-18 * T))) - -1.1616316220000001e+04 / T);
+  }
+
+  Kc = 1.0000000000000000e+00 * exp(Kc);
+  rev_rxn_rates[114] = C[18] * C[4] * kf / Kc;
+
+  //rxn 115
+  kf = exp(1.6380459915425810e+01 + 1.0 * logT - (6.7934641255986975e+01 / T));
+  fwd_rxn_rates[115] = C[19] * C[4] * kf;
+  if (T <= 1000.0) {
+    Kc = (-5.1915422029999991e+00 + 9.3652300999999971e-01 * logT + T * (-4.6742724050000007e-03 + T * (2.8169206850000001e-06 + T * (-1.0463368966666666e-09 + 1.6862575700000001e-13 * T))) - -1.9982933659999999e+04 / T);
+  } else {
+    Kc = (6.0441396500000018e+00 + -1.0685646000000002e+00 * logT + T * (1.9326933499999989e-04 + T * (-2.4839784999999527e-09 + T * (2.4549542499999869e-13 + -2.0760149999998806e-18 * T))) - -1.9671814380000000e+04 / T);
+  }
+
+  Kc = 1.0000000000000000e+00 * exp(Kc);
+  rev_rxn_rates[115] = C[18] * C[6] * kf / Kc;
+
+  //rxn 116
+  kf = exp(-7.9575774034808147e+00 + 3.64 * logT - (6.1090855173902355e+03 / T));
+  fwd_rxn_rates[116] = C[19] * C[19] * kf;
+  if (T <= 1000.0) {
+    Kc = (-1.7833355279999999e+01 + 4.9329470599999992e+00 * logT + T * (-1.2258636630000000e-02 + T * (5.1504133633333339e-06 + T * (-1.3539678174999997e-09 + 1.3349723300000005e-13 * T))) - 4.0141370400000014e+03 / T);
+  } else {
+    Kc = (2.2006064370000001e+01 + -1.7611491000000008e+00 * logT + T * (-4.8333131500000008e-04 + T * (9.2484529000000062e-08 + T * (-7.7024026416666714e-12 + 2.9090494450000019e-16 * T))) - 5.5428145199999963e+03 / T);
+  }
+
+  Kc = 1.2186597134166982e+01 * exp(Kc);
+  rev_rxn_rates[116] = C[13] * C[18] * C[6] * kf / Kc;
+
+  //rxn 117
   kf = exp(-2.7968814148088259e+00 + 3.3 * logT - (3.1627349651398381e+03 / T));
-  fwd_rxn_rates[160] = C[27] * C[4] * kf;
+  fwd_rxn_rates[117] = C[20] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (-1.5223674619999999e+01 + 3.9493748599999998e+00 * logT + T * (-1.1319300450000000e-02 + T * (5.2383200950000000e-06 + T * (-1.6585178858333334e-09 + 2.4773273100000002e-13 * T))) - -3.5482526899999997e+04 / T);
   } else {
@@ -1966,35 +1420,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[160] = C[8] * C[23] * kf / Kc;
+  rev_rxn_rates[117] = C[6] * C[18] * kf / Kc;
 
-  //rxn 161
-  kf = exp(5.9401712527204316e+00 + 2.3 * logT - (3.5104596844575194e+03 / T));
-  fwd_rxn_rates[161] = C[27] * C[4] * kf;
-  if (T <= 1000.0) {
-    Kc = (-1.0032132417000000e+01 + 3.0128518499999997e+00 * logT + T * (-6.6450280450000010e-03 + T * (2.4213994100000000e-06 + T * (-6.1218098916666673e-10 + 7.9106974000000005e-14 * T))) - -1.5499593240000002e+04 / T);
-  } else {
-    Kc = (2.0398544770000001e+01 + -1.9006319199999986e+00 * logT + T * (1.4472627000000019e-04 + T * (2.2943466833333293e-08 + T * (-3.5494570083333341e-12 + 1.6359481999999978e-16 * T))) - -1.4089072919999999e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[161] = C[6] * C[24] * kf / Kc;
-
-  //rxn 162
-  kf = exp(1.6118095650958320e+01 - (-6.2399226042536179e+02 / T));
-  fwd_rxn_rates[162] = C[27] * C[6] * kf;
-  if (T <= 1000.0) {
-    Kc = (-4.0137197529999984e+00 + 6.8695272000000074e-01 * logT + T * (-4.0809184249999998e-03 + T * (3.5337891899999999e-06 + T * (-1.9753176891666664e-09 + 4.7073995999999993e-13 * T))) - -8.4614742100000003e+03 / T);
-  } else {
-    Kc = (3.8464657100000004e+00 + -7.0900382999999945e-01 * logT + T * (-1.3048269999999993e-05 + T * (3.9227986499999996e-08 + T * (-5.5732040749999988e-12 + 2.7243845999999993e-16 * T))) - -8.1716288400000021e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[162] = C[8] * C[26] * kf / Kc;
-
-  //rxn 163
+  //rxn 118
   kf = exp(2.5318385687081001e+01 - (2.9166605979237072e+04 / T));
-  fwd_rxn_rates[163] = C[17] * kf;
+  fwd_rxn_rates[118] = C[14] * kf;
   if (T <= 1000.0) {
     Kc = (-1.0180710340000001e+01 + 3.4421221800000001e+00 * logT + T * (-7.3538539139999994e-03 + T * (3.3018972544999998e-06 + T * (-1.1145617016666668e-09 + 1.8172827799999999e-13 * T))) - 1.9333508320000001e+04 / T);
   } else {
@@ -2002,11 +1432,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[163] = C[32] * C[5] * kf / Kc;
+  rev_rxn_rates[118] = C[25] * C[3] * kf / Kc;
 
-  //rxn 164
+  //rxn 119
   kf = exp(1.7315043840347290e+01 - (2.5613875851331386e+03 / T));
-  fwd_rxn_rates[164] = C[17] * C[4] * kf;
+  fwd_rxn_rates[119] = C[14] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (-1.0213676567000000e+01 + 2.7658393199999995e+00 * logT + T * (-6.9147277689999998e-03 + T * (2.9641599828333333e-06 + T * (-9.2715310333333335e-10 + 1.4425504349999998e-13 * T))) - -3.1893512520000000e+04 / T);
   } else {
@@ -2014,11 +1444,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[164] = C[32] * C[6] * kf / Kc;
+  rev_rxn_rates[119] = C[25] * C[4] * kf / Kc;
 
-  //rxn 165
+  //rxn 120
   kf = exp(2.7386398532937214e+01 - (9.7574273626191662e+03 / T));
-  fwd_rxn_rates[165] = C[17] * C[4] * kf;
+  fwd_rxn_rates[120] = C[14] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (-1.0213676567000000e+01 + 2.7658393199999995e+00 * logT + T * (-6.9147277689999998e-03 + T * (2.9641599828333333e-06 + T * (-9.2715310333333335e-10 + 1.4425504349999998e-13 * T))) - -3.1893512520000000e+04 / T);
   } else {
@@ -2026,11 +1456,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[165] = C[32] * C[6] * kf / Kc;
+  rev_rxn_rates[120] = C[25] * C[4] * kf / Kc;
 
-  //rxn 166
+  //rxn 121
   kf = exp(2.5245054413995451e+01 - (1.3928614335736765e+04 / T));
-  fwd_rxn_rates[166] = C[17] * C[5] * kf;
+  fwd_rxn_rates[121] = C[14] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-1.1260486059999998e+01 + 3.0117806199999992e+00 * logT + T * (-8.6525858200000010e-03 + T * (4.8528108066666666e-06 + T * (-1.8529186833333333e-09 + 3.2145779849999996e-13 * T))) - -1.8173834520000000e+04 / T);
   } else {
@@ -2038,11 +1468,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[166] = C[16] * C[16] * kf / Kc;
+  rev_rxn_rates[121] = C[13] * C[13] * kf / Kc;
 
-  //rxn 167
+  //rxn 122
   kf = exp(2.2031598656596589e+01 - (8.0193069855956173e+03 / T));
-  fwd_rxn_rates[167] = C[17] * C[5] * kf;
+  fwd_rxn_rates[122] = C[14] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-8.0728236899999999e+00 + 1.8880443400000000e+00 * logT + T * (-5.5729021539999996e-03 + T * (2.7287596028333328e-06 + T * (-8.9999191916666670e-10 + 1.3264872550000000e-13 * T))) - -3.9974953640000000e+04 / T);
   } else {
@@ -2050,11 +1480,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[167] = C[32] * C[3] * kf / Kc;
+  rev_rxn_rates[122] = C[25] * C[1] * kf / Kc;
 
-  //rxn 168
+  //rxn 123
   kf = exp(2.1416413017506358e+01 - (2.0128782594366508e+04 / T));
-  fwd_rxn_rates[168] = C[17] * C[6] * kf;
+  fwd_rxn_rates[123] = C[14] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-5.5535298530000006e+00 + 1.5836689100000010e+00 * logT + T * (-6.8882217039999988e-03 + T * (4.9516616228333333e-06 + T * (-2.3036585433333335e-09 + 4.7254815400000006e-13 * T))) - -1.2893630755000002e+04 / T);
   } else {
@@ -2062,11 +1492,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[168] = C[32] * C[7] * kf / Kc;
+  rev_rxn_rates[123] = C[25] * C[5] * kf / Kc;
 
-  //rxn 169
+  //rxn 124
   kf = exp(2.1416413017506358e+01 - (1.3083708686338232e+04 / T));
-  fwd_rxn_rates[169] = C[18] * C[16] * kf;
+  fwd_rxn_rates[124] = C[15] * C[13] * kf;
   if (T <= 1000.0) {
     Kc = (9.1349449129999982e+00 + -2.5047202600000000e+00 * logT + T * (9.6144882299999991e-03 + T * (-6.4364729283333339e-06 + T * (2.6942912341666668e-09 + -4.9656267450000000e-13 * T))) - -9.3527269800000013e+03 / T);
   } else {
@@ -2074,11 +1504,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[169] = C[17] * C[6] * kf / Kc;
+  rev_rxn_rates[124] = C[14] * C[4] * kf / Kc;
 
-  //rxn 170
+  //rxn 125
   kf = exp(2.3025850929940457e+01 - (1.0014069340697339e+03 / T));
-  fwd_rxn_rates[170] = C[18] * C[11] * kf;
+  fwd_rxn_rates[125] = C[15] * C[8] * kf;
   if (T <= 1000.0) {
     Kc = (-2.4844015099999996e+00 + 6.7629358999999933e-01 * logT + T * (6.7867412499999970e-04 + T * (-1.4941025633333330e-06 + T * (8.6077012083333332e-10 + -1.8941709950000005e-13 * T))) - -1.5771866460000005e+04 / T);
   } else {
@@ -2086,11 +1516,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[170] = C[16] * C[14] * kf / Kc;
+  rev_rxn_rates[125] = C[13] * C[11] * kf / Kc;
 
-  //rxn 171
+  //rxn 126
   kf = exp(6.2728770065461674e+00 + 2.23 * logT - (2.3289001461682052e+04 / T));
-  fwd_rxn_rates[171] = C[17] * C[16] * kf;
+  fwd_rxn_rates[126] = C[14] * C[13] * kf;
   if (T <= 1000.0) {
     Kc = (-4.7584270500000008e+00 + 9.9928732000000053e-01 * logT + T * (-4.1869683740000004e-03 + T * (3.1303044444999993e-06 + T * (-1.5317954258333334e-09 + 3.2757067550000001e-13 * T))) - -1.6737232520000001e+04 / T);
   } else {
@@ -2098,11 +1528,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[171] = C[23] * C[32] * kf / Kc;
+  rev_rxn_rates[126] = C[18] * C[25] * kf / Kc;
 
-  //rxn 172
+  //rxn 127
   kf = exp(2.3025850929940457e+01 - (9.9989727537515646e+03 / T));
-  fwd_rxn_rates[172] = C[17] * C[11] * kf;
+  fwd_rxn_rates[127] = C[14] * C[8] * kf;
   if (T <= 1000.0) {
     Kc = (-1.2696274450000001e+01 + 2.9924540400000001e+00 * logT + T * (-8.0341351140000000e-03 + T * (4.0354374111666671e-06 + T * (-1.3822691041666669e-09 + 2.1637272949999998e-13 * T))) - -5.6048289239999998e+04 / T);
   } else {
@@ -2110,11 +1540,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[172] = C[32] * C[16] * kf / Kc;
+  rev_rxn_rates[127] = C[25] * C[13] * kf / Kc;
 
-  //rxn 173
+  //rxn 128
   kf = exp(1.2043553716032399e+01 + 1.02 * logT - (5.9294361327355145e+03 / T));
-  fwd_rxn_rates[173] = C[13] * C[13] * kf;
+  fwd_rxn_rates[128] = C[10] * C[10] * kf;
   if (T <= 1000.0) {
     Kc = (1.9080267486800000e+01 + -4.4216302000000001e+00 * logT + T * (1.2567848644999999e-02 + T * (-8.3317322799999996e-06 + T * (3.8926195083333335e-09 + -8.2907777849999995e-13 * T))) - -1.9240952573000002e+04 / T);
   } else {
@@ -2122,11 +1552,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[173] = C[28] * C[2] * kf / Kc;
+  rev_rxn_rates[128] = C[21] * C[0] * kf / Kc;
 
-  //rxn 174
+  //rxn 129
   kf = exp(4.2766661190160553e+00 + 1.88 * logT - (4.4293386098903502e+03 / T));
-  fwd_rxn_rates[174] = C[13] * C[13] * kf;
+  fwd_rxn_rates[129] = C[10] * C[10] * kf;
   if (T <= 1695.0) {
     Kc = (6.0655251699999999e+00 + 1.8854426200000001e+00 * logT + T * (2.3474799949999999e-03 + T * (1.1699720499999999e-07 + T * (-1.2779919833333332e-10 + 1.8967292900000002e-14 * T))) - 3.3603069000000003e+04 / T);
   } else {
@@ -2140,11 +1570,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[174] = C[29] * C[2] * kf / Kc;
+  rev_rxn_rates[129] = C[22] * C[0] * kf / Kc;
 
-  //rxn 175
+  //rxn 130
   kf = exp(2.8036486224036711e+01 - 0.5 * logT);
-  fwd_rxn_rates[175] = C[13] * C[14] * kf;
+  fwd_rxn_rates[130] = C[10] * C[11] * kf;
   if (T <= 1000.0) {
     Kc = (1.5157047474400001e+01 + -3.5669315299999997e+00 * logT + T * (7.3986762749999992e-03 + T * (-3.7242691766666667e-06 + T * (1.5686231941666668e-09 + -3.3069146599999995e-13 * T))) - -1.3456190899999998e+04 / T);
   } else {
@@ -2152,41 +1582,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[175] = C[28] * C[4] * kf / Kc;
+  rev_rxn_rates[130] = C[21] * C[2] * kf / Kc;
 
-  //rxn 176
-  kf = exp(-4.6051701859880909e+00 + 3.46 * logT - (-2.3500353678922900e+02 / T));
-  fwd_rxn_rates[176] = C[21] * C[13] * kf;
-  if (T <= 1000.0) {
-    Kc = (2.4709772674000003e+00 + -8.3563167999999965e-01 * logT + T * (1.9624515290000001e-03 + T * (-6.4490518500000024e-07 + T * (1.4926421583333336e-10 + -2.2896631999999895e-14 * T))) - -1.3674038240000000e+04 / T);
-  } else {
-    Kc = (-6.1812792800000000e+00 + 5.7109892000000029e-01 * logT + T * (1.3887595000000195e-05 + T * (-1.1981929833333342e-08 + T * (2.5821807416666717e-12 + -2.4427576649999995e-16 * T))) - -1.4048616120000001e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[176] = C[31] * C[6] * kf / Kc;
-
-  //rxn 177
-  kf = exp(3.2108357930406754e+01 - 1.08 * logT - (5.6008337568824811e+02 / T));
-  fwd_rxn_rates[177] = C[21] * C[13] * kf;
-  if (T <= 1695.0) {
-    Kc = (6.0655251699999999e+00 + 1.8854426200000001e+00 * logT + T * (2.3474799949999999e-03 + T * (1.1699720499999999e-07 + T * (-1.2779919833333332e-10 + 1.8967292900000002e-14 * T))) - 3.3603069000000003e+04 / T);
-  } else {
-    Kc = (3.9128480800000003e+00 + 2.1353103199999999e+00 * logT + T * (2.8431628449999999e-03 + T * (-3.2330577833333328e-07 + T * (2.5107541749999999e-11 + -8.7489071999999997e-16 * T))) - 3.3367834600000002e+04 / T);
-  }
-
-  if (T <= 1000.0) {
-    Kc += (-2.8637042255999994e+00 + -2.8031847200000000e+00 * logT + T * (-2.1316954600000002e-04 + T * (-2.5523999733333334e-06 + T * (1.6149380625000002e-09 + -3.7683618299999990e-13 * T))) - -6.4609362599999993e+04 / T);
-  } else {
-    Kc += (-1.1281786999999888e-01 + -3.0322385100000000e+00 * logT + T * (-2.6603635500000002e-03 + T * (3.2400395666666664e-07 + T * (-2.5725557499999996e-11 + 8.1289422349999993e-16 * T))) - -6.4274528200000001e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[177] = C[29] * C[8] * kf / Kc;
-
-  //rxn 178
+  //rxn 131
   kf = exp(2.7051202620675607e+01 - 0.414 * logT - (3.3212491280704739e+01 / T));
-  fwd_rxn_rates[178] = C[13] * C[13] * kf;
+  fwd_rxn_rates[131] = C[10] * C[10] * kf;
   if (T <= 1000.0) {
     Kc = (2.9778381308800000e+01 + -7.3195342600000002e+00 * logT + T * (1.5794678270000001e-02 + T * (-7.0582721133333335e-06 + T * (2.3292120583333334e-09 + -3.7670404799999998e-13 * T))) - -3.2546357400000001e+04 / T);
   } else {
@@ -2194,11 +1594,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[178] = C[30] * kf / Kc;
+  rev_rxn_rates[131] = C[23] * kf / Kc;
 
-  //rxn 179
+  //rxn 132
   kf = exp(2.2669175986001726e+01 - (1.2580489121479068e+03 / T));
-  fwd_rxn_rates[179] = C[30] * C[4] * kf;
+  fwd_rxn_rates[132] = C[23] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (-1.5545081972000000e+01 + 2.9541090600000004e+00 * logT + T * (-7.4004361249999998e-03 + T * (3.8108381666666663e-06 + T * (-1.3743367166666668e-09 + 2.2668641950000000e-13 * T))) - -1.9570815172999999e+04 / T);
   } else {
@@ -2206,23 +1606,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[179] = C[31] * C[2] * kf / Kc;
+  rev_rxn_rates[132] = C[24] * C[0] * kf / Kc;
 
-  //rxn 180
-  kf = exp(1.9485391480944795e+01 - (-6.3908884737113669e+02 / T));
-  fwd_rxn_rates[180] = C[30] * C[5] * kf;
-  if (T <= 1000.0) {
-    Kc = (-1.7018956150000001e+01 + 3.4704181300000001e+00 * logT + T * (-8.8547343399999999e-03 + T * (5.3203124266666663e-06 + T * (-2.3757904950000000e-09 + 5.0495395150000000e-13 * T))) - -4.0496918100000039e+03 / T);
-  } else {
-    Kc = (8.4292079300000005e+00 + -8.5610251000000082e-01 * logT + T * (-4.0629695700000280e-05 + T * (5.0147993700000066e-08 + T * (-8.4253617708333351e-12 + 5.0002650970000014e-16 * T))) - -3.0812206899999983e+03 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[180] = C[22] * C[14] * kf / Kc;
-
-  //rxn 181
+  //rxn 133
   kf = exp(1.8826145852060531e+01 - (-6.3908884737113669e+02 / T));
-  fwd_rxn_rates[181] = C[30] * C[5] * kf;
+  fwd_rxn_rates[133] = C[23] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-1.9810093017000000e+01 + 3.9334950800000006e+00 * logT + T * (-1.0951570354999999e-02 + T * (6.7194593949999991e-06 + T * (-2.8666955683333332e-09 + 5.5801906550000005e-13 * T))) - -1.8932580840000002e+04 / T);
   } else {
@@ -2230,11 +1618,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[181] = C[31] * C[6] * kf / Kc;
+  rev_rxn_rates[133] = C[24] * C[4] * kf / Kc;
 
-  //rxn 182
+  //rxn 134
   kf = exp(2.3288215194407947e+01 - (-1.6002382162521374e+02 / T));
-  fwd_rxn_rates[182] = C[30] * C[6] * kf;
+  fwd_rxn_rates[134] = C[23] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-1.7782105432999998e+01 + 3.3164289000000000e+00 * logT + T * (-1.1208364074999999e-02 + T * (7.3744802116666664e-06 + T * (-3.1881678200000004e-09 + 6.1593094900000006e-13 * T))) - -2.6841844359999996e+04 / T);
   } else {
@@ -2242,11 +1630,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[182] = C[31] * C[8] * kf / Kc;
+  rev_rxn_rates[134] = C[24] * C[6] * kf / Kc;
 
-  //rxn 183
+  //rxn 135
   kf = exp(2.2084242390082011e+01 - (7.5482934728874409e+02 / T));
-  fwd_rxn_rates[183] = C[30] * C[13] * kf;
+  fwd_rxn_rates[135] = C[23] * C[10] * kf;
   if (T <= 1000.0) {
     Kc = (-1.8353244695599997e+01 + 3.3785492899999996e+00 * logT + T * (-1.3211591179999999e-02 + T * (9.4677945099999992e-06 + T * (-4.3070979708333336e-09 + 8.6244760350000004e-13 * T))) - -2.1385893839999997e+04 / T);
   } else {
@@ -2254,9 +1642,9 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[183] = C[31] * C[12] * kf / Kc;
+  rev_rxn_rates[135] = C[24] * C[9] * kf / Kc;
 
-  //rxn 184
+  //rxn 136
   if (pres <= 1.0132e+04) {
     kf = exp(9.9844068121679072e+01 - 9.55 * logT - (3.2441558907340503e+04 / T));
   } else if ((pres > 1.0132e+04) && (pres <= 1.0132e+05)) {
@@ -2270,7 +1658,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   } else if (pres > 1.0132e+06) {
     kf = exp(1.0420411584963418e+02 - 9.39 * logT - (3.5296323498786536e+04 / T));
   }
-  fwd_rxn_rates[184] = C[31] * kf;
+  fwd_rxn_rates[136] = C[24] * kf;
   if (T <= 1000.0) {
     Kc = (4.8469681500000004e+00 + -5.6204999999999838e-02 * logT + T * (4.1736064999999996e-03 + T * (-5.0842983333333333e-06 + T * (2.9377441666666669e-09 + -6.7906015000000002e-13 * T))) - 3.2876220000000001e+04 / T);
   } else {
@@ -2278,11 +1666,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[184] = C[28] * C[4] * kf / Kc;
+  rev_rxn_rates[136] = C[21] * C[2] * kf / Kc;
 
-  //rxn 185
+  //rxn 137
   kf = exp(1.2388394202324129e+01 + 1.5 * logT - (-5.0321956485916273e+00 / T));
-  fwd_rxn_rates[185] = C[31] * C[4] * kf;
+  fwd_rxn_rates[137] = C[24] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (9.0790129680000007e+00 + -1.7118738800000000e+00 * logT + T * (8.1638668749999983e-03 + T * (-8.3306568333333322e-06 + T * (4.6175116166666672e-09 + -1.0478660305000000e-12 * T))) - -1.8989035173000004e+04 / T);
   } else {
@@ -2290,11 +1678,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[185] = C[28] * C[2] * kf / Kc;
+  rev_rxn_rates[137] = C[21] * C[0] * kf / Kc;
 
-  //rxn 186
+  //rxn 138
   kf = exp(1.2043553716032399e+01 + 1.5 * logT - (-3.2507983889901914e+02 / T));
-  fwd_rxn_rates[186] = C[31] * C[5] * kf;
+  fwd_rxn_rates[138] = C[24] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (4.8140019230000011e+00 + -7.3248785999999999e-01 * logT + T * (4.6127326450000001e-03 + T * (-5.4220356050000002e-06 + T * (3.1251527650000003e-09 + -7.1653338450000001e-13 * T))) - -1.8350800840000004e+04 / T);
   } else {
@@ -2302,11 +1690,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[186] = C[28] * C[6] * kf / Kc;
+  rev_rxn_rates[138] = C[21] * C[4] * kf / Kc;
 
-  //rxn 187
+  //rxn 139
   kf = 30000000000.0;
-  fwd_rxn_rates[187] = C[31] * C[5] * kf;
+  fwd_rxn_rates[139] = C[24] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-1.0341241924399998e+01 + 2.3847648000000006e+00 * logT + T * (-4.5840250999999999e-03 + T * (8.6761356333333323e-07 + T * (2.4064344916666669e-10 + -1.2430713300000001e-13 * T))) - -1.3277520200000003e+04 / T);
   } else {
@@ -2314,13 +1702,13 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[187] = C[13] * C[18] * kf / Kc;
+  rev_rxn_rates[139] = C[10] * C[15] * kf / Kc;
 
-  //rxn 188
-  fwd_rxn_rates[188] = C[31] * C[5] * 30000000000.0;
-  //rxn 189
+  //rxn 140
+  fwd_rxn_rates[140] = C[24] * C[3] * 30000000000.0;
+  //rxn 141
   kf = exp(7.0900768357760917e+00 + 2.0 * logT - (-5.9983772131212197e+02 / T));
-  fwd_rxn_rates[189] = C[31] * C[6] * kf;
+  fwd_rxn_rates[141] = C[24] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (6.8419895070000010e+00 + -1.3495540399999997e+00 * logT + T * (4.3559389249999986e-03 + T * (-4.7670147883333330e-06 + T * (2.8036805133333335e-09 + -6.5862150100000000e-13 * T))) - -2.6260064360000000e+04 / T);
   } else {
@@ -2328,11 +1716,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[188] = C[28] * C[8] * kf / Kc;
+  rev_rxn_rates[140] = C[21] * C[6] * kf / Kc;
 
-  //rxn 190
+  //rxn 142
   kf = 30000000000.0;
-  fwd_rxn_rates[190] = C[31] * C[6] * kf;
+  fwd_rxn_rates[142] = C[24] * C[4] * kf;
   if (T <= 1695.0) {
     Kc = (6.0655251699999999e+00 + 1.8854426200000001e+00 * logT + T * (2.3474799949999999e-03 + T * (1.1699720499999999e-07 + T * (-1.2779919833333332e-10 + 1.8967292900000002e-14 * T))) - 3.3603069000000003e+04 / T);
   } else {
@@ -2346,11 +1734,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[189] = C[29] * C[8] * kf / Kc;
+  rev_rxn_rates[141] = C[22] * C[6] * kf / Kc;
 
-  //rxn 191
+  //rxn 143
   kf = exp(2.0723265836946410e+01 - (7.5482934728874416e+03 / T));
-  fwd_rxn_rates[191] = C[31] * C[6] * kf;
+  fwd_rxn_rates[143] = C[24] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-8.8843936029999995e+00 + 1.8298190100000005e+00 * logT + T * (-6.8440459249999985e-03 + T * (3.6159486783333330e-06 + T * (-1.1997589533333332e-09 + 1.8012140499999999e-13 * T))) - -1.5730833200000001e+04 / T);
   } else {
@@ -2358,11 +1746,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[190] = C[12] * C[18] * kf / Kc;
+  rev_rxn_rates[142] = C[9] * C[15] * kf / Kc;
 
-  //rxn 192
+  //rxn 144
   kf = exp(2.6390573296152584e+00 + 2.69 * logT - (-8.0515130377466039e+02 / T));
-  fwd_rxn_rates[192] = C[31] * C[7] * kf;
+  fwd_rxn_rates[144] = C[24] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (7.3373685700000006e+00 + -1.5428515800000002e+00 * logT + T * (6.1244716739999993e-03 + T * (-5.6706080333333331e-06 + T * (3.0710855833333337e-09 + -6.8919768350000014e-13 * T))) - -1.0568202185000002e+04 / T);
   } else {
@@ -2370,11 +1758,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[191] = C[28] * C[9] * kf / Kc;
+  rev_rxn_rates[143] = C[21] * C[7] * kf / Kc;
 
-  //rxn 193
+  //rxn 145
   kf = exp(6.8243736700430864e+00 + 1.94 * logT - (1.0698447948905800e+03 / T));
-  fwd_rxn_rates[193] = C[31] * C[7] * kf;
+  fwd_rxn_rates[145] = C[24] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (1.7290799180000000e+01 + -3.6291196500000007e+00 * logT + T * (1.2266889904999998e-02 + T * (-8.9423614150000005e-06 + T * (4.2703621925000005e-09 + -8.9791849400000011e-13 * T))) - -8.1487420450000000e+03 / T);
   } else {
@@ -2382,11 +1770,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[192] = C[30] * C[3] * kf / Kc;
+  rev_rxn_rates[144] = C[23] * C[1] * kf / Kc;
 
-  //rxn 194
+  //rxn 146
   kf = exp(6.8243736700430864e+00 + 1.94 * logT - (-5.7970893871775547e+02 / T));
-  fwd_rxn_rates[194] = C[31] * C[13] * kf;
+  fwd_rxn_rates[146] = C[24] * C[10] * kf;
   if (T <= 1000.0) {
     Kc = (6.2708502444000009e+00 + -1.2874336500000001e+00 * logT + T * (2.3527118199999997e-03 + T * (-2.6737004900000002e-06 + T * (1.6847503625000003e-09 + -4.1210484650000001e-13 * T))) - -2.0804113840000002e+04 / T);
   } else {
@@ -2394,11 +1782,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[193] = C[28] * C[12] * kf / Kc;
+  rev_rxn_rates[145] = C[21] * C[9] * kf / Kc;
 
-  //rxn 195
+  //rxn 147
   kf = 30000000000.0;
-  fwd_rxn_rates[195] = C[31] * C[13] * kf;
+  fwd_rxn_rates[147] = C[24] * C[10] * kf;
   if (T <= 1695.0) {
     Kc = (6.0655251699999999e+00 + 1.8854426200000001e+00 * logT + T * (2.3474799949999999e-03 + T * (1.1699720499999999e-07 + T * (-1.2779919833333332e-10 + 1.8967292900000002e-14 * T))) - 3.3603069000000003e+04 / T);
   } else {
@@ -2412,11 +1800,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[194] = C[29] * C[12] * kf / Kc;
+  rev_rxn_rates[146] = C[22] * C[9] * kf / Kc;
 
-  //rxn 196
+  //rxn 148
   kf = 20000000000.0;
-  fwd_rxn_rates[196] = C[31] * C[14] * kf;
+  fwd_rxn_rates[148] = C[24] * C[11] * kf;
   if (T <= 1000.0) {
     Kc = (5.1557929556000008e+00 + -8.5717520999999985e-01 * logT + T * (2.9946945049999997e-03 + T * (-3.7231937300000001e-06 + T * (2.2935153025000003e-09 + -5.4947971800000006e-13 * T))) - -1.3204273499999999e+04 / T);
   } else {
@@ -2424,9 +1812,9 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[195] = C[28] * C[13] * kf / Kc;
+  rev_rxn_rates[147] = C[21] * C[10] * kf / Kc;
 
-  //rxn 197
+  //rxn 149
   if (pres <= 1.0132e+04) {
     kf = exp(8.4615829945526755e+01 - 7.75 * logT - (3.5396464192193511e+04 / T));
   } else if ((pres > 1.0132e+04) && (pres <= 1.0132e+05)) {
@@ -2440,7 +1828,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   } else if (pres > 1.0132e+06) {
     kf = exp(9.5537390924246978e+01 - 8.42 * logT - (3.8296015324912005e+04 / T));
   }
-  fwd_rxn_rates[197] = C[28] * kf;
+  fwd_rxn_rates[149] = C[21] * kf;
   if (T <= 1000.0) {
     Kc = (-1.6092582549999999e+01 + 4.1367473199999996e+00 * logT + T * (-8.2570514900000003e-03 + T * (5.1559983166666663e-06 + T * (-2.4485378666666670e-09 + 5.2519364850000004e-13 * T))) - 2.9630779300000006e+04 / T);
   } else {
@@ -2448,11 +1836,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[196] = C[15] * C[4] * kf / Kc;
+  rev_rxn_rates[148] = C[12] * C[2] * kf / Kc;
 
-  //rxn 198
+  //rxn 150
   kf = exp(4.4426512564903167e+00 + 2.63 * logT - (1.1574049991760744e+02 / T));
-  fwd_rxn_rates[198] = C[28] * C[4] * kf;
+  fwd_rxn_rates[150] = C[21] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (-1.1860537732000001e+01 + 2.4810784400000001e+00 * logT + T * (-4.2667911149999998e-03 + T * (1.9096398166666669e-06 + T * (-7.6877041666666669e-10 + 1.5638776799999995e-13 * T))) - -2.2234475872999999e+04 / T);
   } else {
@@ -2460,11 +1848,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[197] = C[15] * C[2] * kf / Kc;
+  rev_rxn_rates[149] = C[12] * C[0] * kf / Kc;
 
-  //rxn 199
+  //rxn 151
   kf = exp(1.2706847933442663e+01 + 1.5 * logT - (2.5010012373500388e+02 / T));
-  fwd_rxn_rates[199] = C[28] * C[5] * kf;
+  fwd_rxn_rates[151] = C[21] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-1.6125548776999999e+01 + 3.4604644599999994e+00 * logT + T * (-7.8179253449999989e-03 + T * (4.8182610449999993e-06 + T * (-2.2611292683333335e-09 + 4.8772041400000006e-13 * T))) - -2.1596241539999999e+04 / T);
   } else {
@@ -2472,11 +1860,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[198] = C[15] * C[6] * kf / Kc;
+  rev_rxn_rates[150] = C[12] * C[4] * kf / Kc;
 
-  //rxn 200
+  //rxn 152
   kf = 10000000000.0;
-  fwd_rxn_rates[200] = C[28] * C[5] * kf;
+  fwd_rxn_rates[152] = C[21] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-1.7280784994400001e+01 + 3.6243130199999993e+00 * logT + T * (-8.2348553349999992e-03 + T * (4.7059870466666668e-06 + T * (-2.0431367650000000e-09 + 4.1712137549999991e-13 * T))) - -2.2453280859999999e+04 / T);
   } else {
@@ -2484,11 +1872,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[199] = C[13] * C[16] * kf / Kc;
+  rev_rxn_rates[151] = C[10] * C[13] * kf / Kc;
 
-  //rxn 201
+  //rxn 153
   kf = exp(-2.8302178350764176e+00 + 3.4 * logT - (6.8437860820846129e+02 / T));
-  fwd_rxn_rates[201] = C[28] * C[6] * kf;
+  fwd_rxn_rates[153] = C[21] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-1.4097561193000002e+01 + 2.8433982799999997e+00 * logT + T * (-8.0747190649999995e-03 + T * (5.4732818616666665e-06 + T * (-2.5826015199999999e-09 + 5.4563229749999996e-13 * T))) - -2.9505505059999996e+04 / T);
   } else {
@@ -2496,11 +1884,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[200] = C[15] * C[8] * kf / Kc;
+  rev_rxn_rates[152] = C[12] * C[6] * kf / Kc;
 
-  //rxn 202
+  //rxn 154
   kf = exp(-9.3381737434860685e+00 + 4.05 * logT - (8.1018349942325199e+02 / T));
-  fwd_rxn_rates[202] = C[28] * C[13] * kf;
+  fwd_rxn_rates[154] = C[21] * C[10] * kf;
   if (T <= 1000.0) {
     Kc = (-1.4668700455600002e+01 + 2.9055186699999993e+00 * logT + T * (-1.0077946169999999e-02 + T * (7.5665961599999993e-06 + T * (-3.7015316708333331e-09 + 7.9214895200000005e-13 * T))) - -2.4049554539999997e+04 / T);
   } else {
@@ -2508,11 +1896,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[201] = C[15] * C[12] * kf / Kc;
+  rev_rxn_rates[153] = C[12] * C[9] * kf / Kc;
 
-  //rxn 203
+  //rxn 155
   kf = exp(7.7832240163360371e+00 + 2.0 * logT - (-5.9983772131212197e+02 / T));
-  fwd_rxn_rates[203] = C[28] * C[14] * kf;
+  fwd_rxn_rates[155] = C[21] * C[11] * kf;
   if (T <= 1000.0) {
     Kc = (-1.5783757744399999e+01 + 3.3357771099999995e+00 * logT + T * (-9.4359634850000006e-03 + T * (6.5171029200000003e-06 + T * (-3.0927667308333336e-09 + 6.5477408049999990e-13 * T))) - -1.6449714199999999e+04 / T);
   } else {
@@ -2520,11 +1908,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[202] = C[15] * C[13] * kf / Kc;
+  rev_rxn_rates[154] = C[12] * C[10] * kf / Kc;
 
-  //rxn 204
+  //rxn 156
   kf = exp(2.2109560198066301e+01 - (5.9993836522509382e+03 / T));
-  fwd_rxn_rates[204] = C[28] * C[16] * kf;
+  fwd_rxn_rates[156] = C[21] * C[13] * kf;
   if (T <= 1000.0) {
     Kc = (-6.0202989344000013e+00 + 6.1253240000000009e-01 * logT + T * (4.1773048500000050e-04 + T * (-1.4682375999999981e-07 + T * (-1.9021808166666659e-10 + 9.5663576999999999e-14 * T))) - -4.2794463399999986e+03 / T);
   } else {
@@ -2532,9 +1920,9 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[203] = C[17] * C[13] * kf / Kc;
+  rev_rxn_rates[155] = C[14] * C[10] * kf / Kc;
 
-  //rxn 205
+  //rxn 157
   if (pres <= 1.0132e+04) {
     kf = exp(7.5457675326721130e+01 - 6.99 * logT - (2.6062244483620900e+04 / T));
   } else if ((pres > 1.0132e+04) && (pres <= 1.0132e+05)) {
@@ -2548,7 +1936,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   } else if (pres > 1.0132e+06) {
     kf = exp(8.4502501260219745e+01 - 7.43 * logT - (2.8831964968605731e+04 / T));
   }
-  fwd_rxn_rates[205] = C[29] * kf;
+  fwd_rxn_rates[157] = C[22] * kf;
   if (T <= 1000.0) {
     Kc = (-3.9159115500000001e+00 + 4.7547463199999997e+00 * logT + T * (-1.7254914900000000e-03 + T * (2.2964783166666667e-06 + T * (-1.1105312000000001e-09 + 2.2051169850000001e-13 * T))) - 5.4306039300000004e+04 / T);
   } else {
@@ -2562,9 +1950,9 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[204] = C[15] * C[4] * kf / Kc;
+  rev_rxn_rates[156] = C[12] * C[2] * kf / Kc;
 
-  //rxn 206
+  //rxn 158
   if (pres <= 1.0132e+04) {
     kf = exp(6.6446463629855288e+01 - 7.77 * logT - (2.5542418673121381e+04 / T));
   } else if ((pres > 1.0132e+04) && (pres <= 1.0132e+05)) {
@@ -2578,7 +1966,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   } else if (pres > 1.0132e+06) {
     kf = exp(7.7614548608533781e+01 - 6.52 * logT - (2.7282048708839509e+04 / T));
   }
-  fwd_rxn_rates[206] = C[29] * kf;
+  fwd_rxn_rates[158] = C[22] * kf;
   if (T <= 1000.0) {
     Kc = (-3.9159115500000001e+00 + 4.7547463199999997e+00 * logT + T * (-1.7254914900000000e-03 + T * (2.2964783166666667e-06 + T * (-1.1105312000000001e-09 + 2.2051169850000001e-13 * T))) - 5.4306039300000004e+04 / T);
   } else {
@@ -2592,11 +1980,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[205] = C[15] * C[4] * kf / Kc;
+  rev_rxn_rates[157] = C[12] * C[2] * kf / Kc;
 
-  //rxn 207
+  //rxn 159
   kf = exp(1.3081541382884074e+01 + 1.5 * logT - (-4.4987829098409151e+02 / T));
-  fwd_rxn_rates[207] = C[29] * C[4] * kf;
+  fwd_rxn_rates[159] = C[22] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (3.1613326800000019e-01 + 3.0990774400000003e+00 * logT + T * (2.2647688849999998e-03 + T * (-9.4988018333333310e-07 + T * (5.6923625000000004e-10 + -1.4829418200000003e-13 * T))) - 2.4407841269999990e+03 / T);
   } else {
@@ -2610,11 +1998,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[206] = C[15] * C[2] * kf / Kc;
+  rev_rxn_rates[158] = C[12] * C[0] * kf / Kc;
 
-  //rxn 208
+  //rxn 160
   kf = 70000000000.0;
-  fwd_rxn_rates[208] = C[29] * C[4] * kf;
+  fwd_rxn_rates[160] = C[22] * C[2] * kf;
   if (T <= 1000.0) {
     Kc = (1.2176671000000001e+01 + 6.1799899999999997e-01 * logT + T * (6.5315599999999996e-03 + T * (-2.8595200000000000e-06 + T * (1.3380066666666667e-09 + -3.0468194999999998e-13 * T))) - 2.4675259999999998e+04 / T);
   } else {
@@ -2628,11 +2016,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[207] = C[28] * C[4] * kf / Kc;
+  rev_rxn_rates[159] = C[21] * C[2] * kf / Kc;
 
-  //rxn 209
+  //rxn 161
   kf = exp(1.2706847933442663e+01 + 1.5 * logT - (-4.4987829098409151e+02 / T));
-  fwd_rxn_rates[209] = C[29] * C[5] * kf;
+  fwd_rxn_rates[161] = C[22] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-3.9488777770000003e+00 + 4.0784634600000000e+00 * logT + T * (-1.2863653450000002e-03 + T * (1.9587410450000001e-06 + T * (-9.2312260166666669e-10 + 1.8303846400000002e-13 * T))) - 3.0790184599999993e+03 / T);
   } else {
@@ -2646,11 +2034,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[208] = C[15] * C[6] * kf / Kc;
+  rev_rxn_rates[160] = C[12] * C[4] * kf / Kc;
 
-  //rxn 210
+  //rxn 162
   kf = 70000000000.0;
-  fwd_rxn_rates[210] = C[29] * C[5] * kf;
+  fwd_rxn_rates[162] = C[22] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-5.1041139943999987e+00 + 4.2423120200000000e+00 * logT + T * (-1.7032953350000000e-03 + T * (1.8464670466666669e-06 + T * (-7.0513009833333338e-10 + 1.1243942549999998e-13 * T))) - 2.2219791399999995e+03 / T);
   } else {
@@ -2664,11 +2052,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[209] = C[13] * C[16] * kf / Kc;
+  rev_rxn_rates[161] = C[10] * C[13] * kf / Kc;
 
-  //rxn 211
+  //rxn 163
   kf = exp(7.7832240163360371e+00 + 2.0 * logT - (-5.9983772131212197e+02 / T));
-  fwd_rxn_rates[211] = C[29] * C[6] * kf;
+  fwd_rxn_rates[163] = C[22] * C[4] * kf;
   if (T <= 1000.0) {
     Kc = (-1.9208901930000000e+00 + 3.4613972799999999e+00 * logT + T * (-1.5431590650000003e-03 + T * (2.6137618616666665e-06 + T * (-1.2445948533333334e-09 + 2.4095034749999998e-13 * T))) - -4.8302450599999984e+03 / T);
   } else {
@@ -2682,15 +2070,15 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[210] = C[15] * C[8] * kf / Kc;
+  rev_rxn_rates[162] = C[12] * C[6] * kf / Kc;
 
-  //rxn 212
-  fwd_rxn_rates[212] = C[29] * C[6] * 2000000000.0;
-  //rxn 213
-  fwd_rxn_rates[213] = C[29] * C[7] * 9000000000.0;
-  //rxn 214
+  //rxn 164
+  fwd_rxn_rates[164] = C[22] * C[4] * 2000000000.0;
+  //rxn 165
+  fwd_rxn_rates[165] = C[22] * C[5] * 9000000000.0;
+  //rxn 166
   kf = exp(3.3672958299864741e+00 + 2.69 * logT - (-8.0515130377466039e+02 / T));
-  fwd_rxn_rates[214] = C[29] * C[7] * kf;
+  fwd_rxn_rates[166] = C[22] * C[5] * kf;
   if (T <= 1000.0) {
     Kc = (-1.4255111299999994e+00 + 3.2680997399999994e+00 * logT + T * (2.2537368400000037e-04 + T * (1.7101686166666660e-06 + T * (-9.7718978333333342e-10 + 2.1037416499999994e-13 * T))) - 1.0861617115000001e+04 / T);
   } else {
@@ -2704,11 +2092,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[211] = C[15] * C[9] * kf / Kc;
+  rev_rxn_rates[163] = C[12] * C[7] * kf / Kc;
 
-  //rxn 215
+  //rxn 167
   kf = exp(2.1128730945054574e+01 - (2.9996918261254691e+03 / T));
-  fwd_rxn_rates[215] = C[29] * C[3] * kf;
+  fwd_rxn_rates[167] = C[22] * C[1] * kf;
   if (T <= 1000.0) {
     Kc = (-1.7897173544000000e+00 + 3.3535549999999996e+00 * logT + T * (-3.1736155500000011e-04 + T * (2.2480118883333340e-06 + T * (-1.3369336050000001e-09 + 3.0736137549999999e-13 * T))) - 2.5459700259999998e+04 / T);
   } else {
@@ -2722,11 +2110,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[212] = C[13] * C[23] * kf / Kc;
+  rev_rxn_rates[164] = C[10] * C[18] * kf / Kc;
 
-  //rxn 216
+  //rxn 168
   kf = exp(7.4955419438842563e+00 + 1.94 * logT - (-5.7970893871775547e+02 / T));
-  fwd_rxn_rates[216] = C[29] * C[13] * kf;
+  fwd_rxn_rates[168] = C[22] * C[10] * kf;
   if (T <= 1000.0) {
     Kc = (-2.4920294555999991e+00 + 3.5235176699999995e+00 * logT + T * (-3.5463861699999997e-03 + T * (4.7070761600000001e-06 + T * (-2.3635250041666668e-09 + 4.8746700200000006e-13 * T))) - 6.2570546000000104e+02 / T);
   } else {
@@ -2740,11 +2128,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[213] = C[15] * C[12] * kf / Kc;
+  rev_rxn_rates[165] = C[12] * C[9] * kf / Kc;
 
-  //rxn 217
+  //rxn 169
   kf = exp(3.5175353223982235e+01 - 0.85 * logT - (1.1319924111506867e+05 / T));
-  fwd_rxn_rates[217] = C[32] * kf;
+  fwd_rxn_rates[169] = C[25] * kf;
   if (T <= 1000.0) {
     Kc = (3.9513525000000000e+00 + 4.6899471999999998e-01 * logT + T * (6.1830494000000001e-05 + T * (8.3833238833333338e-08 + T * (-2.0294217666666667e-10 + 7.0440617500000006e-14 * T))) - 1.1325625228000000e+05 / T);
   } else {
@@ -2752,11 +2140,11 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 1.2186597134166982e+01 * exp(Kc);
-  rev_rxn_rates[214] = C[11] * C[11] * kf / Kc;
+  rev_rxn_rates[166] = C[8] * C[8] * kf / Kc;
 
-  //rxn 218
+  //rxn 170
   kf = exp(2.0448828991244650e+01 - 0.1 * logT - (-8.9069862980071809e+02 / T));
-  fwd_rxn_rates[218] = C[11] * C[5] * kf;
+  fwd_rxn_rates[170] = C[8] * C[3] * kf;
   if (T <= 1000.0) {
     Kc = (-2.5155641099999992e+00 + -4.4966814000000044e-01 * logT + T * (-6.8028120000000010e-04 + T * (7.3354015666666684e-07 + T * (-2.6770740250000006e-10 + 3.4644451499999989e-14 * T))) - -7.5381797560000006e+04 / T);
   } else {
@@ -2764,115 +2152,7 @@ void eval_rxn_rates (const double T, const double pres, const double * __restric
   }
 
   Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[215] = C[16] * kf / Kc;
-
-  //rxn 219
-  kf = exp(1.9552082855443466e+01 - (5.0321956485916271e+03 / T));
-  fwd_rxn_rates[219] = C[4] * C[5] * kf;
-  if (T <= 1000.0) {
-    Kc = (2.3419363600000005e+00 + -1.2074228200000001e+00 * logT + T * (1.8905955059999998e-03 + T * (-1.4409347833333334e-06 + T * (7.7642384000000004e-10 + -1.7335890450000001e-13 * T))) - -3.8609725999999973e+03 / T);
-  } else {
-    Kc = (3.4380103400000004e+00 + -1.2878077700000001e+00 * logT + T * (7.1290190430000006e-04 + T * (-6.9206366299999994e-08 + T * (4.8658758125000003e-12 + -1.5404342430000002e-16 * T))) - -3.7244963999999964e+03 / T);
-  }
-
-  Kc = 8.2057360967184814e-02 * exp(Kc);
-  rev_rxn_rates[216] = C[10] * kf / Kc;
-
-  //rxn 220
-  kf = exp(1.6892822818510687e+01 + 0.5 * logT - (1.0366323036098752e+03 / T));
-  fwd_rxn_rates[220] = C[10] * C[1] * kf;
-  if (T <= 1000.0) {
-    Kc = (-2.3749025870000002e+00 + 5.3113995999999997e-01 * logT + T * (-1.4514693609999998e-03 + T * (1.1031975116666667e-06 + T * (-5.8901524166666667e-10 + 1.3588567000000000e-13 * T))) - -4.7366048240000004e+04 / T);
-  } else {
-    Kc = (1.3643109999999936e-01 + 8.2701130000000234e-02 * logT + T * (-1.4553733500000002e-04 + T * (2.0904714000000002e-08 + T * (-1.7729546083333340e-12 + 5.6876164000000005e-17 * T))) - -4.7277367520000000e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[217] = C[6] * C[1] * kf / Kc;
-
-  //rxn 221
-  kf = exp(2.1805071007298139e+01 + 0.5 * logT - (-2.2342948679746826e+02 / T));
-  fwd_rxn_rates[221] = C[10] * C[2] * kf;
-  if (T <= 1000.0) {
-    Kc = (-2.3749025870000002e+00 + 5.3113995999999997e-01 * logT + T * (-1.4514693609999998e-03 + T * (1.1031975116666667e-06 + T * (-5.8901524166666667e-10 + 1.3588567000000000e-13 * T))) - -4.7366048240000004e+04 / T);
-  } else {
-    Kc = (1.3643109999999936e-01 + 8.2701130000000234e-02 * logT + T * (-1.4553733500000002e-04 + T * (2.0904714000000002e-08 + T * (-1.7729546083333340e-12 + 5.6876164000000005e-17 * T))) - -4.7277367520000000e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[218] = C[6] * C[2] * kf / Kc;
-
-  //rxn 222
-  kf = exp(2.1465203181675790e+01 + 0.5 * logT - (-2.4255183026211645e+02 / T));
-  fwd_rxn_rates[222] = C[10] * C[3] * kf;
-  if (T <= 1000.0) {
-    Kc = (-2.3749025870000002e+00 + 5.3113995999999997e-01 * logT + T * (-1.4514693609999998e-03 + T * (1.1031975116666667e-06 + T * (-5.8901524166666667e-10 + 1.3588567000000000e-13 * T))) - -4.7366048240000004e+04 / T);
-  } else {
-    Kc = (1.3643109999999936e-01 + 8.2701130000000234e-02 * logT + T * (-1.4553733500000002e-04 + T * (2.0904714000000002e-08 + T * (-1.7729546083333340e-12 + 5.6876164000000005e-17 * T))) - -4.7277367520000000e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[219] = C[6] * C[3] * kf / Kc;
-
-  //rxn 223
-  kf = exp(2.1128730945054574e+01 + 0.5 * logT);
-  fwd_rxn_rates[223] = C[10] * C[6] * kf;
-  if (T <= 1000.0) {
-    Kc = (-2.3749025870000002e+00 + 5.3113995999999997e-01 * logT + T * (-1.4514693609999998e-03 + T * (1.1031975116666667e-06 + T * (-5.8901524166666667e-10 + 1.3588567000000000e-13 * T))) - -4.7366048240000004e+04 / T);
-  } else {
-    Kc = (1.3643109999999936e-01 + 8.2701130000000234e-02 * logT + T * (-1.4553733500000002e-04 + T * (2.0904714000000002e-08 + T * (-1.7729546083333340e-12 + 5.6876164000000005e-17 * T))) - -4.7277367520000000e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[220] = C[6] * C[6] * kf / Kc;
-
-  //rxn 224
-  kf = exp(2.1128730945054574e+01 + 0.5 * logT);
-  fwd_rxn_rates[224] = C[10] * C[4] * kf;
-  if (T <= 1000.0) {
-    Kc = (-2.3749025870000002e+00 + 5.3113995999999997e-01 * logT + T * (-1.4514693609999998e-03 + T * (1.1031975116666667e-06 + T * (-5.8901524166666667e-10 + 1.3588567000000000e-13 * T))) - -4.7366048240000004e+04 / T);
-  } else {
-    Kc = (1.3643109999999936e-01 + 8.2701130000000234e-02 * logT + T * (-1.4553733500000002e-04 + T * (2.0904714000000002e-08 + T * (-1.7729546083333340e-12 + 5.6876164000000005e-17 * T))) - -4.7277367520000000e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[221] = C[6] * C[4] * kf / Kc;
-
-  //rxn 225
-  kf = exp(2.1128730945054574e+01 + 0.5 * logT);
-  fwd_rxn_rates[225] = C[10] * C[5] * kf;
-  if (T <= 1000.0) {
-    Kc = (-2.3749025870000002e+00 + 5.3113995999999997e-01 * logT + T * (-1.4514693609999998e-03 + T * (1.1031975116666667e-06 + T * (-5.8901524166666667e-10 + 1.3588567000000000e-13 * T))) - -4.7366048240000004e+04 / T);
-  } else {
-    Kc = (1.3643109999999936e-01 + 8.2701130000000234e-02 * logT + T * (-1.4553733500000002e-04 + T * (2.0904714000000002e-08 + T * (-1.7729546083333340e-12 + 5.6876164000000005e-17 * T))) - -4.7277367520000000e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[222] = C[6] * C[5] * kf / Kc;
-
-  //rxn 226
-  kf = exp(2.5798439652180239e+01 - (2.5311944112415888e+04 / T));
-  fwd_rxn_rates[226] = C[17] * C[4] * kf;
-  if (T <= 1000.0) {
-    Kc = (-7.8387739799999991e+00 + 2.2346993600000005e+00 * logT + T * (-5.4632584080000005e-03 + T * (1.8609624711666664e-06 + T * (-3.3813786166666669e-10 + 8.3693734999999834e-15 * T))) - 1.5472535720000003e+04 / T);
-  } else {
-    Kc = (1.5760772890000000e+01 + -1.6146673299999996e+00 * logT + T * (8.4181430000000246e-05 + T * (7.7414373333333389e-09 + T * (-1.5050643583333331e-12 + 8.0362799000000007e-17 * T))) - 1.6504162212000007e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[223] = C[32] * C[10] * kf / Kc;
-
-  //rxn 227
-  kf = 1400000.0;
-  fwd_rxn_rates[227] = C[10] * kf;
-  if (T <= 1000.0) {
-    Kc = (-2.3749025870000002e+00 + 5.3113995999999997e-01 * logT + T * (-1.4514693609999998e-03 + T * (1.1031975116666667e-06 + T * (-5.8901524166666667e-10 + 1.3588567000000000e-13 * T))) - -4.7366048240000004e+04 / T);
-  } else {
-    Kc = (1.3643109999999936e-01 + 8.2701130000000234e-02 * logT + T * (-1.4553733500000002e-04 + T * (2.0904714000000002e-08 + T * (-1.7729546083333340e-12 + 5.6876164000000005e-17 * T))) - -4.7277367520000000e+04 / T);
-  }
-
-  Kc = 1.0000000000000000e+00 * exp(Kc);
-  rev_rxn_rates[224] = C[6] * kf / Kc;
+  rev_rxn_rates[167] = C[13] * kf / Kc;
 
 } // end eval_rxn_rates
 

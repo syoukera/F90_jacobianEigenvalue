@@ -2,53 +2,46 @@
 #define MECHANISM_h
 
 #include <string.h>
-//last_spec 2
+//last_spec 0
 /* Species Indexes
-0  HE
-1  AR
-2  H2
-3  O2
-4  H
-5  O
-6  OH
-7  HO2
-8  H2O
-9  H2O2
-10  OH*
-11  N
-12  NH3
-13  NH2
-14  NH
-15  NNH
-16  NO
-17  N2O
-18  HNO
-19  HON
-20  H2NO
-21  HNOH
-22  NH2OH
-23  NO2
-24  HONO
-25  HNO2
-26  NO3
-27  HONO2
-28  N2H2
-29  H2NN
-30  N2H4
-31  N2H3
-32  N2
+0  H2
+1  O2
+2  H
+3  O
+4  OH
+5  HO2
+6  H2O
+7  H2O2
+8  N
+9  NH3
+10  NH2
+11  NH
+12  NNH
+13  NO
+14  N2O
+15  HNO
+16  HON
+17  H2NO
+18  NO2
+19  HONO
+20  HONO2
+21  N2H2
+22  H2NN
+23  N2H4
+24  N2H3
+25  N2
 */
 
 //Number of species
-#define NSP 33
+#define NSP 26
 //Number of variables. NN = NSP + 1 (temperature)
-#define NN 34
+#define NN 27
 //Number of forward reactions
-#define FWD_RATES 228
+#define FWD_RATES 171
 //Number of reversible reactions
-#define REV_RATES 225
+#define REV_RATES 168
 //Number of reactions with pressure modified rates
-#define PRES_MOD_RATES 25
+#define PRES_MOD_RATES 19
 
 //Must be implemented by user on a per mechanism basis in mechanism.c
 void set_same_initial_conditions(int, double**, double**);
