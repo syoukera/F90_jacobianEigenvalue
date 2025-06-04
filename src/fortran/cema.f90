@@ -253,44 +253,36 @@ contains
 
         ! call allocation_cema()
         call initialize_cema()
-
-        ! Tamaoki mechanism
-        y(1)  = t_local     ! T
-        y(2)  = y_local(3)  ! HE
-        y(3)  = y_local(2)  ! AR
-        y(4)  = y_local(8)  ! H2
-        y(5)  = y_local(5)  ! O2
-        y(6)  = y_local(4)  ! H
-        y(7)  = y_local(6)  ! O
-        y(8)  = y_local(7)  ! OH
-        y(9)  = y_local(10) ! HO2
-        y(10) = y_local(9)  ! H2O
-        y(11) = y_local(11) ! H2O2
-        y(12) = y_local(33) ! OHD-OH
-        y(13) = y_local(18) ! N
-        y(14) = y_local(12) ! NH3
-        y(15) = y_local(13) ! NH2
-        y(16) = y_local(14) ! NH
-        y(17) = y_local(20) ! NNH
-        y(18) = y_local(19) ! NO
-        y(19) = y_local(23) ! N2O
-        y(20) = y_local(15) ! HNO
-        y(21) = y_local(17) ! HON
-        y(22) = y_local(16) ! H2NO
-        y(23) = y_local(25) ! HNOH
-        y(24) = y_local(24) ! NH2OH
-        y(25) = y_local(22) ! NO2
-        y(26) = y_local(21) ! HONO
-        y(27) = y_local(27) ! HNO2
-        y(28) = y_local(28) ! NO3
-        y(29) = y_local(26) ! HONO2
-        y(30) = y_local(29) ! N2H2
-        y(31) = y_local(30) ! H2NN
-        y(32) = y_local(32) ! N2H4
-        y(33) = y_local(31) ! N2H3
-        ! y(34) = y_local(1)  ! N2
-
         
+        ! Tamaoki rediced mechanism
+        y(1) = t_local      ! T	
+        y(2) = y_local(2)	! H2
+        y(3) = y_local(3)	! O2
+        y(4) = y_local(4)	! H
+        y(5) = y_local(5)	! O
+        y(6) = y_local(6)	! OH
+        y(7) = y_local(7)	! HO2
+        y(8) = y_local(8)	! H2O
+        y(9) = y_local(9)	! H2O2
+        y(10) = y_local(10)	! N
+        y(11) = y_local(11)	! NH3
+        y(12) = y_local(12)	! NH2
+        y(13) = y_local(13)	! NH
+        y(14) = y_local(14)	! NNH
+        y(15) = y_local(15)	! NO
+        y(16) = y_local(16)	! N2O
+        y(17) = y_local(17)	! HNO
+        y(18) = y_local(18)	! HON
+        y(19) = y_local(19)	! H2NO
+        y(20) = y_local(20)	! NO2
+        y(21) = y_local(21)	! HONO
+        y(22) = y_local(22)	! HONO2
+        y(23) = y_local(23)	! N2H2
+        y(24) = y_local(24)	! H2NN
+        y(25) = y_local(25)	! N2H4
+        y(26) = y_local(26)	! N2H3
+        y(27) = y_local(1)	! N2
+
         ! calclate Jacobian using pyJac
         call eval_jacob(t, p_local, c_loc(y), c_loc(jac))
 
