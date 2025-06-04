@@ -19,11 +19,11 @@
 20      ! jprocs (number of processes in y-direcrtion)
 1       ! kprocs (number of processes in z-direcrtion)
 !--- reaction information ---!
-'../../DotOutGenerator_TD/Tamaoki/1atm/'
-33      ! nf (number of species)
-228     ! nrf (number of forward reactions)
-225     ! nrb (number of backward reactions)
-25      ! nrp (number of presssure module)
+'../../DotOutGenerator_TD/Tamaoki_reduced_combine/1atm/'
+26      ! nf (number of species)
+171     ! nrf (number of forward reactions)
+168     ! nrb (number of backward reactions)
+19      ! nrp (number of presssure module)
 !--- flags ---!
 .false. ! flag_particle
 .true. ! flag_Z
