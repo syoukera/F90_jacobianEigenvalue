@@ -148,10 +148,10 @@ module pv3D
   !===============================
   integer(4) , private :: i,j,k,ii,jj,kk
   integer(4) , private :: x_sta_reg,x_end_reg,y_sta_reg,y_end_reg,z_sta_reg,z_end_reg
-  integer(4) , private :: grid_offset, vector_offset
-  integer(4) , private :: data_size
-  integer(4) , private :: block_data_size
-  integer(4) , private , allocatable :: scalar_offset(:)
+  integer(8) , private :: grid_offset, vector_offset
+  integer(8) , private :: data_size
+  integer(8) , private :: block_data_size
+  integer(8) , private , allocatable :: scalar_offset(:)
   character(8) , private :: filenumber, gridnumber
   character(16),allocatable , private , save :: str_varname(:)
   character(16),allocatable , private :: str_format(:)
@@ -650,7 +650,7 @@ contains
 
 
   character(100) function int_to_char8(input)
-    integer(4) , intent(in) :: input
+    integer(8) , intent(in) :: input
 
     write(int_to_char8,'(1I100)') input
 
