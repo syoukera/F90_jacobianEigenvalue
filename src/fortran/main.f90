@@ -204,10 +204,10 @@ program pv
               ! ptr_analyze
               sf(i,j,k,ptr_analyze+7)=sum(y_local(i,j,k,:))     !sumY
 
-              dyodx=(y_local(i+1,j,k, 5)-y_local(i-1,j,k, 5))/(dxg(i)*dxg(i+1))
-              dyody=(y_local(i,j+1,k, 5)-y_local(i,j-1,k, 5))/(dyg(j)*dyg(j+1))
-              dyfdx=(y_local(i+1,j,k,12)-y_local(i-1,j,k,12))/(dxg(i)*dxg(i+1))
-              dyfdy=(y_local(i,j+1,k,12)-y_local(i,j-1,k,12))/(dyg(j)*dyg(j+1))
+              dyodx=(y_local(i+1,j,k, 3)-y_local(i-1,j,k, 3))/(dxg(i)*dxg(i+1))
+              dyody=(y_local(i,j+1,k, 3)-y_local(i,j-1,k, 3))/(dyg(j)*dyg(j+1))
+              dyfdx=(y_local(i+1,j,k,11)-y_local(i-1,j,k,11))/(dxg(i)*dxg(i+1))
+              dyfdy=(y_local(i,j+1,k,11)-y_local(i,j-1,k,11))/(dyg(j)*dyg(j+1))
               sf(i,j,k,ptr_analyze+8)=(dyodx*dyfdx+dyody*dyfdy+1d-12) &
                                      /(sqrt(dyodx*dyodx+dyody*dyody)*sqrt(dyfdx*dyfdx+dyfdy*dyfdy)+1d-12)
               
