@@ -1,7 +1,13 @@
 # コンパイラ設定
-CC = icx
+NVCC     = nvcc
+ARCH     = -arch=sm_89
+NVCCFLAGS= -O2 -lineinfo -Xcompiler "-fPIC -Wall -Wextra -Isrc/cuda -Isrc/cuda/jacobs"
+LDFLAGS = -llapack -lblas -lm  # 数学ライブラリをリンク
+INCLUDE  = -I/home/syoukera/github/cuda-samples/Common
+
+# CC = icx
 FC = ifx  # Fortranコンパイラ
-CFLAGS = -O3 -Wall -Wextra -Isrc/c -Isrc/c/jacobs
+# CFLAGS = -O3 -Wall -Wextra -Isrc/cuda -Isrc/cuda/jacobs
 FFLAGS = -O3 -fpe3 -warn all # Fortran用のオプション
 # CFLAGS = -g -O0 -Isrc/c -Isrc/c/jacobs
 # FFLAGS = -g -O0 -fpe3
@@ -16,17 +22,17 @@ LDFLAGS = -qmkl  # 数学ライブラリをリンク
 # LDFLAGS = -llapack -lblas -lm  # 数学ライブラリをリンク
 
 # ソースファイルの場所
-C_SRC_DIR = src/c
-JACOBS_SRC_DIR = src/c/jacobs
+CUDA_SRC_DIR = src/cuda
+JACOBS_SRC_DIR = src/cuda/jacobs
 F_SRC_DIR = src/fortran
 OBJ_DIR = obj
 BIN_DIR = bin
 
 # Cソースファイル一覧
-SRCS_C = $(wildcard $(C_SRC_DIR)/*.c)
+SRCS_C = $(wildcard $(CUDA_SRC_DIR)/*.cu)
 
 # Cソースファイル一覧
-SRCS_JACOBS = $(wildcard $(JACOBS_SRC_DIR)/*.c)
+SRCS_JACOBS = $(wildcard $(JACOBS_SRC_DIR)/*.cu)
 
 # Fortranソースファイル一覧
 SRCS_F90 = $(wildcard $(F_SRC_DIR)/*.f90)
@@ -34,11 +40,11 @@ SRCS_F90 = $(wildcard $(F_SRC_DIR)/*.f90)
 # ヘッダファイル一覧（オプションで管理）
 DEPS = $(wildcard include/*.h)
 
-# Cのオブジェクトファイル
-OBJS_C = $(patsubst $(C_SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS_C))
+# CUDAのオブジェクトファイル
+OBJS_CUDA = $(patsubst $(CUDA_SRC_DIR)/%.cu, $(OBJ_DIR)/%.o, $(SRCS_C))
 
-# Cのオブジェクトファイル
-OBJS_JACOBS = $(patsubst $(JACOBS_SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS_JACOBS))
+# CUDAのオブジェクトファイル
+OBJS_JACOBS = $(patsubst $(JACOBS_SRC_DIR)/%.cu, $(OBJ_DIR)/%.o, $(SRCS_JACOBS))
 
 # Fortranのオブジェクトファイル
 OBJS_F90 = $(patsubst $(F_SRC_DIR)/%.f90, $(OBJ_DIR)/%.o, $(SRCS_F90))
@@ -50,20 +56,20 @@ TARGET = $(BIN_DIR)/main
 $(shell mkdir -p $(OBJ_DIR) $(BIN_DIR))
 
 # すべてのオブジェクトファイルをリンクして実行ファイルを作成
-$(TARGET): $(OBJS_C) $(OBJS_JACOBS) $(OBJS_F90)
+$(TARGET): $(OBJS_CUDA) $(OBJS_JACOBS) $(OBJS_F90)
 	$(FC) $(FFLAGS) -o $@ $^ $(LDFLAGS)
 
-# 各Cファイルをコンパイル
-$(OBJ_DIR)/%.o: $(C_SRC_DIR)/%.c $(DEPS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+# 各CUDAファイルをコンパイル
+$(OBJ_DIR)/%.o: $(CUDA_SRC_DIR)/%.cu $(DEPS)
+	$(NVCC) $(NVCCFLAGS) $(INCLUDE) -c -o $@ $<
 
-# 各Cファイルをコンパイル
-$(OBJ_DIR)/%.o: $(JACOBS_SRC_DIR)/%.c $(DEPS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+# 各CUDAファイルをコンパイル
+$(OBJ_DIR)/%.o: $(JACOBS_SRC_DIR)/%.cu $(DEPS)
+	$(NVCC) $(ARCH) $(NVCCFLAGS) $(INCLUDE) -c -o $@ $<
 
 # 各Fortranファイルをコンパイル
 $(OBJ_DIR)/%.o: $(F_SRC_DIR)/%.f90
-	$(FC) $(FFLAGS) -c -o $@ $<
+	$(FC) $(ARCH) $(FFLAGS) -c -o $@ $<
 
 $(OBJ_DIR)/main.o: $(OBJ_DIR)/pv_parallel.o $(OBJ_DIR)/cema.o
 $(OBJ_DIR)/cema.o: $(OBJ_DIR)/pv_parallel.o
