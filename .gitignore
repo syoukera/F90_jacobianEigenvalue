@@ -5,3 +5,4 @@ xy_plane/*
 !xy_plane/.gitkeep
 dat/Zst_*
 *__genmod.f90
+*.save
